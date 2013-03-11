@@ -38,8 +38,11 @@ module Mixlib
         RUBYGEMS_REGEX = /^(\d+)\.(\d+)\.(\d+)(?:\.([[:alnum:]]+(?:\.[[:alnum:]]+)?))?(?:\-(\d+))?$/
 
         def initialize(version)
-          match = version.match(RUBYGEMS_REGEX)
-          raise Mixlib::Versioning::ParseError, "'#{version}' is not a valid Rubygems version string!" unless match
+          match = version.match(RUBYGEMS_REGEX) rescue nil
+
+          unless match
+            raise Mixlib::Versioning::ParseError, "'#{version}' is not a valid Rubygems version string!"
+          end
 
           @input = version
 

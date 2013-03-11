@@ -44,7 +44,7 @@ module Mixlib
         attr_reader :commits_since, :commit_sha, :iteration
 
         def initialize(version)
-          match = version.match(OPSCODE_GIT_DESCRIBE_REGEX)
+          match = version.match(OPSCODE_GIT_DESCRIBE_REGEX) rescue nil
 
           unless match
             raise Mixlib::Versioning::ParseError, "'#{version}' is not a valid Opscode 'git-describe' version string!"

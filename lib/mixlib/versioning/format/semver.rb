@@ -40,8 +40,11 @@ module Mixlib
         SEMVER_REGEX = /^(\d+)\.(\d+)\.(\d+)(?:\-([\dA-Za-z\-\.]+))?(?:\+([\dA-Za-z\-\.]+))?$/
 
         def initialize(version)
-          match = version.match(SEMVER_REGEX)
-          raise Mixlib::Versioning::ParseError, "'#{version}' is not a valid semver version string!" unless match
+          match = version.match(SEMVER_REGEX) rescue nil
+
+          unless match
+            raise Mixlib::Versioning::ParseError, "'#{version}' is not a valid semver version string!"
+          end
 
           @input = version
 
