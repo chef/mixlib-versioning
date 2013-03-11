@@ -27,23 +27,60 @@ module Mixlib
     # Class Methods
     ###########################################################################
 
-    # Select the most recent version from +all_versions+ that satisfies the
+    # === Description
+    #
+    # Create a new +Mixlib::Versioning::Format+ instance given a version string
+    # to parse, and an optional format type.
+    #
+    # === Synopsis
+    #
+    #   Mixlib::Versioning.parse("11.0.0")
+    #   Mixlib::Versioning.parse("11.0.0", :semver)
+    #   Mixlib::Versioning.parse("11.0.0", 'semver')
+    #   Mixlib::Versioning.parse("11.0.0", Mixlib::Versioning::Format::SemVer)
+    #
+    # === Arguments
+    #
+    # +version_string+::
+    #   String representatin of the version to parse.
+    # +format_type+::
+    #   Optional format type to parse the version string as. If this is
+    #   exluded all version types will be attempted from most specific to most
+    #   specific with a preference for SemVer formats.
+    #
+    # === Raises
+    #
+    # +Mixlib::Versioning::ParseError+:: if the parse fails.
+    # +Mixlib::Versioning::UnknownFormatError+:: if the given format type
+    #   doesn't exist.
+    #
+    def self.parse(version_string, format_type=nil)
+      if format_type
+        Mixlib::Versioning::Format.for(format_type).new(version_string)
+      else
+        # Attempt to parse from the most specific formats first.
+        parsed_version = nil
+        [
+          Mixlib::Versioning::Format::GitDescribe,
+          Mixlib::Versioning::Format::OpscodeSemVer,
+          Mixlib::Versioning::Format::SemVer,
+          Mixlib::Versioning::Format::Rubygems
+        ].each do |version|
+          begin
+            break parsed_version = version.new(version_string)
+          rescue Mixlib::Versioning::ParseError
+            next
+          end
+        end
+        return parsed_version
+      end
+    end
+
+    # === Description
+    #
+    # Selects the most recent version from +all_versions+ that satisfies the
     # filtering constraints provided by +filter_version+,
     # +use_prerelease_versions+, and +use_build_versions+.
-    #
-    # +all_versions+ is an array of +Opscode::Version+ objects.  This is the
-    # "world" of versions we will be filtering to produce the final target
-    # version.
-    #
-    # +use_prerelease_versions+ determines whether or not we want to keep or
-    # discard versions from +all_versions+ that have pre-release
-    # specifiers.
-    #
-    # +use_build_versions+ determines whether or not we want to keep or discard
-    # versions from +all_versions+ that have build specifiers.
-    #
-    # +filter_version+ is a +Mixlib::Versioning::Format+ (or nil) that provides
-    # more fine-grained filtering.
     #
     # If +filter_version+ specifies a release (e.g. 1.0.0), then the target
     # version that is returned will be in the same "release line" (it will have
@@ -65,10 +102,61 @@ module Mixlib
     #
     # In all cases, the returned +Mixlib::Versioning::Format+ is the most
     # recent one in +all_versions+ that satisfies the given constraints.
+    #
+    # === Synopsis
+    #
+    #   all = [Mixlib::Versioning::Format::SemVer.new("11.0.0-beta.1"),
+    #          Mixlib::Versioning::Format::SemVer.new("11.0.0-rc.1"),
+    #          Mixlib::Versioning::Format::SemVer.new("11.0.0"),
+    #          Mixlib::Versioning::Format::SemVer.new("11.0.1")]
+    #
+    #   filter_version = Mixlib::Versioning::Format::SemVer.new("11.0.1")
+    #
+    #   Mixlib::Versioning.find_target_version(all,
+    #                                          filter_version
+    #                                          true,
+    #                                          true)
+    #
+    # === Arguments
+    #
+    # +all_versions+::
+    #   An array of +Mixlib::Versioning::Format+ objects. This is the "world"
+    #   of versions we will be filtering to produce the final target version.
+    #   Any strings in the array will automatically be converted into instances
+    #   of +Mixlib::Versioning::Format+ using +Mixlib::Versioning.parse+.
+    # +filter_version+::
+    #   A +Mixlib::Versioning::Format+ instance that is used to perform more
+    #   fine-grained filtering. If a string is passed,
+    #   +Mixlib::Versioning.parse+ will be used to instantiate a version.
+    # +use_prerelease_versions+::
+    #   If true, keep versions with pre-release specifiers. When false,
+    #   versions in +all_versions+ that have a pre-release specifier will be
+    #   filtered out.
+    # +use_build_versions+::
+    #   If true, keep versions with build version specifiers. When false,
+    #   versions in +all_versions+ that have a build version specifier will be
+    #   filtered out.
+    #
     def self.find_target_version(all_versions,
-                                 filter_version,
+                                 filter_version=nil,
                                  use_prerelease_versions=false,
                                  use_build_versions=false)
+
+      # attempt to parse a +Mixlib::Versioning::Format+ instance if we were
+      # passed a string
+      unless filter_version.nil? ||
+             filter_version.kind_of?(Mixlib::Versioning::Format)
+        filter_version = Mixlib::Versioning.parse(filter_version)
+      end
+
+      all_versions.map! do |v|
+        if v.kind_of?(Mixlib::Versioning::Format)
+          v
+        else
+          Mixlib::Versioning.parse(v)
+        end
+      end
+
       if filter_version && filter_version.build
         # If we've requested a build (whether for a pre-release or release),
         # there's no sense doing any other filtering; just return that version
