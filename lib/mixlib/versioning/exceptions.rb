@@ -22,5 +22,7 @@ module Mixlib
     class Error < RuntimeError; end
     # Exception raised if parsing fails
     class ParseError < Error; end
+    # Exception raised if version format cannot be identified
+    class UnknownFormatError < Error; end
   end
 end

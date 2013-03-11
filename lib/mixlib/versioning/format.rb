@@ -239,6 +239,50 @@ module Mixlib
         # down here, they're totally the same
         return 0
       end
-    end
-  end
-end
+
+      #########################################################################
+      # Class Methods
+      #########################################################################
+
+      # === Description
+      #
+      # Returns the +Mixlib::Versioning::Format+ class that maps to the given
+      # format type.
+      #
+      # === Synopsis
+      #
+      #   Mixlib::Versioning::Format.for(:semver)
+      #   Mixlib::Versioning::Format.for('semver')
+      #   Mixlib::Versioning::Format.for(Mixlib::Versioning::Format::SemVer)
+      #
+      # === Arguments
+      #
+      # +format_type+::
+      #   Name of a valid +Mixlib::Versioning::Format+ in Class or snake-case
+      #   form.
+      #
+      # === Raises
+      #
+      # +Mixlib::Versioning::UnknownFormatError+:: if the given format type
+      #   doesn't exist.
+      #
+      def self.for(format_type)
+        if format_type.kind_of?(Class) &&
+           format_type.ancestors.include?(Mixlib::Versioning::Format)
+          format_type
+        else
+          case format_type.to_s
+          when 'semver'; Mixlib::Versioning::Format::SemVer
+          when 'opscode_semver'; Mixlib::Versioning::Format::OpscodeSemVer
+          when 'git_describe'; Mixlib::Versioning::Format::GitDescribe
+          when 'rubygems'; Mixlib::Versioning::Format::Rubygems
+          else
+            msg = "'#{format_type.to_s}' is not a supported Mixlib::Versioning format"
+            raise Mixlib::Versioning::UnknownFormatError, msg
+          end
+        end
+      end
+
+    end # Format
+  end # Versioning
+end # Mixlib
