@@ -104,7 +104,7 @@ describe Mixlib::Versioning::Format::GitDescribe do
     "1.0.0" => "no git describe data",
     "1.0.0-alpha.1" => "no git describe data",
     "1.0.0-alpha.1+build.deadbeef" => "no git describe data",
-    "1.0.0-123-gdeadbeef-1" => "too many SHA1 characters",
+    "1.0.0-123-gfd0e3a65282cb5f6df3bab6a53f4fcb722340d499-1" => "too many SHA1 characters",
     "1.0.0-123-gdeadbe-1" => "too few SHA1 characters",
     "1.0.0-123-gNOTHEX1-1" => "illegal SHA1 characters",
     "1.0.0-123-g1234567-alpha" => "non-numeric iteration",
@@ -116,7 +116,7 @@ describe Mixlib::Versioning::Format::GitDescribe do
   version_strings = %w{
     9.0.1-1-gdeadbee-1
     9.1.2-2-g1234567-1
-    10.0.0-1-gabcdefg-1
+    10.0.0-1-gabcdef3-1
     10.5.7-2-g21353f0-1
     10.20.2-2-gbbbbbbb-1
     10.20.2-3-gaaaaaaa-1
@@ -137,7 +137,7 @@ describe Mixlib::Versioning::Format::GitDescribe do
       9.0.1-2-gdeadbe2-1
       9.1.1-2-g1234567-1
       9.1.2-2-g1234567-1
-      10.0.0-1-gabcdefg-1
+      10.0.0-1-gabcdef3-1
       10.5.7-2-g21353f0-1
       10.20.2-2-gbbbbbbb-1
       10.20.2-3-gaaaaaaa-1
@@ -152,7 +152,7 @@ describe Mixlib::Versioning::Format::GitDescribe do
     let(:build_versions){%w{
       9.0.1-1-gdeadbee-1
       9.1.2-2-g1234567-1
-      10.0.0-1-gabcdefg-1
+      10.0.0-1-gabcdef3-1
       10.5.7-2-g21353f0-1
       10.20.2-2-gbbbbbbb-1
       10.20.2-3-gaaaaaaa-1
@@ -164,7 +164,7 @@ describe Mixlib::Versioning::Format::GitDescribe do
     let(:release_build_versions){%w{
       9.0.1-1-gdeadbee-1
       9.1.2-2-g1234567-1
-      10.0.0-1-gabcdefg-1
+      10.0.0-1-gabcdef3-1
       10.5.7-2-g21353f0-1
       10.20.2-2-gbbbbbbb-1
       10.20.2-3-gaaaaaaa-1

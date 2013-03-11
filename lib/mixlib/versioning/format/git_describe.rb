@@ -28,9 +28,9 @@ module Mixlib
         #
         # SUPPORTED FORMATS:
         #
-        #    MAJOR.MINOR.PATCH-COMMITS_SINCE-gGIT_SHA
-        #    MAJOR.MINOR.PATCH.PRERELEASE-COMMITS_SINCE-gGIT_SHA
-        #    MAJOR.MINOR.PATCH-PRERELEASE-COMMITS_SINCE-gGIT_SHA-ITERATION
+        #    MAJOR.MINOR.PATCH-COMMITS_SINCE-gGIT_SHA1
+        #    MAJOR.MINOR.PATCH.PRERELEASE-COMMITS_SINCE-gGIT_SHA1
+        #    MAJOR.MINOR.PATCH-PRERELEASE-COMMITS_SINCE-gGIT_SHA1-ITERATION
         #
         # EXAMPLES:
         #
@@ -39,7 +39,7 @@ module Mixlib
         #    11.0.0-alpha-10-g642ffed
         #    11.0.0-alpha.1-1-gcea071e
         #
-        OPSCODE_GIT_DESCRIBE_REGEX = /^(\d+)\.(\d+)\.(\d+)(?:-|.)?(.+)?\-(\d+)\-g([a-g0-9]{7})(?:-|.)?(\d+)?$/
+        OPSCODE_GIT_DESCRIBE_REGEX = /^(\d+)\.(\d+)\.(\d+)(?:\-|\.)?(.+)?\-(\d+)\-g([a-f0-9]{7,40})(?:\-)?(\d+)?$/
 
         attr_reader :commits_since, :commit_sha, :iteration
 
