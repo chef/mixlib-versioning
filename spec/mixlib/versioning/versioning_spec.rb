@@ -131,6 +131,14 @@ describe Mixlib::Versioning do
 
     end # describe "parsing with automatic format detection"
 
+    describe "parsing an Mixlib::Versioning::Format object" do
+      it "returns the same object" do
+        v = Mixlib::Versioning.parse(version_string)
+        result = subject.parse(v)
+        v.should be result
+      end
+    end
+
   end # describe .parse
 
   describe ".find_target_version" do

@@ -55,8 +55,10 @@ module Mixlib
     #   doesn't exist.
     #
     def self.parse(version_string, format_type=nil)
-      if format_type
-        Mixlib::Versioning::Format.for(format_type).new(version_string)
+      if version_string.kind_of?(Mixlib::Versioning::Format)
+        return version_string
+      elsif format_type
+        return Mixlib::Versioning::Format.for(format_type).new(version_string)
       else
         # Attempt to parse from the most specific formats first.
         parsed_version = nil
