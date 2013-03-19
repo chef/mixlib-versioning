@@ -45,26 +45,19 @@ module Mixlib
 
         RUBYGEMS_REGEX = /^(\d+)\.(\d+)\.(\d+)(?:\.([[:alnum:]]+(?:\.[[:alnum:]]+)?))?(?:\-(\d+))?$/
 
-        # @see Format#initialize
-        def initialize(version)
-          match = version.match(RUBYGEMS_REGEX) rescue nil
+        # @see Format#parse
+        def parse(version_string)
+          match = version_string.match(RUBYGEMS_REGEX) rescue nil
 
           unless match
-            raise Mixlib::Versioning::ParseError, "'#{version}' is not a valid Rubygems version string!"
+            raise Mixlib::Versioning::ParseError, "'#{version_string}' is not a valid #{self.class} version string!"
           end
-
-          @input = version
 
           @major, @minor, @patch, @prerelease, @iteration = match[1..5]
           @major, @minor, @patch, @iteration = [@major, @minor, @patch, @iteration].map(&:to_i)
 
           # Do not convert @build to an integer; SemVer sorting logic will handle the conversion
           @prerelease = nil if (@prerelease.nil? || @prerelease.empty?)
-        end
-
-        # @see Format#to_s
-        def to_s
-          @input
         end
 
       end # class Rubygems

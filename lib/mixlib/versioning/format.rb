@@ -74,15 +74,22 @@ module Mixlib
         end
       end
 
-      attr_reader :major, :minor, :patch, :prerelease, :build, :iteration
+      attr_reader :major, :minor, :patch, :prerelease, :build, :iteration, :input
+
+      # @param version_string [String] string representation of the version
+      def initialize(version_string)
+        parse(version_string)
+        @input = version_string
+      end
 
       # Parses the version string splitting it into it's component signifiers
-      # for easy comparison and sorting of versions
+      # for easy comparison and sorting of versions. This method **MUST** be
+      # overriden by all descendants of this class.
       #
-      # @param version [String] string representation of the version
+      # @param version_string [String] string representation of the version
       # @raise [Mixlib::Versioning::ParseError] raised if parsing fails
-      def initialize(version)
-        raise Error, "You must override the initializer!"
+      def parse(version_string)
+        raise Error, "You must override the #parse"
       end
 
       # @return [Boolean] Whether or not this is a release version
@@ -135,7 +142,7 @@ module Mixlib
 
       # @return [String] String representation of this {Format} instance
       def to_s
-        raise Error, "You must override #to_s"
+        @input
       end
 
       # Returns SemVer compliant string representation of this {Format}

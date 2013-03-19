@@ -68,26 +68,21 @@ module Mixlib
         #
         OPSCODE_PRERELEASE_REGEX = /^(alpha|beta|rc)(\.\d+)?$/
 
-        # @see Format#initialize
-        def initialize(version)
-          super(version)
+        # @see SemVer#parse
+        def parse(version_string)
+          super(version_string)
 
           unless @prerelease.nil?
             unless @prerelease.match(OPSCODE_PRERELEASE_REGEX)
-              raise Mixlib::Versioning::ParseError, "'#{@prerelease}' is not a valid Opscode prerelease signifier"
+              raise Mixlib::Versioning::ParseError, "'#{@prerelease}' is not a valid Opscode pre-release signifier!"
             end
           end
 
           unless @build.nil?
             unless @build.match(OPSCODE_BUILD_REGEX)
-              raise Mixlib::Versioning::ParseError, "'#{@build}' is not a valid Opscode build signifier"
+              raise Mixlib::Versioning::ParseError, "'#{@build}' is not a valid Opscode build signifier!"
             end
           end
-        end
-
-        # @see Format#to_s
-        def to_s
-          @input
         end
 
       end # class OpscodeSemVer

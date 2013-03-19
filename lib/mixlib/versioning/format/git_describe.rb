@@ -47,14 +47,14 @@ module Mixlib
 
         GIT_DESCRIBE_REGEX = /^(\d+)\.(\d+)\.(\d+)(?:\-|\.)?(.+)?\-(\d+)\-g([a-f0-9]{7,40})(?:\-)?(\d+)?$/
 
-        attr_reader :commits_since, :commit_sha, :iteration
+        attr_reader :commits_since, :commit_sha
 
-        # @see Format#initialize
-        def initialize(version)
-          match = version.match(GIT_DESCRIBE_REGEX) rescue nil
+        # @see Format#parse
+        def parse(version_string)
+          match = version_string.match(GIT_DESCRIBE_REGEX) rescue nil
 
           unless match
-            raise Mixlib::Versioning::ParseError, "'#{version}' is not a valid Opscode 'git-describe' version string!"
+            raise Mixlib::Versioning::ParseError, "'#{version_string}' is not a valid #{self.class} version string!"
           end
 
           @major, @minor, @patch, @prerelease, @commits_since, @commit_sha, @iteration = match[1..7]
@@ -63,15 +63,6 @@ module Mixlib
           # Our comparison logic is built around SemVer semantics, so
           # we'll store our internal information in that format
           @build = "#{@commits_since}.g#{@commit_sha}.#{@iteration}"
-
-
-          # We succeeded, so stash the original input away for later
-          @input = version
-        end
-
-        # @see Format#to_s
-        def to_s
-          @input
         end
 
       end # class GitDescribe

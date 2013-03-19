@@ -19,9 +19,19 @@
 require 'spec_helper'
 
 describe Mixlib::Versioning::Format do
-  subject{ described_class }
+
+  describe "#initialize" do
+    subject{ described_class.new(version_string) }
+    let(:version_string) { "11.0.0" }
+
+    it "descendants must override #parse" do
+      expect { subject }.to raise_error
+    end
+  end
 
   describe ".for" do
+
+    subject{ described_class }
 
     [
       :rubygems,
