@@ -112,10 +112,10 @@ http://git-scm.com/docs/git-describe
 **Supported Formats:**
 
 ```text
-MAJOR.MINOR.PATCH-COMMITS_SINCE-gGIT_SHA
-MAJOR.MINOR.PATCH-COMMITS_SINCE-gGIT_SHA-ITERATION
-MAJOR.MINOR.PATCH-PRERELEASE-COMMITS_SINCE-gGIT_SHA
-MAJOR.MINOR.PATCH-PRERELEASE-COMMITS_SINCE-gGIT_SHA-ITERATION
+MAJOR.MINOR.PATCH-COMMITS_SINCE-gGIT_SHA1
+MAJOR.MINOR.PATCH-COMMITS_SINCE-gGIT_SHA1-ITERATION
+MAJOR.MINOR.PATCH-PRERELEASE-COMMITS_SINCE-gGIT_SHA1
+MAJOR.MINOR.PATCH-PRERELEASE-COMMITS_SINCE-gGIT_SHA1-ITERATION
 ```
 
 Examples of valid Git Describe version strings:
@@ -143,7 +143,177 @@ Or install it yourself as:
 
 ## Usage
 
-TODO
+### Basic Version String Parsing
+
+```irb
+>> require 'mixlib/versioning'
+true
+>> v1 = Mixlib::Versioning.parse("11.0.3")
+#<Mixlib::Versioning::Format::OpscodeSemVer:0x3fecddccff4c @major=11, @minor=0, @patch=3, @prerelease=nil, @build=nil, @input="11.0.3">
+>> v1.release?
+true
+>> v1.prerelease?
+false
+>> v1.build?
+false
+>> v1.prerelease_build?
+false
+>> v2 = Mixlib::Versioning.parse("11.0.0-beta.1")
+#<Mixlib::Versioning::Format::OpscodeSemVer:0x3fecde44f420 @major=11, @minor=0, @patch=0, @prerelease="beta.1", @build=nil, @input="11.0.0-beta.1">
+>> v2.release?
+false
+>> v2.prerelease?
+true
+>> v2.build?
+false
+>> v2.prerelease_build?
+false
+>> v3 = Mixlib::Versioning.parse("11.0.6+20130216075209")
+#<Mixlib::Versioning::Format::OpscodeSemVer:0x3fecde49568c @major=11, @minor=0, @patch=6, @prerelease=nil, @build="20130216075209", @input="11.0.6+20130216075209">
+>> v3.release?
+false
+>> v3.prerelease?
+false
+>> v3.build?
+true
+>> v3.prerelease_build?
+false
+>> v4 = Mixlib::Versioning.parse("11.0.8-rc.1+20130302083119")
+#<Mixlib::Versioning::Format::OpscodeSemVer:0x3fecde4dad7c @major=11, @minor=0, @patch=8, @prerelease="rc.1", @build="20130302083119", @input="11.0.8-rc.1+20130302083119">
+>> v4.release?
+false
+>> v4.prerelease?
+false
+>> v4.build?
+true
+>> v4.prerelease_build?
+true
+>> v5 = Mixlib::Versioning.parse("10.16.8.alpha.0")
+#<Mixlib::Versioning::Format::Rubygems:0x3fecde532bd0 @major=10, @minor=16, @patch=8, @prerelease="alpha.0", @iteration=0, @input="10.16.8.alpha.0">
+>> v5.major
+10
+>> v5.minor
+16
+>> v5.patch
+8
+>> v5.prerelease
+"alpha.0"
+>> v5.release?
+false
+>> v5.prerelease?
+true
+```
+
+### Version Comparison and Sorting
+
+```irb
+>> require 'mixlib/versioning'
+true
+>> v1 = Mixlib::Versioning.parse("11.0.0-beta.1")
+#<Mixlib::Versioning::Format::OpscodeSemVer:0x3ff009cd54e0 @major=11, @minor=0, @patch=0, @prerelease="beta.1", @build=nil, @input="11.0.0-beta.1">
+>> v2 = Mixlib::Versioning.parse("11.0.0-rc.1")
+#<Mixlib::Versioning::Format::OpscodeSemVer:0x3ff009d07260 @major=11, @minor=0, @patch=0, @prerelease="rc.1", @build=nil, @input="11.0.0-rc.1">
+>> v3 = Mixlib::Versioning.parse("11.0.0")
+#<Mixlib::Versioning::Format::OpscodeSemVer:0x3ff009d0d3cc @major=11, @minor=0, @patch=0, @prerelease=nil, @build=nil, @input="11.0.0">
+>> v1 < v2
+true
+>> v3 < v1
+false
+>> v1 == v2
+false
+>> [v3, v1, v2].sort
+[
+  [0] #<Mixlib::Versioning::Format::OpscodeSemVer:0x3ff009cd54e0 @major=11, @minor=0, @patch=0, @prerelease="beta.1", @build=nil, @input="11.0.0-beta.1">,
+  [1] #<Mixlib::Versioning::Format::OpscodeSemVer:0x3ff009d07260 @major=11, @minor=0, @patch=0, @prerelease="rc.1", @build=nil, @input="11.0.0-rc.1">,
+  [2] #<Mixlib::Versioning::Format::OpscodeSemVer:0x3ff009d0d3cc @major=11, @minor=0, @patch=0, @prerelease=nil, @build=nil, @input="11.0.0">
+]
+>> [v3, v1, v2].map{|v| v.to_s}.sort
+[
+  [0] "11.0.0",
+  [1] "11.0.0-beta.1",
+  [2] "11.0.0-rc.1"
+]
+```
+
+### Target Version Selection
+
+Basic usage:
+
+```ruby
+>> require 'mixlib/versioning'
+true
+>> all_versions = %w{
+  11.0.0-alpha.1
+  11.0.0-alpha.1-1-gcea071e
+  11.0.0-alpha.3+20130103213604.git.11.3fe70b5
+  11.0.0-alpha.3+20130129075201.git.38.3332a80
+  11.0.0-alpha.3+20130130075202.git.38.3332a80
+  11.0.0-beta.0+20130131044557
+  11.0.0-beta.1+20130201023059.git.5.c9d3320
+  11.0.0-beta.2+20130201035911
+  11.0.0-beta.2+20130201191308.git.4.9aa4cb2
+  11.0.0-rc.1
+  11.0.0+20130204053034.git.1.1802643
+  11.0.4
+  11.0.6-alpha.0+20130208045134.git.2.298c401
+  11.0.6-alpha.0+20130214075209.git.11.5d72e1c
+  11.0.6-alpha.0+20130215075208.git.11.5d72e1c
+  11.0.6-rc.0
+  11.0.6
+  11.0.6+20130216075209
+  11.0.6+20130221075213
+  11.0.8-rc.1
+  11.0.8-rc.1+20130302083119
+  11.0.8-rc.1+20130304083118
+  11.0.8-rc.1+20130305083118
+  11.0.8-rc.1+20130305195925.git.2.94a1dde
+  11.0.8-rc.1+20130306083036.git.2.94a1dde
+  11.0.8-rc.1+20130319083111.git.6.dc8613e
+};''
+""
+>> Mixlib::Versioning.find_target_version(all_versions, "11.0.6", false, false)
+#<Mixlib::Versioning::Format::OpscodeSemVer:0x3ffdc91364a4 @major=11, @minor=0, @patch=6, @prerelease=nil, @build=nil, @input="11.0.6">
+>> target = Mixlib::Versioning.find_target_version(all_versions, "11.0.6", false, false)
+#<Mixlib::Versioning::Format::OpscodeSemVer:0x3ffdc91364a4 @major=11, @minor=0, @patch=6, @prerelease=nil, @build=nil, @input="11.0.6">
+>> target.to_s
+"11.0.6"
+```
+
+Select latest release version:
+
+```irb
+>> target = Mixlib::Versioning.find_target_version(all_versions, nil, false, false)
+#<Mixlib::Versioning::Format::OpscodeSemVer:0x3ffdc91364a4 @major=11, @minor=0, @patch=6, @prerelease=nil, @build=nil, @input="11.0.6">
+>> target.to_s
+"11.0.6"
+```
+
+Select latest pre-release version:
+
+```irb
+>> target = Mixlib::Versioning.find_target_version(all_versions, nil, true, false)
+#<Mixlib::Versioning::Format::OpscodeSemVer:0x3ffdc9139078 @major=11, @minor=0, @patch=8, @prerelease="rc.1", @build=nil, @input="11.0.8-rc.1">
+>> target.to_s
+"11.0.8-rc.1"
+```
+
+Select the latest release build version:
+
+```irb
+>> target = Mixlib::Versioning.find_target_version(all_versions, nil, false, true)
+#<Mixlib::Versioning::Format::OpscodeSemVer:0x3ffdc91f0bb0 @major=11, @minor=0, @patch=6, @prerelease=nil, @build="20130221075213", @input="11.0.6+20130221075213">
+>> target.to_s
+"11.0.6+20130221075213"
+```
+
+Select the latest pre-release build version:
+
+```irb
+>> target = Mixlib::Versioning.find_target_version(all_versions, nil, true, true)
+#<Mixlib::Versioning::Format::OpscodeSemVer:0x3ffdc91f154c @major=11, @minor=0, @patch=8, @prerelease="rc.1", @build="20130319083111.git.6.dc8613e", @input="11.0.8-rc.1+20130319083111.git.6.dc8613e">
+>> target.to_s
+"11.0.8-rc.1+20130319083111.git.6.dc8613e"
+```
 
 ## Contributing
 
