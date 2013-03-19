@@ -145,6 +145,16 @@ module Mixlib
         @input
       end
 
+      # Since the default implementation of `Object#inspect` uses `Object#to_s`
+      # under the covers (which we override) we need to also override `#inspect`
+      # to ensure useful debug information.
+      def inspect
+        vars = instance_variables.map do |n|
+          "#{n}=#{instance_variable_get(n).inspect}"
+        end
+        "#<%s:0x%x %s>" % [self.class,object_id,vars.join(', ')]
+      end
+
       # Returns SemVer compliant string representation of this {Format}
       # instance. The string returned will take on the form:
       #
