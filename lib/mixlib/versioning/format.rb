@@ -27,17 +27,19 @@ module Mixlib
     # @author Seth Chisamore (<schisamo@opscode.com>)
     #
     # @!attribute [r] major
-    #   Major signifier
+    #   @return [Integer] major identifier
     # @!attribute [r] minor
-    #   Minor signifier
+    #   @return [Integer] minor identifier
     # @!attribute [r] patch
-    #   Patch signifier
+    #   @return [Integer] patch identifier
     # @!attribute [r] prerelease
-    #   Pre-release signifier
+    #   @return [String] pre-release identifier
     # @!attribute [r] build
-    #   Build signifier
+    #   @return [String] build identifier
     # @!attribute [r] iteration
-    #   Iteration
+    #   @return [String] build interation
+    # @!attribute [r] input
+    #   @return [String] original input version string that was parsed
     class Format
       include Comparable
 
@@ -82,9 +84,9 @@ module Mixlib
         @input = version_string
       end
 
-      # Parses the version string splitting it into it's component signifiers
-      # for easy comparison and sorting of versions. This method **MUST** be
-      # overriden by all descendants of this class.
+      # Parses the version string splitting it into it's component version
+      # identifiers for easy comparison and sorting of versions. This method
+      # **MUST** be overriden by all descendants of this class.
       #
       # @param version_string [String] string representation of the version
       # @raise [Mixlib::Versioning::ParseError] raised if parsing fails
