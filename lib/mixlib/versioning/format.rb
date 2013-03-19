@@ -23,52 +23,109 @@ require 'mixlib/versioning/format/semver'
 
 module Mixlib
   class Versioning
+
+    # @author Seth Chisamore (<schisamo@opscode.com>)
+    #
+    # @!attribute [r] major
+    #   Major signifier
+    # @!attribute [r] minor
+    #   Minor signifier
+    # @!attribute [r] patch
+    #   Patch signifier
+    # @!attribute [r] prerelease
+    #   Pre-release signifier
+    # @!attribute [r] build
+    #   Build signifier
+    # @!attribute [r] iteration
+    #   Iteration
     class Format
       include Comparable
 
+      # Returns the {Mixlib::Versioning::Format} class that maps to the given
+      # format type.
+      #
+      # @example
+      #   Mixlib::Versioning::Format.for(:semver)
+      #   Mixlib::Versioning::Format.for('semver')
+      #   Mixlib::Versioning::Format.for(Mixlib::Versioning::Format::SemVer)
+      #
+      # @param format_type [String, Symbol, Mixlib::Versioning::Format] Name of
+      #   a valid +Mixlib::Versioning::Format+ in Class or snake-case form.
+      #
+      # @raise [Mixlib::Versioning::UnknownFormatError] if the given format
+      #   type doesn't exist
+      #
+      # @return [Class] the {Mixlib::Versioning::Format} class
+      #
+      def self.for(format_type)
+        if format_type.kind_of?(Class) &&
+           format_type.ancestors.include?(Mixlib::Versioning::Format)
+          format_type
+        else
+          case format_type.to_s
+          when 'semver'; Mixlib::Versioning::Format::SemVer
+          when 'opscode_semver'; Mixlib::Versioning::Format::OpscodeSemVer
+          when 'git_describe'; Mixlib::Versioning::Format::GitDescribe
+          when 'rubygems'; Mixlib::Versioning::Format::Rubygems
+          else
+            msg = "'#{format_type.to_s}' is not a supported Mixlib::Versioning format"
+            raise Mixlib::Versioning::UnknownFormatError, msg
+          end
+        end
+      end
+
       attr_reader :major, :minor, :patch, :prerelease, :build, :iteration
 
+      # Parses the version string splitting it into it's component signifiers
+      # for easy comparison and sorting of versions
+      #
+      # @param version [String] string representation of the version
+      # @raise [Mixlib::Versioning::ParseError] raised if parsing fails
       def initialize(version)
         raise Error, "You must override the initializer!"
       end
 
-      # Is this an official release?
+      # @return [Boolean] Whether or not this is a release version
       def release?
         @prerelease.nil? && @build.nil?
       end
 
-      # Is this an official pre-release? (i.e., not a build version)
+      # @return [Boolean] Whether or not this is a pre-release version
       def prerelease?
         !!(@prerelease && @build.nil?)
       end
 
-      # Is this a build version of a release?
+      # @return [Boolean] Whether or not this is a release build version
       def release_build?
         !!(@prerelease.nil? && @build)
       end
 
-      # Is this a build version of a pre-release?
+      # @return [Boolean] Whether or not this is a pre-release build version
       def prerelease_build?
         !!(@prerelease && @build)
       end
 
-      # Is this a build (either of a release or a pre-release)?
+      # @return [Boolean] Whether or not this is a build version
       def build?
         !!@build
       end
 
-      # Returns +true+ if +other+ and this +Version+ share the same
-      # major, minor, and patch values.  Prerelease and build specifiers
-      # are not taken into consideration.
+      # Returns `true` if `other` and this {Format} share the same `major`,
+      # `minor`, and `patch` values. Pre-release and build specifiers are not
+      # taken into consideration.
+      #
+      # @return [Boolean]
       def in_same_release_line?(other)
         @major == other.major &&
         @minor == other.minor &&
         @patch == other.patch
       end
 
-      # Returns +true+ if +other+ and this +Version+ share the same
-      # major, minor, patch, and prerelease values.  Build specifiers
+      # Returns `true` if `other` an share the same
+      # `major`, `minor`, and `patch` values. Pre-release and build specifiers
       # are not taken into consideration.
+      #
+      # @return [Boolean]
       def in_same_prerelease_line?(other)
         @major == other.major &&
         @minor == other.minor &&
@@ -76,11 +133,21 @@ module Mixlib
         @prerelease == other.prerelease
       end
 
+      # @return [String] String representation of this {Format} instance
       def to_s
         raise Error, "You must override #to_s"
       end
 
-      # TODO - create a proper serialization abstraction
+      # Returns SemVer compliant string representation of this {Format}
+      # instance. The string returned will take on the form:
+      #
+      # ```text
+      # MAJOR.MINOR.PATCH-PRERELEASE+BUILD
+      # ```
+      #
+      # @return [String] SemVer compliant string representation of this
+      #   {Format} instance
+      # @todo create a proper serialization abstraction
       def to_semver_string
         s = [@major, @minor, @patch].join(".")
         s += "-#{@prerelease}" if @prerelease
@@ -88,12 +155,28 @@ module Mixlib
         s
       end
 
+      # Returns Rubygems compliant string representation of this {Format}
+      # instance. The string returned will take on the form:
+      #
+      # ```text
+      # MAJOR.MINOR.PATCH.PRERELEASE
+      # ```
+      #
+      # @return [String] Rubygems compliant string representation of this
+      #   {Format} instance
+      # @todo create a proper serialization abstraction
       def to_rubygems_string
         s = [@major, @minor, @patch].join(".")
         s += ".#{@prerelease}" if @prerelease
         s
       end
 
+      # Compare this version number with the given version number, following
+      # Semantic Versioning 2.0.0-rc.1 semantics.
+      #
+      # @param other [Mixlib::Versioning::Format]
+      # @return [Integer] -1, 0, or 1 depending on whether the this version is
+      #   less than, equal to, or greater than the other version
       def <=>(other)
 
         # First, perform comparisons based on major, minor, and patch
@@ -152,6 +235,9 @@ module Mixlib
         return 0
       end
 
+      # @param other [Mixlib::Versioning::Format]
+      # @return [Boolean] returns true if the versions are equal, false
+      #   otherwise.
       def eql?(other)
         @major == other.major &&
           @minor == other.minor &&
@@ -164,14 +250,15 @@ module Mixlib
         [@major, @minor, @patch, @prerelease, @build].compact.join(".").hash
       end
 
-      ###########################################################################
+      #########################################################################
 
       private
 
-      # If a String +n+ can be parsed as an Integer do so; otherwise, do
+      # If a String `n` can be parsed as an Integer do so; otherwise, do
       # nothing.
       #
-      # (+nil+ is a valid input.)
+      # @param n [String, nil]
+      # @return [Integer] the parsed {Integer}
       def maybe_int(n)
         Integer(n)
       rescue
@@ -179,19 +266,19 @@ module Mixlib
       end
 
       # Compares prerelease and build version component strings
-      # according to semver 2.0.0-rc.1 semantics.
+      # according to SemVer 2.0.0-rc.1 semantics.
       #
-      # Returns -1, 0, or 1, just like the spaceship operator (+<=>+),
-      # and is used in the implemntation of +<=>+ for this class.
+      # Returns -1, 0, or 1, just like the spaceship operator (`<=>`),
+      # and is used in the implemntation of `<=>` for this class.
       #
-      # Prerelease and build specifiers are dot-separated strings.
+      # Pre-release and build specifiers are dot-separated strings.
       # Numeric components are sorted numerically; otherwise, sorting is
       # standard ASCII order.  Numerical components have a lower
       # precedence than string components.
       #
       # See http://www.semver.org for more.
       #
-      # Both +a_item+ and +b_item+ should be Strings; +nil+ is not a
+      # Both `a_item` and `b_item` should be Strings; `nil` is not a
       # valid input.
       def compare_dot_components(a_item, b_item)
         a_components = a_item.split(".")
@@ -238,49 +325,6 @@ module Mixlib
         # We've compared all components of both strings; if we've gotten
         # down here, they're totally the same
         return 0
-      end
-
-      #########################################################################
-      # Class Methods
-      #########################################################################
-
-      # === Description
-      #
-      # Returns the +Mixlib::Versioning::Format+ class that maps to the given
-      # format type.
-      #
-      # === Synopsis
-      #
-      #   Mixlib::Versioning::Format.for(:semver)
-      #   Mixlib::Versioning::Format.for('semver')
-      #   Mixlib::Versioning::Format.for(Mixlib::Versioning::Format::SemVer)
-      #
-      # === Arguments
-      #
-      # +format_type+::
-      #   Name of a valid +Mixlib::Versioning::Format+ in Class or snake-case
-      #   form.
-      #
-      # === Raises
-      #
-      # +Mixlib::Versioning::UnknownFormatError+:: if the given format type
-      #   doesn't exist.
-      #
-      def self.for(format_type)
-        if format_type.kind_of?(Class) &&
-           format_type.ancestors.include?(Mixlib::Versioning::Format)
-          format_type
-        else
-          case format_type.to_s
-          when 'semver'; Mixlib::Versioning::Format::SemVer
-          when 'opscode_semver'; Mixlib::Versioning::Format::OpscodeSemVer
-          when 'git_describe'; Mixlib::Versioning::Format::GitDescribe
-          when 'rubygems'; Mixlib::Versioning::Format::Rubygems
-          else
-            msg = "'#{format_type.to_s}' is not a supported Mixlib::Versioning format"
-            raise Mixlib::Versioning::UnknownFormatError, msg
-          end
-        end
       end
 
     end # Format

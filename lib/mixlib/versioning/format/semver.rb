@@ -20,25 +20,32 @@
 module Mixlib
   class Versioning
     class Format
+      # Handles version strings based on {http://semver.org/ SemVer 2.0.0-rc.1}.
+      #
+      # SUPPORTED FORMATS
+      # -----------------
+      # ```text
+      # MAJOR.MINOR.PATCH
+      # MAJOR.MINOR.PATCH-PRERELEASE
+      # MAJOR.MINOR.PATCH-PRERELEASE+BUILD
+      #```
+      #
+      # EXAMPLES
+      # --------
+      # ```text
+      # 11.0.0
+      # 11.0.0-alpha.1
+      # 11.0.0-alpha1+20121218164140
+      # 11.0.0-alpha1+20121218164140.git.207.694b062
+      # ```
+      #
+      # @author Seth Chisamore (<schisamo@opscode.com>)
+      # @author Christopher Maier (<cm@opscode.com>)
       class SemVer < Format
 
-        # Format that implements SemVer 2.0.0-rc.1 (http://semver.org/)
-        #
-        # SUPPORTED FORMATS:
-        #
-        #    MAJOR.MINOR.PATCH
-        #    MAJOR.MINOR.PATCH-PRERELEASE
-        #    MAJOR.MINOR.PATCH-PRERELEASE+BUILD
-        #
-        # EXAMPLES:
-        #
-        #    11.0.0
-        #    11.0.0-alpha.1
-        #    11.0.0-alpha1+20121218164140
-        #    11.0.0-alpha1+20121218164140.git.207.694b062
-        #
         SEMVER_REGEX = /^(\d+)\.(\d+)\.(\d+)(?:\-([\dA-Za-z\-\.]+))?(?:\+([\dA-Za-z\-\.]+))?$/
 
+        # @see Format#initialize
         def initialize(version)
           match = version.match(SEMVER_REGEX) rescue nil
 
@@ -55,10 +62,12 @@ module Mixlib
           @build = nil if (@build.nil? || @build.empty?)
         end
 
+        # @see Format#to_s
         def to_s
           @input
         end
-      end
-    end
-  end
-end
+
+      end # class SemVer
+    end # class Format
+  end # module Versioning
+end # module Mixlib

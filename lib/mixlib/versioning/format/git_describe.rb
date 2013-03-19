@@ -20,31 +20,38 @@
 module Mixlib
   class Versioning
     class Format
+      # Handles version strings based on
+      # {https://www.kernel.org/pub/software/scm/git/docs/git-describe.html git describe}
+      # output.
+      #
+      # SUPPORTED FORMATS
+      # -----------------
+      # ```text
+      # MAJOR.MINOR.PATCH-COMMITS_SINCE-gGIT_SHA1
+      # MAJOR.MINOR.PATCH.PRERELEASE-COMMITS_SINCE-gGIT_SHA1
+      # MAJOR.MINOR.PATCH-PRERELEASE-COMMITS_SINCE-gGIT_SHA1-ITERATION
+      # ```
+      #
+      # EXAMPLES
+      # --------
+      # ```text
+      # 10.16.2-49-g21353f0-1
+      # 10.16.2.rc.1-49-g21353f0-1
+      # 11.0.0-alpha-10-g642ffed
+      # 11.0.0-alpha.1-1-gcea071e
+      # ```
+      #
+      # @author Seth Chisamore (<schisamo@opscode.com>)
+      # @author Christopher Maier (<cm@opscode.com>)
       class GitDescribe < Format
 
-        # This class is basically to handle the handful of variations we
-        # currently have in Omnitruck that are based on 'git describe'
-        # output.
-        #
-        # SUPPORTED FORMATS:
-        #
-        #    MAJOR.MINOR.PATCH-COMMITS_SINCE-gGIT_SHA1
-        #    MAJOR.MINOR.PATCH.PRERELEASE-COMMITS_SINCE-gGIT_SHA1
-        #    MAJOR.MINOR.PATCH-PRERELEASE-COMMITS_SINCE-gGIT_SHA1-ITERATION
-        #
-        # EXAMPLES:
-        #
-        #    10.16.2-49-g21353f0-1
-        #    10.16.2.rc.1-49-g21353f0-1
-        #    11.0.0-alpha-10-g642ffed
-        #    11.0.0-alpha.1-1-gcea071e
-        #
-        OPSCODE_GIT_DESCRIBE_REGEX = /^(\d+)\.(\d+)\.(\d+)(?:\-|\.)?(.+)?\-(\d+)\-g([a-f0-9]{7,40})(?:\-)?(\d+)?$/
+        GIT_DESCRIBE_REGEX = /^(\d+)\.(\d+)\.(\d+)(?:\-|\.)?(.+)?\-(\d+)\-g([a-f0-9]{7,40})(?:\-)?(\d+)?$/
 
         attr_reader :commits_since, :commit_sha, :iteration
 
+        # @see Format#initialize
         def initialize(version)
-          match = version.match(OPSCODE_GIT_DESCRIBE_REGEX) rescue nil
+          match = version.match(GIT_DESCRIBE_REGEX) rescue nil
 
           unless match
             raise Mixlib::Versioning::ParseError, "'#{version}' is not a valid Opscode 'git-describe' version string!"
@@ -62,11 +69,12 @@ module Mixlib
           @input = version
         end
 
+        # @see Format#to_s
         def to_s
           @input
         end
 
-      end
-    end
-  end
-end
+      end # class GitDescribe
+    end # class Format
+  end # module Versioning
+end # module Mixlib

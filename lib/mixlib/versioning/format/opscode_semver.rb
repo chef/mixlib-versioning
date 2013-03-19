@@ -26,41 +26,49 @@ module Mixlib
       # projects.  They are SemVer-2.0.0-rc.1 compliant, but we further
       # constrain the allowable strings for prerelease and build
       # signifiers for our own internal standards.
+      #
+      # SUPPORTED FORMATS
+      # -----------------
+      # ```text
+      # MAJOR.MINOR.PATCH
+      # MAJOR.MINOR.PATCH-alpha.INDEX
+      # MAJOR.MINOR.PATCH-beta.INDEX
+      # MAJOR.MINOR.PATCH-rc.INDEX
+      # MAJOR.MINOR.PATCH-alpha.INDEX+YYYYMMDDHHMMSS
+      # MAJOR.MINOR.PATCH-beta.INDEX+YYYYMMDDHHMMSS
+      # MAJOR.MINOR.PATCH-rc.INDEX+YYYYMMDDHHMMSS
+      # MAJOR.MINOR.PATCH-alpha.INDEX+YYYYMMDDHHMMSS.git.COMMITS_SINCE.SHA1
+      # MAJOR.MINOR.PATCH-beta.INDEX+YYYYMMDDHHMMSS.git.COMMITS_SINCE.SHA1
+      # MAJOR.MINOR.PATCH-rc.INDEX+YYYYMMDDHHMMSS.git.COMMITS_SINCE.SHA1
+      # ```
+      #
+      # EXAMPLES
+      # --------
+      # ```text
+      # 11.0.0
+      # 11.0.0-alpha.1
+      # 11.0.0-alpha1+20121218164140
+      # 11.0.0-alpha1+20121218164140.git.207.694b062
+      # ```
+      #
+      # @author Seth Chisamore (<schisamo@opscode.com>)
+      # @author Christopher Maier (<cm@opscode.com>)
       class OpscodeSemVer < SemVer
 
-        # SUPPORTED FORMATS:
-        #
-        #    MAJOR.MINOR.PATCH
-        #    MAJOR.MINOR.PATCH-alpha.INDEX
-        #    MAJOR.MINOR.PATCH-beta.INDEX
-        #    MAJOR.MINOR.PATCH-rc.INDEX
-        #    MAJOR.MINOR.PATCH-alpha.INDEX+YYYYMMDDHHMMSS
-        #    MAJOR.MINOR.PATCH-beta.INDEX+YYYYMMDDHHMMSS
-        #    MAJOR.MINOR.PATCH-rc.INDEX+YYYYMMDDHHMMSS
-        #    MAJOR.MINOR.PATCH-alpha.INDEX+YYYYMMDDHHMMSS.git.COMMITS_SINCE.SHA1
-        #    MAJOR.MINOR.PATCH-beta.INDEX+YYYYMMDDHHMMSS.git.COMMITS_SINCE.SHA1
-        #    MAJOR.MINOR.PATCH-rc.INDEX+YYYYMMDDHHMMSS.git.COMMITS_SINCE.SHA1
-        #
-        # EXAMPLES:
-        #
-        #    11.0.0
-        #    11.0.0-alpha.1
-        #    11.0.0-alpha1+20121218164140
-        #    11.0.0-alpha1+20121218164140.git.207.694b062
-        #
-
-        # The pattern is: YYYYMMDDHHMMSS.git.COMMITS_SINCE.SHA1
+        # The pattern is: `YYYYMMDDHHMMSS.git.COMMITS_SINCE.SHA1`
         OPSCODE_BUILD_REGEX = /^\d{14}(\.git\.\d+\.[a-f0-9]{7})?$/
 
         # Allows the following:
         #
+        # ```text
         # alpha, alpha.0, alpha.1, alpha.2, etc.
         # beta, beta.0, beta.1, beta.2, etc.
         # rc, rc.0, rc.1, rc.2, etc.
+        # ```
         #
-        # TODO: Should we allow bare prerelease tags like "alpha", "beta", and "rc", without a number?
         OPSCODE_PRERELEASE_REGEX = /^(alpha|beta|rc)(\.\d+)?$/
 
+        # @see Format#initialize
         def initialize(version)
           super(version)
 
@@ -76,7 +84,13 @@ module Mixlib
             end
           end
         end
-      end
-    end
-  end
-end
+
+        # @see Format#to_s
+        def to_s
+          @input
+        end
+
+      end # class OpscodeSemVer
+    end # class Format
+  end # module Versioning
+end # module Mixlib
