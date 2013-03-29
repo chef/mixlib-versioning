@@ -315,20 +315,37 @@ Select the latest pre-release build version:
 "11.0.8-rc.1+20130319083111.git.6.dc8613e"
 ```
 
+## How to Run the Tests
+
+To run the unit tests, run
+
+```
+rake spec
+```
+
+## Documentation
+
+All documentation is written using YARD. You can generate a by running:
+
+```
+rake yard
+```
+
 ## Contributing
 
-TODO
+See the [CONTRIBUTING](CONTRIBUTING.md) document.
 
 ## Reporting Bugs
 
-You can search for known issues in
-[Opscode's bug tracker][jira]. Tickets should be filed under the **MIXLIB**
-project with the component set to **"mixlib-versioning"**.
+You can search for known issues in [Opscode's bug tracker][jira]. Tickets
+should be filed under the **MIXLIB** project with the component set to
+**"mixlib-versioning"**.
 
 ## License
 
 |                      |                                          |
 |:---------------------|:-----------------------------------------|
+| **Author:**          | Seth Chisamore (schisamo@opscode.com)
 | **Copyright:**       | Copyright (c) 2013 Opscode, Inc.
 | **License:**         | Apache License, Version 2.0
 

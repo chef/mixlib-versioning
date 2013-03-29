@@ -6,8 +6,8 @@ require 'mixlib/versioning/version'
 Gem::Specification.new do |gem|
   gem.name          = "mixlib-versioning"
   gem.version       = Mixlib::Versioning::VERSION
-  gem.authors       = ["Opscode", "Seth Chisamore"]
-  gem.email         = ["info@opscode.com", "schisamo@opscode.com"]
+  gem.authors       = ["Seth Chisamore", "Christopher Maier"]
+  gem.email         = ["schisamo@opscode.com", "cm@opscode.com"]
   gem.description   = "General purpose Ruby library that allows you to parse, compare and manipulate version strings in multiple formats."
   gem.summary       = gem.description
   gem.homepage      = "https://github.com/opscode/mixlib-versioning"
