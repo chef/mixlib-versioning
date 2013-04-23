@@ -1,7 +1,7 @@
 # Mixlib::Versioning
 
-[![Build Status](https://travis-ci.org/opscode/omnibus-ruby.png?branch=master)](https://travis-ci.org/opscode/mixlib-versioning)
-[![Code Climate](https://codeclimate.com/github/opscode/omnibus-ruby.png)](https://codeclimate.com/github/opscode/mixlib-versioning)
+[![Build Status](https://travis-ci.org/opscode/mixlib-versioning.png?branch=master)](https://travis-ci.org/opscode/mixlib-versioning)
+[![Code Climate](https://codeclimate.com/github/opscode/mixlib-versioning.png)](https://codeclimate.com/github/opscode/mixlib-versioning)
 
 Versioning is hard! `mixlib-versioning` is a general Ruby library that allows
 you to parse, compare and manipulate version numbers in multiple formats.
