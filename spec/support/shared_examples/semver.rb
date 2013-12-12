@@ -62,8 +62,10 @@ shared_examples Mixlib::Versioning::Format::SemVer do
   }
 
   it_has_behavior "rejects invalid version strings", {
-    "8.8.8.8" => "too many segments: MAJOR.MINOR.PATCH.EXTRA"
-  }
+    "8.8.8.8" => "too many segments: MAJOR.MINOR.PATCH.EXTRA",
+    "01.1.1" => "leading zero invalid",
+    "1.01.1" => "leading zero invalid",
+    "1.1.01" => "leading zero invalid"  }
 
   describe "build qualification" do
     context "release version" do

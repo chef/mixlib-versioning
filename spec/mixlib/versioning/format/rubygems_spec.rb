@@ -93,7 +93,10 @@ describe Mixlib::Versioning::Format::Rubygems do
   }
 
   it_has_behavior "rejects invalid version strings", {
-    "1.1.1-rutro" => "dash for pre-release delimeter"
+    "1.1.1-rutro" => "dash for pre-release delimeter",
+    "01.1.1" => "leading zero invalid",
+    "1.01.1" => "leading zero invalid",
+    "1.1.01" => "leading zero invalid"
   }
 
   it_has_behavior "serializable", [
