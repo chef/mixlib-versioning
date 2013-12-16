@@ -65,7 +65,12 @@ shared_examples Mixlib::Versioning::Format::SemVer do
     "8.8.8.8" => "too many segments: MAJOR.MINOR.PATCH.EXTRA",
     "01.1.1" => "leading zero invalid",
     "1.01.1" => "leading zero invalid",
-    "1.1.01" => "leading zero invalid"  }
+    "1.1.01" => "leading zero invalid",
+    "1.0.0-" => "empty prerelease identifier",
+    "1.0.0-alpha.." => "empty prerelease identifier",
+    "1.0.0-01.02.03" => "leading zero invalid",
+    "1.0.0-alpha.01" => "leading zero invalid"
+  }
 
   describe "build qualification" do
     context "release version" do
