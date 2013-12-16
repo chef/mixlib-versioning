@@ -35,6 +35,7 @@ describe Mixlib::Versioning::Format::SemVer do
     let(:unsorted_version_strings){%w{
       1.0.0-beta.2
       1.0.0-alpha
+      1.0.0-alpha.july
       1.0.0-rc.1+build.1
       1.0.0
       1.0.0-beta.11
@@ -48,6 +49,7 @@ describe Mixlib::Versioning::Format::SemVer do
     let(:sorted_version_strings){%w{
       1.0.0-alpha
       1.0.0-alpha.1
+      1.0.0-alpha.july
       1.0.0-beta.2
       1.0.0-beta.11
       1.0.0-rc.1
