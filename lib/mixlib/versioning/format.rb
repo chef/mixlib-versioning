@@ -224,18 +224,7 @@ module Mixlib
           return pre unless pre == 0
         end
 
-        # Build specifiers are compared like pre-release specifiers,
-        # except that builds sort *after* everything else
-        # (e.g. 1.0.0+build.123 comes after 1.0.0, and
-        # 1.0.0-alpha.1+build.123 comes after 1.0.0-alpha.1)
-        if @build.nil? && other.build
-          return -1
-        elsif @build && other.build.nil?
-          return 1
-        elsif @build && other.build
-          build_ver = compare_dot_components(@build, other.build)
-          return build_ver unless build_ver == 0
-        end
+        # Semver 2.0.0 does not use build metadata to compute precedence.
 
         # Some older version formats improperly include a package iteration in
         # the version string. This is different than a build specifier and

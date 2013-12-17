@@ -27,11 +27,16 @@ describe Mixlib::Versioning::Format::SemVer do
       @v4_3_2 = Mixlib::Versioning.parse("4.3.2")
     end
 
-    it "determines equality" do
+    it "determines equality for regular semver" do
       (@v4_3_2_rc_1_build_1216.eql?(@v4_3_2_rc_1_build_1117)).should == true
       (@v4_3_2_rc_1_build_1216.eql?(@v4_3_2_rc_1)).should == true
       (@v4_3_2_rc_1_build_1117.eql?(@v4_3_2)).should == false 
-    end	
+    end
+
+    it "determines comparisons for regular semver" do
+      (@v4_3_2 <=> @v4_3_2_rc_1_build_1216).should == 1
+      (@v4_3_2_rc_1_build_1117 <=> @v4_3_2_rc_1_build_1216).should == 0
+      (@v4_3_2_rc_1 <=> @v4_3_2).should == -1 
+    end
   end
-	
 end
