@@ -261,8 +261,7 @@ module Mixlib
         @major == other.major &&
           @minor == other.minor &&
           @patch == other.patch &&
-          @prerelease == other.prerelease &&
-          @build == other.build
+          @prerelease == other.prerelease
       end
 
       def hash
