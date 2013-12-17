@@ -40,3 +40,24 @@ describe Mixlib::Versioning::Format::SemVer do
     end
   end
 end
+
+describe Mixlib::Versioning::Format::GitDescribe::SemVer do
+  context "comparisons" do
+    before(:each) do
+      @v9_0_1_2_gdeadbee = Mixlib::Versioning.parse("9.0.1-2-gdeadbee")
+      @v9_0_1_2_gdeadbe1 = Mixlib::Versioning.parse("9.0.1-2-gdeadbe1")
+      @v9_0_2_2_gdeadbee_1 = Mixlib::Versioning.parse("9.0.2-2-gdeadbee-1")
+    end
+
+    it "determines equality for git-describe semver" do
+      (@v9_0_2_2_gdeadbee_1.eql?(@v9_0_1_2_gdeadbe1)).should == false
+      (@v9_0_1_2_gdeadbe1.eql?(@v9_0_1_2_gdeadbee)).should == true
+    end
+
+    it "determines comparisons for git-describe semver" do
+      (@v9_0_1_2_gdeadbe1 <=> @v9_0_1_2_gdeadbee).should == 0
+      (@v9_0_2_2_gdeadbee_1 <=> @v9_0_1_2_gdeadbee).should == 1
+      (@v9_0_1_2_gdeadbe1 <=> @v9_0_2_2_gdeadbee_1).should == -1
+    end
+  end
+end
