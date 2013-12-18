@@ -43,7 +43,7 @@ module Mixlib
       # @author Christopher Maier (<cm@opscode.com>)
       class Rubygems < Format
 
-        RUBYGEMS_REGEX = /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:\.([[:alnum:]]+(?:\.[[:alnum:]]+)?))?(?:\-(\d+))?$/
+        RUBYGEMS_REGEX = /^(\d+)\.(\d+)\.(\d+)(?:\.([[:alnum:]]+(?:\.[[:alnum:]]+)?))?(?:\-(\d+))?$/
 
         # @see Format#parse
         def parse(version_string)
