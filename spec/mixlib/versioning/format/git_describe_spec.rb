@@ -114,15 +114,12 @@ describe Mixlib::Versioning::Format::GitDescribe do
   }
 
   version_strings = %w{
-    9.0.1-1-gdeadbee-1
     9.1.2-2-g1234567-1
     10.0.0-1-gabcdef3-1
     10.5.7-2-g21353f0-1
-    10.20.2-2-gbbbbbbb-1
     10.20.2-3-gaaaaaaa-1
     9.0.1-2-gdeadbe1-1
     9.0.1-2-gdeadbe1-2
-    9.0.1-2-gdeadbe2-1
     9.1.1-2-g1234567-1
   }
 
@@ -131,18 +128,15 @@ describe Mixlib::Versioning::Format::GitDescribe do
   it_has_behavior "sortable" do
     let(:unsorted_version_strings){ version_strings }
     let(:sorted_version_strings){%w{
-      9.0.1-1-gdeadbee-1
       9.0.1-2-gdeadbe1-1
       9.0.1-2-gdeadbe1-2
-      9.0.1-2-gdeadbe2-1
       9.1.1-2-g1234567-1
       9.1.2-2-g1234567-1
       10.0.0-1-gabcdef3-1
       10.5.7-2-g21353f0-1
-      10.20.2-2-gbbbbbbb-1
       10.20.2-3-gaaaaaaa-1
     }}
-    let(:min){ "9.0.1-1-gdeadbee-1" }
+    let(:min){ "9.0.1-2-gdeadbe1-1" }
     let(:max){ "10.20.2-3-gaaaaaaa-1" }
   end # it_has_behavior
 
@@ -150,27 +144,21 @@ describe Mixlib::Versioning::Format::GitDescribe do
   it_has_behavior "filterable" do
     let(:unsorted_version_strings){ version_strings }
     let(:build_versions){%w{
-      9.0.1-1-gdeadbee-1
       9.1.2-2-g1234567-1
       10.0.0-1-gabcdef3-1
       10.5.7-2-g21353f0-1
-      10.20.2-2-gbbbbbbb-1
       10.20.2-3-gaaaaaaa-1
       9.0.1-2-gdeadbe1-1
       9.0.1-2-gdeadbe1-2
-      9.0.1-2-gdeadbe2-1
       9.1.1-2-g1234567-1
     }}
     let(:release_build_versions){%w{
-      9.0.1-1-gdeadbee-1
       9.1.2-2-g1234567-1
       10.0.0-1-gabcdef3-1
       10.5.7-2-g21353f0-1
-      10.20.2-2-gbbbbbbb-1
       10.20.2-3-gaaaaaaa-1
       9.0.1-2-gdeadbe1-1
       9.0.1-2-gdeadbe1-2
-      9.0.1-2-gdeadbe2-1
       9.1.1-2-g1234567-1
     }}
   end  # it_has_behavior
