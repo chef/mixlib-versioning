@@ -29,7 +29,10 @@ describe Mixlib::Versioning::Format::OpscodeSemVer do
     "1.0.0+2010AA08010101" => "a malformed timestamp",
     "1.0.0+cvs.33.e0f985a" => "a malformed git describe: no git string",
     "1.0.0+git.AA.e0f985a" => "a malformed git describe: non-numeric COMMITS_SINCE",
-    "1.0.0+git.33.z0f985a" => "a malformed git describe: invalid SHA1"
+    "1.0.0+git.33.z0f985a" => "a malformed git describe: invalid SHA1",
+    "11.0.08-rc.1+20130308110833" => "leading zero invalid",
+    "01.0.8-alpha.2+20130308110833.git.2.94a1dde" => "leading zero invalid",
+    "11.02.8-rc.1+20130308110833" => "leading zero invalid"
   }
 
   it_has_behavior "serializable", [
