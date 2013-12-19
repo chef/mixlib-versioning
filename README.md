@@ -7,7 +7,7 @@ Versioning is hard! `mixlib-versioning` is a general Ruby library that allows
 you to parse, compare and manipulate version numbers in multiple formats.
 Currently the following version string formats are supported:
 
-### SemVer 2.0.0-rc.1
+### SemVer 2.0.0
 
 **Specification:**
 
