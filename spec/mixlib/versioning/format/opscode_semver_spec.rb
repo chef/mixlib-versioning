@@ -32,7 +32,11 @@ describe Mixlib::Versioning::Format::OpscodeSemVer do
     "1.0.0+git.33.z0f985a" => "a malformed git describe: invalid SHA1",
     "11.0.08-rc.1+20130308110833" => "leading zero invalid",
     "01.0.8-alpha.2+20130308110833.git.2.94a1dde" => "leading zero invalid",
-    "11.02.8-rc.1+20130308110833" => "leading zero invalid"
+    "11.02.8-rc.1+20130308110833" => "leading zero invalid",
+    "0008.1.4" => "leading zero invalid",
+    "11.00000000002.8-rc.1+20130308110833" => "leading zero invalid",
+    "4.67.00012+build.20131219" => "leading zero invalid",
+    "3.6.7-rc.007" => "leading zero invalid"
   }
 
   it_has_behavior "serializable", [

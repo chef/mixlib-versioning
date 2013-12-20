@@ -71,7 +71,11 @@ shared_examples Mixlib::Versioning::Format::SemVer do
     "1.0.0-01.02.03" => "leading zero invalid",
     "1.0.0-alpha.01" => "leading zero invalid",
     "6.3.1+" => "empty build identifier",
-    "6.4.8-alpha.1.2.3+build." => "empty build identifier"
+    "6.4.8-alpha.1.2.3+build." => "empty build identifier",
+    "4.0.000000000002-alpha.1" => "leading zero invalid",
+    "007.2.3-rc.1+build.16" => "leading zero invalid",
+    "12.0005.1-alpha.12" => "leading zero invalid",
+    "12.2.10-beta.00000017" => "leading zero invalid"
   }
 
   describe "build qualification" do
