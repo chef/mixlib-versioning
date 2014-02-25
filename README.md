@@ -3,6 +3,8 @@
 [![Build Status](https://travis-ci.org/opscode/mixlib-versioning.png?branch=master)](https://travis-ci.org/opscode/mixlib-versioning)
 [![Code Climate](https://codeclimate.com/github/opscode/mixlib-versioning.png)](https://codeclimate.com/github/opscode/mixlib-versioning)
 
+This project is managed by the CHEF Release Engineering team. For more information on the Release Engineering team's contribution, triage, and release process, please consult the [CHEF Release Engineering OSS Management Guide](https://docs.google.com/a/opscode.com/document/d/1oJB0vZb_3bl7_ZU2YMDBkMFdL-EWplW1BJv_FXTUOzg/edit).
+
 Versioning is hard! `mixlib-versioning` is a general Ruby library that allows
 you to parse, compare and manipulate version numbers in multiple formats.
 Currently the following version string formats are supported:
