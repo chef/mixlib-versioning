@@ -23,7 +23,6 @@ require 'mixlib/versioning/format/semver'
 
 module Mixlib
   class Versioning
-
     # @author Seth Chisamore (<schisamo@opscode.com>)
     #
     # @!attribute [r] major
@@ -65,13 +64,13 @@ module Mixlib
           format_type
         else
           case format_type.to_s
-          when 'semver'; Mixlib::Versioning::Format::SemVer
-          when 'opscode_semver'; Mixlib::Versioning::Format::OpscodeSemVer
-          when 'git_describe'; Mixlib::Versioning::Format::GitDescribe
-          when 'rubygems'; Mixlib::Versioning::Format::Rubygems
+          when 'semver' then Mixlib::Versioning::Format::SemVer
+          when 'opscode_semver' then Mixlib::Versioning::Format::OpscodeSemVer
+          when 'git_describe' then Mixlib::Versioning::Format::GitDescribe
+          when 'rubygems' then Mixlib::Versioning::Format::Rubygems
           else
             msg = "'#{format_type.to_s}' is not a supported Mixlib::Versioning format"
-            raise Mixlib::Versioning::UnknownFormatError, msg
+            fail Mixlib::Versioning::UnknownFormatError, msg
           end
         end
       end
@@ -91,7 +90,7 @@ module Mixlib
       # @param version_string [String] string representation of the version
       # @raise [Mixlib::Versioning::ParseError] raised if parsing fails
       def parse(version_string)
-        raise Error, "You must override the #parse"
+        fail Error, 'You must override the #parse'
       end
 
       # @return [Boolean] Whether or not this is a release version
@@ -154,7 +153,7 @@ module Mixlib
         vars = instance_variables.map do |n|
           "#{n}=#{instance_variable_get(n).inspect}"
         end
-        "#<%s:0x%x %s>" % [self.class,object_id,vars.join(', ')]
+        sprintf('#<%s:0x%x %s>', self.class, object_id, vars.join(', '))
       end
 
       # Returns SemVer compliant string representation of this {Format}
@@ -168,7 +167,7 @@ module Mixlib
       #   {Format} instance
       # @todo create a proper serialization abstraction
       def to_semver_string
-        s = [@major, @minor, @patch].join(".")
+        s = [@major, @minor, @patch].join('.')
         s += "-#{@prerelease}" if @prerelease
         s += "+#{@build}" if @build
         s
@@ -185,7 +184,7 @@ module Mixlib
       #   {Format} instance
       # @todo create a proper serialization abstraction
       def to_rubygems_string
-        s = [@major, @minor, @patch].join(".")
+        s = [@major, @minor, @patch].join('.')
         s += ".#{@prerelease}" if @prerelease
         s
       end
@@ -197,7 +196,6 @@ module Mixlib
       # @return [Integer] -1, 0, or 1 depending on whether the this version is
       #   less than, equal to, or greater than the other version
       def <=>(other)
-
         # First, perform comparisons based on major, minor, and patch
         # versions.  These are always presnt and always non-nil
         maj = @major <=> other.major
@@ -251,7 +249,7 @@ module Mixlib
         end
 
         # If we get down here, they're both equal
-        return 0
+        0
       end
 
       # @param other [Mixlib::Versioning::Format]
@@ -266,7 +264,7 @@ module Mixlib
       end
 
       def hash
-        [@major, @minor, @patch, @prerelease, @build].compact.join(".").hash
+        [@major, @minor, @patch, @prerelease, @build].compact.join('.').hash
       end
 
       #########################################################################
@@ -300,12 +298,12 @@ module Mixlib
       # Both `a_item` and `b_item` should be Strings; `nil` is not a
       # valid input.
       def compare_dot_components(a_item, b_item)
-        a_components = a_item.split(".")
-        b_components = b_item.split(".")
+        a_components = a_item.split('.')
+        b_components = b_item.split('.')
 
         max_length = [a_components.length, b_components.length].max
 
-        (0..(max_length-1)).each do |i|
+        (0..(max_length - 1)).each do |i|
           # Convert the ith component into a number if possible
           a = maybe_int(a_components[i])
           b = maybe_int(b_components[i])
@@ -343,9 +341,8 @@ module Mixlib
 
         # We've compared all components of both strings; if we've gotten
         # down here, they're totally the same
-        return 0
+        0
       end
-
     end # Format
   end # Versioning
 end # Mixlib

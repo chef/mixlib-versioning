@@ -16,29 +16,29 @@
 # limitations under the License.
 #
 
-shared_examples "sortable" do
+shared_examples 'sortable' do
 
   let(:unsorted_versions) do
-    unsorted_version_strings.map{ |v| described_class.new(v) }
+    unsorted_version_strings.map { |v| described_class.new(v) }
   end
 
   let(:sorted_versions) do
-    sorted_version_strings.map{ |v| described_class.new(v) }
+    sorted_version_strings.map { |v| described_class.new(v) }
   end
 
   it 'responds to <=>' do
     described_class.should respond_to(:<=>)
   end
 
-  it "sorts all properly" do
+  it 'sorts all properly' do
     unsorted_versions.sort.should eq sorted_versions
   end
 
-  it "finds the min" do
+  it 'finds the min' do
     unsorted_versions.min.should eq described_class.new(min)
   end
 
-  it "finds the max" do
+  it 'finds the max' do
     unsorted_versions.max.should eq described_class.new(max)
   end
 

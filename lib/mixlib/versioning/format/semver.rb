@@ -28,7 +28,7 @@ module Mixlib
       # MAJOR.MINOR.PATCH
       # MAJOR.MINOR.PATCH-PRERELEASE
       # MAJOR.MINOR.PATCH-PRERELEASE+BUILD
-      #```
+      # ```
       #
       # EXAMPLES
       # --------
@@ -42,7 +42,6 @@ module Mixlib
       # @author Seth Chisamore (<schisamo@opscode.com>)
       # @author Christopher Maier (<cm@opscode.com>)
       class SemVer < Format
-
         SEMVER_REGEX = /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][a-zA-Z0-9-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][a-zA-Z0-9-]*))*))?(?:\+([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?$/
 
         # @see Format#parse
@@ -50,16 +49,15 @@ module Mixlib
           match = version_string.match(SEMVER_REGEX) rescue nil
 
           unless match
-            raise Mixlib::Versioning::ParseError, "'#{version_string}' is not a valid #{self.class} version string!"
+            fail Mixlib::Versioning::ParseError, "'#{version_string}' is not a valid #{self.class} version string!"
           end
 
           @major, @minor, @patch, @prerelease, @build = match[1..5]
           @major, @minor, @patch = [@major, @minor, @patch].map(&:to_i)
 
-          @prerelease = nil if (@prerelease.nil? || @prerelease.empty?)
-          @build = nil if (@build.nil? || @build.empty?)
+          @prerelease = nil if @prerelease.nil? || @prerelease.empty?
+          @build = nil if @build.nil? || @build.empty?
         end
-
       end # class SemVer
     end # class Format
   end # module Versioning

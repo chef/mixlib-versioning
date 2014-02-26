@@ -20,90 +20,106 @@ require 'spec_helper'
 
 describe Mixlib::Versioning::Format::SemVer do
 
-  subject{ described_class.new(version_string) }
+  subject { described_class.new(version_string) }
 
   it_should_behave_like Mixlib::Versioning::Format::SemVer
 
-  it_has_behavior "serializable", [
-    "1.0.0",
-    "1.0.0-alpha.1",
-    "1.0.0-alpha.1+some.build.version",
-    "1.0.0+build.build.build"
+  it_has_behavior 'serializable', [
+    '1.0.0',
+    '1.0.0-alpha.1',
+    '1.0.0-alpha.1+some.build.version',
+    '1.0.0+build.build.build',
   ]
 
-  it_has_behavior "sortable" do
-    let(:unsorted_version_strings){%w{
-      1.0.0-beta.2
-      1.0.0-alpha
-      1.0.0-alpha.july
-      1.0.0-rc.1+build.1
-      1.0.0
-      1.0.0-beta.11
-      1.0.0+0.3.7
-      1.0.0-rc.1
-      1.0.0-alpha.1
-      1.3.7+build.2.b8f12d7
-      1.3.7+build.11.e0f985a
-      1.3.7+build
-    }}
-    let(:sorted_version_strings){%w{
-      1.0.0-alpha
-      1.0.0-alpha.1
-      1.0.0-alpha.july
-      1.0.0-beta.2
-      1.0.0-beta.11
-      1.0.0-rc.1
-      1.0.0-rc.1+build.1
-      1.0.0
-      1.0.0+0.3.7
-      1.3.7+build
-      1.3.7+build.2.b8f12d7
-      1.3.7+build.11.e0f985a
-    }}
-    let(:min){ "1.0.0-alpha" }
-    let(:max){ "1.3.7+build.11.e0f985a" }
+  it_has_behavior 'sortable' do
+    let(:unsorted_version_strings) do
+      %w[
+        1.0.0-beta.2
+        1.0.0-alpha
+        1.0.0-alpha.july
+        1.0.0-rc.1+build.1
+        1.0.0
+        1.0.0-beta.11
+        1.0.0+0.3.7
+        1.0.0-rc.1
+        1.0.0-alpha.1
+        1.3.7+build.2.b8f12d7
+        1.3.7+build.11.e0f985a
+        1.3.7+build
+      ]
+    end
+    let(:sorted_version_strings) do
+      %w[
+        1.0.0-alpha
+        1.0.0-alpha.1
+        1.0.0-alpha.july
+        1.0.0-beta.2
+        1.0.0-beta.11
+        1.0.0-rc.1
+        1.0.0-rc.1+build.1
+        1.0.0
+        1.0.0+0.3.7
+        1.3.7+build
+        1.3.7+build.2.b8f12d7
+        1.3.7+build.11.e0f985a
+      ]
+    end
+    let(:min) { '1.0.0-alpha' }
+    let(:max) { '1.3.7+build.11.e0f985a' }
   end # it_has_behavior
 
-  it_has_behavior "filterable" do
-    let(:unsorted_version_strings){%w{
-      1.0.0-beta.2
-      1.0.0-alpha
-      1.0.0-rc.1+build.1
-      1.0.0
-      1.0.0-beta.11
-      1.0.0+0.3.7
-      1.0.0-rc.1
-      1.0.0-alpha.1
-      1.3.7+build.2.b8f12d7
-      1.3.7+build.11.e0f985a
-      1.3.7+build
-    }}
-    let(:release_versions){%w{
-      1.0.0
-    }}
-    let(:prerelease_versions){%w{
-      1.0.0-beta.2
-      1.0.0-alpha
-      1.0.0-beta.11
-      1.0.0-rc.1
-      1.0.0-alpha.1
-    }}
-    let(:build_versions){%w{
-      1.0.0-rc.1+build.1
-      1.0.0+0.3.7
-      1.3.7+build.2.b8f12d7
-      1.3.7+build.11.e0f985a
-      1.3.7+build
-    }}
-    let(:release_build_versions){%w{
-      1.0.0+0.3.7
-      1.3.7+build.2.b8f12d7
-      1.3.7+build.11.e0f985a
-      1.3.7+build
-    }}
-    let(:prerelease_build_versions){%w{
-      1.0.0-rc.1+build.1
-    }}
+  it_has_behavior 'filterable' do
+    let(:unsorted_version_strings) do
+      %w[
+        1.0.0-beta.2
+        1.0.0-alpha
+        1.0.0-rc.1+build.1
+        1.0.0
+        1.0.0-beta.11
+        1.0.0+0.3.7
+        1.0.0-rc.1
+        1.0.0-alpha.1
+        1.3.7+build.2.b8f12d7
+        1.3.7+build.11.e0f985a
+        1.3.7+build
+      ]
+    end
+    let(:release_versions) do
+      %w[
+        1.0.0
+      ]
+    end
+    let(:prerelease_versions) do
+      %w[
+        1.0.0-beta.2
+        1.0.0-alpha
+        1.0.0-beta.11
+        1.0.0-rc.1
+        1.0.0-alpha.1
+      ]
+    end
+    let(:build_versions) do
+      %w[
+        1.0.0-rc.1+build.1
+        1.0.0+0.3.7
+        1.3.7+build.2.b8f12d7
+        1.3.7+build.11.e0f985a
+        1.3.7+build
+      ]
+    end
+    let(:release_build_versions) do
+      %w[
+        1.0.0+0.3.7
+        1.3.7+build.2.b8f12d7
+        1.3.7+build.11.e0f985a
+        1.3.7+build
+      ]
+    end
+    let(:prerelease_build_versions) do
+      %w[
+        1.0.0-rc.1+build.1
+      ]
+    end
   end # it_has_behavior
 
 end # describe
