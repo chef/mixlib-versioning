@@ -19,5 +19,6 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   # Development dependencies
+  spec.add_development_dependency 'rubocop', '~> 0.18'
   spec.add_development_dependency 'rspec',   '~> 2.14'
 end
