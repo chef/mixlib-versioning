@@ -10,3 +10,9 @@ branches:
     - master
 
 script: bundle exec rake travis:ci
+
+notifications:
+  hipchat:
+    rooms:
+      - secure: IycrY52k8dhilnU3B2c8mem9LzofQlMISUZSDk2tys0cvW0U3lnCQQiSvT5kTtiKztUABEiT2UqU2QYwUfeW/yYrO3NjB2OBqehRKnEn2oEaapcIugvtsQMySfYqJ7IsKpyh3vTMmgyKPw3OCKh5OJn26lMdHH2R91SXcbUezKI= # Build Statuses
+      - secure: JJlujHzKxsY74bfJHNxH6fQOF5IULeJECXkxx6uU/T+CjxydINwAH5lQ1RUleLZlH0BmQDgxK+O46hiuWdYAyhgCJY9bQOBWG+aQusXIoLvV3qj+rU0dX1wvjEuO/NzkZTPZy7HMGqmCxTdmx/OawoNnpXU8qsI/OJqbISv2bGo= # Release Engineering
