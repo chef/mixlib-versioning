@@ -54,7 +54,6 @@ module Mixlib
       # @author Seth Chisamore (<schisamo@opscode.com>)
       # @author Christopher Maier (<cm@opscode.com>)
       class OpscodeSemVer < SemVer
-
         # The pattern is: `YYYYMMDDHHMMSS.git.COMMITS_SINCE.SHA1`
         OPSCODE_BUILD_REGEX = /^\d{14}(\.git\.\d+\.[a-f0-9]{7})?$/
 
@@ -74,17 +73,16 @@ module Mixlib
 
           unless @prerelease.nil?
             unless @prerelease.match(OPSCODE_PRERELEASE_REGEX)
-              raise Mixlib::Versioning::ParseError, "'#{@prerelease}' is not a valid Opscode pre-release signifier!"
+              fail Mixlib::Versioning::ParseError, "'#{@prerelease}' is not a valid Opscode pre-release signifier!"
             end
           end
 
           unless @build.nil?
             unless @build.match(OPSCODE_BUILD_REGEX)
-              raise Mixlib::Versioning::ParseError, "'#{@build}' is not a valid Opscode build signifier!"
+              fail Mixlib::Versioning::ParseError, "'#{@build}' is not a valid Opscode build signifier!"
             end
           end
         end
-
       end # class OpscodeSemVer
     end # class Format
   end # module Versioning

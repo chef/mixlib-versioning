@@ -232,7 +232,7 @@ false
   [1] #<Mixlib::Versioning::Format::OpscodeSemVer:0x3ff009d07260 @major=11, @minor=0, @patch=0, @prerelease="rc.1", @build=nil, @input="11.0.0-rc.1">,
   [2] #<Mixlib::Versioning::Format::OpscodeSemVer:0x3ff009d0d3cc @major=11, @minor=0, @patch=0, @prerelease=nil, @build=nil, @input="11.0.0">
 ]
->> [v3, v1, v2].map{|v| v.to_s}.sort
+>> [v3, v1, v2].map { |v| v.to_s}.sort
 [
   [0] "11.0.0",
   [1] "11.0.0-beta.1",

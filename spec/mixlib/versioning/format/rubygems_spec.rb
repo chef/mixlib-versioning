@@ -20,12 +20,12 @@ require 'spec_helper'
 
 describe Mixlib::Versioning::Format::Rubygems do
 
-  subject{ described_class.new(version_string) }
+  subject { described_class.new(version_string) }
 
-  it_should_behave_like "Basic SemVer"
+  it_should_behave_like 'Basic SemVer'
 
-  it_has_behavior "parses valid version strings", {
-    "10.1.1" => {
+  it_has_behavior 'parses valid version strings', {
+    '10.1.1' => {
       :major => 10,
       :minor => 1,
       :patch => 1,
@@ -36,35 +36,35 @@ describe Mixlib::Versioning::Format::Rubygems do
       :build? => false,
       :release_build? => false,
       :prerelease_build? => false,
-      :iteration => 0
+      :iteration => 0,
     },
-    "10.1.1.alpha.1" => {
+    '10.1.1.alpha.1' => {
       :major => 10,
       :minor => 1,
       :patch => 1,
-      :prerelease => "alpha.1",
+      :prerelease => 'alpha.1',
       :build => nil,
       :release? => false,
       :prerelease? => true,
       :build? => false,
       :release_build? => false,
       :prerelease_build? => false,
-      :iteration => 0
+      :iteration => 0,
     },
-    "11.0.8.rc.3" => {
+    '11.0.8.rc.3' => {
       :major => 11,
       :minor => 0,
       :patch => 8,
-      :prerelease => "rc.3",
+      :prerelease => 'rc.3',
       :build => nil,
       :release? => false,
       :prerelease? => true,
       :build? => false,
       :release_build? => false,
       :prerelease_build? => false,
-      :iteration => 0
+      :iteration => 0,
     },
-    "11.0.8-33" => {
+    '11.0.8-33' => {
       :major => 11,
       :minor => 0,
       :patch => 8,
@@ -75,68 +75,76 @@ describe Mixlib::Versioning::Format::Rubygems do
       :build? => false,
       :release_build? => false,
       :prerelease_build? => false,
-      :iteration => 33
+      :iteration => 33,
     },
-    "11.0.8.rc.3-1" => {
+    '11.0.8.rc.3-1' => {
       :major => 11,
       :minor => 0,
       :patch => 8,
-      :prerelease => "rc.3",
+      :prerelease => 'rc.3',
       :build => nil,
       :release? => false,
       :prerelease? => true,
       :build? => false,
       :release_build? => false,
       :prerelease_build? => false,
-      :iteration => 1
-    }
+      :iteration => 1,
+    },
   }
 
-  it_has_behavior "rejects invalid version strings", {
-    "1.1.1-rutro" => "dash for pre-release delimeter"
+  it_has_behavior 'rejects invalid version strings', {
+    '1.1.1-rutro' => 'dash for pre-release delimeter',
   }
 
-  it_has_behavior "serializable", [
-    "1.0.0",
-    "1.0.0.alpha.1",
-    "1.0.0.beta"
+  it_has_behavior 'serializable', [
+    '1.0.0',
+    '1.0.0.alpha.1',
+    '1.0.0.beta',
   ]
 
-  it_has_behavior "sortable" do
-    let(:unsorted_version_strings){%w{
-      1.0.0.beta.2
-      1.3.7.alpha.0
-      1.0.0.alpha
-      1.0.0.rc.1
-      1.0.0
-    }}
-    let(:sorted_version_strings){%w{
-      1.0.0.alpha
-      1.0.0.beta.2
-      1.0.0.rc.1
-      1.0.0
-      1.3.7.alpha.0
-    }}
-    let(:min){ "1.0.0.alpha" }
-    let(:max){ "1.3.7.alpha.0" }
+  it_has_behavior 'sortable' do
+    let(:unsorted_version_strings) do
+      %w[
+        1.0.0.beta.2
+        1.3.7.alpha.0
+        1.0.0.alpha
+        1.0.0.rc.1
+        1.0.0
+      ]
+    end
+    let(:sorted_version_strings) do
+      %w[
+        1.0.0.alpha
+        1.0.0.beta.2
+        1.0.0.rc.1
+        1.0.0
+        1.3.7.alpha.0
+      ]
+    end
+    let(:min) { '1.0.0.alpha' }
+    let(:max) { '1.3.7.alpha.0' }
   end
 
   # The +Rubygems+ format only produces release and prerelease versions.
-  it_has_behavior "filterable" do
-    let(:unsorted_version_strings){%w{
-      1.0.0.beta.2
-      1.3.7.alpha.0
-      1.0.0.alpha
-      1.0.0.rc.1
-      1.0.0
-    }}
-    let(:release_versions){%w{ 1.0.0 }}
-    let(:prerelease_versions){%w{
-      1.0.0.beta.2
-      1.3.7.alpha.0
-      1.0.0.alpha
-      1.0.0.rc.1
-    }}
+  it_has_behavior 'filterable' do
+    let(:unsorted_version_strings) do
+      %w[
+        1.0.0.beta.2
+        1.3.7.alpha.0
+        1.0.0.alpha
+        1.0.0.rc.1
+        1.0.0
+      ]
+    end
+    let(:release_versions) { %w[ 1.0.0 ] }
+    let(:prerelease_versions) do
+      %w[
+        1.0.0.beta.2
+        1.3.7.alpha.0
+        1.0.0.alpha
+        1.0.0.rc.1
+      ]
+    end
   end
 
 end

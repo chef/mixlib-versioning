@@ -44,7 +44,6 @@ module Mixlib
       # @author Seth Chisamore (<schisamo@opscode.com>)
       # @author Christopher Maier (<cm@opscode.com>)
       class GitDescribe < Format
-
         GIT_DESCRIBE_REGEX = /^(\d+)\.(\d+)\.(\d+)(?:\-|\.)?(.+)?\-(\d+)\-g([a-f0-9]{7,40})(?:\-)?(\d+)?$/
 
         attr_reader :commits_since, :commit_sha
@@ -54,7 +53,7 @@ module Mixlib
           match = version_string.match(GIT_DESCRIBE_REGEX) rescue nil
 
           unless match
-            raise Mixlib::Versioning::ParseError, "'#{version_string}' is not a valid #{self.class} version string!"
+            fail Mixlib::Versioning::ParseError, "'#{version_string}' is not a valid #{self.class} version string!"
           end
 
           @major, @minor, @patch, @prerelease, @commits_since, @commit_sha, @iteration = match[1..7]
@@ -64,7 +63,6 @@ module Mixlib
           # we'll store our internal information in that format
           @build = "#{@commits_since}.g#{@commit_sha}.#{@iteration}"
         end
-
       end # class GitDescribe
     end # class Format
   end # module Versioning

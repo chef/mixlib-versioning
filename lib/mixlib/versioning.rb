@@ -24,15 +24,14 @@ module Mixlib
   # @author Seth Chisamore (<schisamo@opscode.com>)
   # @author Christopher Maier (<cm@opscode.com>)
   class Versioning
-
     # Create a new {Format} instance given a version string to parse, and an
     # optional format type.
     #
     # @example
-    #   Mixlib::Versioning.parse("11.0.0")
-    #   Mixlib::Versioning.parse("11.0.0", :semver)
-    #   Mixlib::Versioning.parse("11.0.0", 'semver')
-    #   Mixlib::Versioning.parse("11.0.0", Mixlib::Versioning::Format::SemVer)
+    #   Mixlib::Versioning.parse('11.0.0')
+    #   Mixlib::Versioning.parse('11.0.0', :semver)
+    #   Mixlib::Versioning.parse('11.0.0', 'semver')
+    #   Mixlib::Versioning.parse('11.0.0', Mixlib::Versioning::Format::SemVer)
     #
     # @param version_string [String] String representatin of the version to
     #   parse
@@ -47,7 +46,7 @@ module Mixlib
     #
     # @return
     #
-    def self.parse(version_string, format_type=nil)
+    def self.parse(version_string, format_type = nil)
       if version_string.kind_of?(Mixlib::Versioning::Format)
         return version_string
       elsif format_type
@@ -59,7 +58,7 @@ module Mixlib
           Mixlib::Versioning::Format::GitDescribe,
           Mixlib::Versioning::Format::OpscodeSemVer,
           Mixlib::Versioning::Format::SemVer,
-          Mixlib::Versioning::Format::Rubygems
+          Mixlib::Versioning::Format::Rubygems,
         ].each do |version|
           begin
             break parsed_version = version.new(version_string)
@@ -103,7 +102,7 @@ module Mixlib
     #             11.0.1 }
     #
     #   Mixlib::Versioning.find_target_version(all,
-    #                                          "11.0.1",
+    #                                          '11.0.1',
     #                                          true,
     #                                          true)
     #
@@ -124,9 +123,9 @@ module Mixlib
     #   build version specifier will be filtered out.
     #
     def self.find_target_version(all_versions,
-                                 filter_version=nil,
-                                 use_prerelease_versions=false,
-                                 use_build_versions=false)
+                                 filter_version = nil,
+                                 use_prerelease_versions = false,
+                                 use_build_versions = false)
 
       # attempt to parse a `Mixlib::Versioning::Format` instance if we were
       # passed a string
@@ -153,7 +152,7 @@ module Mixlib
         # that prerelease, and then take the most recent. Otherwise, just
         # return the specified prerelease version
         if use_build_versions
-          all_versions.select{|v| v.in_same_prerelease_line?(filter_version)}.max
+          all_versions.select { |v| v.in_same_prerelease_line?(filter_version) }.max
         else
           filter_version
         end
@@ -189,6 +188,5 @@ module Mixlib
         end.max # select the most recent version
       end # if
     end # self.find_target_version
-
   end # Versioning
 end # Mixlib

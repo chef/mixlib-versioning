@@ -16,51 +16,41 @@
 # limitations under the License.
 #
 
-shared_examples "filterable" do
+shared_examples 'filterable' do
 
   let(:unsorted_versions) do
-    unsorted_version_strings.map{ |v| described_class.new(v) }
+    unsorted_version_strings.map { |v| described_class.new(v) }
   end
 
   # this should/will be overriden by calling spec
-  let(:release_versions){[]}
-  let(:prerelease_versions){[]}
-  let(:build_versions){[]}
-  let(:release_build_versions){[]}
-  let(:prerelease_build_versions){[]}
+  let(:release_versions) { [] }
+  let(:prerelease_versions) { [] }
+  let(:build_versions) { [] }
+  let(:release_build_versions) { [] }
+  let(:prerelease_build_versions) { [] }
 
-  it "filters by release versions only" do
-    unsorted_versions.select(&:release?).should eq(release_versions.map{|v|
-      described_class.new(v)
-    })
+  it 'filters by release versions only' do
+    unsorted_versions.select(&:release?).should eq(release_versions.map { |v| described_class.new(v) })
   end # it
 
-  it "filters by pre-release versions only" do
+  it 'filters by pre-release versions only' do
     filtered = unsorted_versions.select(&:prerelease?)
-    filtered.should eq(prerelease_versions.map{|v|
-      described_class.new(v)
-    })
+    filtered.should eq(prerelease_versions.map { |v| described_class.new(v) })
   end # it
 
-  it "filters by build versions only" do
+  it 'filters by build versions only' do
     filtered = unsorted_versions.select(&:build?)
-    filtered.should eq(build_versions.map{|v|
-      described_class.new(v)
-    })
+    filtered.should eq(build_versions.map { |v| described_class.new(v) })
   end # it
 
-  it "filters by release build versions only" do
+  it 'filters by release build versions only' do
     filtered = unsorted_versions.select(&:release_build?)
-    filtered.should eq(release_build_versions.map{|v|
-      described_class.new(v)
-    })
+    filtered.should eq(release_build_versions.map { |v| described_class.new(v) })
   end # it
 
-  it "filters by pre-release build versions only" do
+  it 'filters by pre-release build versions only' do
     filtered = unsorted_versions.select(&:prerelease_build?)
-    filtered.should eq(prerelease_build_versions.map{|v|
-      described_class.new(v)
-    })
+    filtered.should eq(prerelease_build_versions.map { |v| described_class.new(v) })
   end # it
 
 end # shared_examples
