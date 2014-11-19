@@ -196,6 +196,11 @@ module Mixlib
       # @return [Integer] -1, 0, or 1 depending on whether the this version is
       #   less than, equal to, or greater than the other version
       def <=>(other)
+        # Check whether the `other' is a String and if so, then get an
+        # instance of *this* class (e.g., GitDescribe, OpscodeSemVer,
+        # SemVer, Rubygems, etc.), so we can compare against it.
+        other = self.class.new(other) if other.is_a?(String)
+
         # First, perform comparisons based on major, minor, and patch
         # versions.  These are always presnt and always non-nil
         maj = @major <=> other.major

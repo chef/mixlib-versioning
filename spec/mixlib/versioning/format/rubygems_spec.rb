@@ -147,4 +147,13 @@ describe Mixlib::Versioning::Format::Rubygems do
     end
   end
 
+  it_has_behavior 'comparable', [
+    '0.1.0', '0.2.0',
+    '1.0.0.alpha.1', '1.0.0',
+    '1.2.3.alpha', '1.2.3.alpha.1',
+    '2.4.5.alpha', '2.4.5.beta',
+    '3.0.0.beta.1', '3.0.0.rc.1',
+    '3.1.2.rc.42', '3.1.2'
+  ]
+
 end
