@@ -5,7 +5,7 @@ RSpec::Core::RakeTask.new(:unit)
 
 require 'rubocop/rake_task'
 desc 'Run Ruby style checks'
-Rubocop::RakeTask.new(:style)
+RuboCop::RakeTask.new(:style)
 
 begin
   require 'yard'
