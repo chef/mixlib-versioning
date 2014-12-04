@@ -122,4 +122,11 @@ describe Mixlib::Versioning::Format::SemVer do
     end
   end # it_has_behavior
 
+  it_has_behavior 'comparable', [
+    '0.1.0', '0.2.0',
+    '1.0.0-alpha.1', '1.0.0',
+    '1.2.3', '1.2.3+build.123',
+    '2.0.0-beta.1', '2.0.0-beta.1+build.123'
+  ]
+
 end # describe

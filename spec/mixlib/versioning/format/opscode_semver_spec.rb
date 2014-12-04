@@ -131,4 +131,11 @@ describe Mixlib::Versioning::Format::OpscodeSemVer do
     end
   end # it_has_behavior
 
+  it_has_behavior 'comparable', [
+    '0.1.0', '0.2.0',
+    '1.0.0-alpha.1', '1.0.0',
+    '1.2.3', '1.2.3+20121009074433',
+    '2.0.0-beta.1', '2.0.0+20131009104433.git.2.94a1dde'
+  ]
+
 end # describe

@@ -181,4 +181,12 @@ describe Mixlib::Versioning::Format::GitDescribe do
     end
   end  # it_has_behavior
 
+  it_has_behavior 'comparable', [
+    '9.0.1-1-gdeadbee-1', '9.0.1-2-gdeadbe1-1',
+    '9.0.1-2-gdeadbe1-2', '9.0.1-2-gdeadbe2-1',
+    '9.1.1-2-g1234567-1', '9.1.2-2-g1234567-1',
+    '10.0.0-1-gabcdef3-1', '10.5.7-2-g21353f0-1',
+    '10.20.2-2-gbbbbbbb-1', '10.20.2-3-gaaaaaaa-1'
+  ]
+
 end # describe
