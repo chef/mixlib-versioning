@@ -24,6 +24,13 @@ module Mixlib
   # @author Seth Chisamore (<schisamo@opscode.com>)
   # @author Christopher Maier (<cm@opscode.com>)
   class Versioning
+    DEFAULT_FORMATS = [
+      Mixlib::Versioning::Format::GitDescribe,
+      Mixlib::Versioning::Format::OpscodeSemVer,
+      Mixlib::Versioning::Format::SemVer,
+      Mixlib::Versioning::Format::Rubygems,
+    ].freeze
+
     # Create a new {Format} instance given a version string to parse, and an
     # optional format type.
     #
@@ -35,31 +42,29 @@ module Mixlib
     #
     # @param version_string [String] String representatin of the version to
     #   parse
-    # @param format_type [String, Symbol, Mixlib::Versioning::Format] Optional
+    # @param format [String, Symbol, Mixlib::Versioning::Format, Array] Optional
     #   format type to parse the version string as. If this is exluded all
     #   version types will be attempted from most specific to most specific
-    #   with a preference for SemVer formats
-    #
+    #   with a preference for SemVer formats. If it is an array, only version
+    #   types in that list will be considered
     # @raise [Mixlib::Versioning::ParseError] if the parse fails.
     # @raise [Mixlib::Versioning::UnknownFormatError] if the given format type
     #   doesn't exist.
     #
     # @return
     #
-    def self.parse(version_string, format_type = nil)
+    def self.parse(version_string, format = nil)
       if version_string.is_a?(Mixlib::Versioning::Format)
         return version_string
-      elsif format_type
-        return Mixlib::Versioning::Format.for(format_type).new(version_string)
       else
+        formats = if format
+                    [format].flatten.map { |f| Mixlib::Versioning::Format.for(f) }
+                  else
+                    DEFAULT_FORMATS
+                  end
         # Attempt to parse from the most specific formats first.
         parsed_version = nil
-        [
-          Mixlib::Versioning::Format::GitDescribe,
-          Mixlib::Versioning::Format::OpscodeSemVer,
-          Mixlib::Versioning::Format::SemVer,
-          Mixlib::Versioning::Format::Rubygems,
-        ].each do |version|
+        formats.each do |version|
           begin
             break parsed_version = version.new(version_string)
           rescue Mixlib::Versioning::ParseError
