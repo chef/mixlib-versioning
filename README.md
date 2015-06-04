@@ -336,16 +336,6 @@ All documentation is written using YARD. You can generate a by running:
 rake yard
 ```
 
-## Contributing
-
-See the [CONTRIBUTING](CONTRIBUTING.md) document.
-
-## Reporting Bugs
-
-You can search for known issues in [Opscode's bug tracker][jira]. Tickets
-should be filed under the **MIXLIB** project with the component set to
-**"mixlib-versioning"**.
-
 ## License
 
 |                      |                                          |
