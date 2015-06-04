@@ -1,6 +1,6 @@
 #
-# Author:: Seth Chisamore (<schisamo@opscode.com>)
-# Author:: Christopher Maier (<cm@opscode.com>)
+# Author:: Seth Chisamore (<schisamo@chef.io>)
+# Author:: Christopher Maier (<cm@chef.io>)
 # Copyright:: Copyright (c) 2013 Opscode, Inc.
 # License:: Apache License, Version 2.0
 #
@@ -51,8 +51,8 @@ module Mixlib
       # 11.0.0-alpha1+20121218164140.git.207.694b062
       # ```
       #
-      # @author Seth Chisamore (<schisamo@opscode.com>)
-      # @author Christopher Maier (<cm@opscode.com>)
+      # @author Seth Chisamore (<schisamo@chef.io>)
+      # @author Christopher Maier (<cm@chef.io>)
       class OpscodeSemVer < SemVer
         # The pattern is: `YYYYMMDDHHMMSS.git.COMMITS_SINCE.SHA1`
         OPSCODE_BUILD_REGEX = /^\d{14}(\.git\.\d+\.[a-f0-9]{7})?$/

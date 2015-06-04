@@ -1,9 +1,9 @@
 # Mixlib::Versioning
 
-[![Build Status](https://travis-ci.org/opscode/mixlib-versioning.png?branch=master)](https://travis-ci.org/opscode/mixlib-versioning)
-[![Code Climate](https://codeclimate.com/github/opscode/mixlib-versioning.png)](https://codeclimate.com/github/opscode/mixlib-versioning)
+[![Build Status](https://travis-ci.org/chef/mixlib-versioning.png?branch=master)](https://travis-ci.org/chef/mixlib-versioning)
+[![Code Climate](https://codeclimate.com/github/chef/mixlib-versioning.png)](https://codeclimate.com/github/chef/mixlib-versioning)
 
-This project is managed by the CHEF Release Engineering team. For more information on the Release Engineering team's contribution, triage, and release process, please consult the [CHEF Release Engineering OSS Management Guide](https://docs.google.com/a/opscode.com/document/d/1oJB0vZb_3bl7_ZU2YMDBkMFdL-EWplW1BJv_FXTUOzg/edit).
+This project is managed by the CHEF Release Engineering team. For more information on the Release Engineering team's contribution, triage, and release process, please consult the [CHEF Release Engineering OSS Management Guide](https://docs.google.com/a/chef.io/document/d/1oJB0vZb_3bl7_ZU2YMDBkMFdL-EWplW1BJv_FXTUOzg/edit).
 
 Versioning is hard! `mixlib-versioning` is a general Ruby library that allows
 you to parse, compare and manipulate version numbers in multiple formats.
@@ -340,7 +340,8 @@ rake yard
 
 |                      |                                          |
 |:---------------------|:-----------------------------------------|
-| **Author:**          | Seth Chisamore (schisamo@opscode.com)
+| **Author:**          | Seth Chisamore (schisamo@chef.io)
+| **Author:**          | Christopher Maier (cm@chef.io)
 | **Copyright:**       | Copyright (c) 2013 Opscode, Inc.
 | **License:**         | Apache License, Version 2.0
 
@@ -355,5 +356,3 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
-
-[jira]: http://tickets.opscode.com/browse/MIXLIB

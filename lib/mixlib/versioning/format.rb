@@ -1,5 +1,5 @@
 #
-# Author:: Seth Chisamore (<schisamo@opscode.com>)
+# Author:: Seth Chisamore (<schisamo@chef.io>)
 # Copyright:: Copyright (c) 2013 Opscode, Inc.
 # License:: Apache License, Version 2.0
 #
@@ -23,7 +23,7 @@ require 'mixlib/versioning/format/semver'
 
 module Mixlib
   class Versioning
-    # @author Seth Chisamore (<schisamo@opscode.com>)
+    # @author Seth Chisamore (<schisamo@chef.io>)
     #
     # @!attribute [r] major
     #   @return [Integer] major identifier

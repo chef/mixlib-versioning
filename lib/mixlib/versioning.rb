@@ -1,6 +1,6 @@
 #
-# Author:: Seth Chisamore (<schisamo@opscode.com>)
-# Author:: Christopher Maier (<cm@opscode.com>)
+# Author:: Seth Chisamore (<schisamo@chef.io>)
+# Author:: Christopher Maier (<cm@chef.io>)
 # Copyright:: Copyright (c) 2013 Opscode, Inc.
 # License:: Apache License, Version 2.0
 #
@@ -21,8 +21,8 @@ require 'mixlib/versioning/exceptions'
 require 'mixlib/versioning/format'
 
 module Mixlib
-  # @author Seth Chisamore (<schisamo@opscode.com>)
-  # @author Christopher Maier (<cm@opscode.com>)
+  # @author Seth Chisamore (<schisamo@chef.io>)
+  # @author Christopher Maier (<cm@chef.io>)
   class Versioning
     DEFAULT_FORMATS = [
       Mixlib::Versioning::Format::GitDescribe,

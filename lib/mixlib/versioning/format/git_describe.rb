@@ -1,6 +1,6 @@
 #
-# Author:: Seth Chisamore (<schisamo@opscode.com>)
-# Author:: Christopher Maier (<cm@opscode.com>)
+# Author:: Seth Chisamore (<schisamo@chef.io>)
+# Author:: Christopher Maier (<cm@chef.io>)
 # Copyright:: Copyright (c) 2013 Opscode, Inc.
 # License:: Apache License, Version 2.0
 #
@@ -41,8 +41,8 @@ module Mixlib
       # 11.0.0-alpha.1-1-gcea071e
       # ```
       #
-      # @author Seth Chisamore (<schisamo@opscode.com>)
-      # @author Christopher Maier (<cm@opscode.com>)
+      # @author Seth Chisamore (<schisamo@chef.io>)
+      # @author Christopher Maier (<cm@chef.io>)
       class GitDescribe < Format
         GIT_DESCRIBE_REGEX = /^(\d+)\.(\d+)\.(\d+)(?:\-|\.)?(.+)?\-(\d+)\-g([a-f0-9]{7,40})(?:\-)?(\d+)?$/
 

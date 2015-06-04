@@ -1,6 +1,6 @@
 #
-# Author:: Seth Chisamore (<schisamo@opscode.com>)
-# Author:: Christopher Maier (<cm@opscode.com>)
+# Author:: Seth Chisamore (<schisamo@chef.io>)
+# Author:: Christopher Maier (<cm@chef.io>)
 # Copyright:: Copyright (c) 2013 Opscode, Inc.
 # License:: Apache License, Version 2.0
 #
@@ -39,8 +39,8 @@ module Mixlib
       # 11.0.0-alpha1+20121218164140.git.207.694b062
       # ```
       #
-      # @author Seth Chisamore (<schisamo@opscode.com>)
-      # @author Christopher Maier (<cm@opscode.com>)
+      # @author Seth Chisamore (<schisamo@chef.io>)
+      # @author Christopher Maier (<cm@chef.io>)
       class SemVer < Format
         SEMVER_REGEX = /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][a-zA-Z0-9-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][a-zA-Z0-9-]*))*))?(?:\+([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?$/
 
