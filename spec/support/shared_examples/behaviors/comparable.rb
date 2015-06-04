@@ -17,7 +17,6 @@
 #
 
 shared_examples 'comparable' do |version_matrix|
-
   describe '#<' do
     version_matrix.each_slice(2) do |a, b|
       it "confirms that #{a} is less-than #{b}" do
@@ -69,7 +68,7 @@ shared_examples 'comparable' do |version_matrix|
   end
 
   describe '#between?' do
-    let(:versions) { version_matrix.map {|v| described_class.new(v) }.sort }
+    let(:versions) { version_matrix.map { |v| described_class.new(v) }.sort }
 
     it 'comfirms that a version is between the oldest and latest release' do
       min, max = versions.minmax.map(&:to_s)
@@ -78,5 +77,4 @@ shared_examples 'comparable' do |version_matrix|
       expect(described_class.new(middle).between?(max, min)).to be false
     end
   end
-
 end

@@ -19,13 +19,11 @@
 require 'spec_helper'
 
 describe Mixlib::Versioning do
-
   subject { described_class }
 
   let(:version_string) { '11.0.0' }
 
   describe '.parse' do
-
     describe 'parsing when format type is specified' do
       {
         '11.0.8' => {
@@ -49,7 +47,6 @@ describe Mixlib::Versioning do
           expected_format: Mixlib::Versioning::Format::SemVer,
         },
       }.each_pair do |version_string, options|
-
         context "#{version_string} as #{options[:expected_format]}" do
           let(:version_string) { version_string }
           let(:expected_format) { options[:expected_format] }
@@ -59,14 +56,12 @@ describe Mixlib::Versioning do
             options[:format_type].to_s,
             options[:expected_format],
           ].each do |format_type|
-
             context "format type as a: #{format_type.class}" do
               it "parses version string as: #{options[:expected_format]}" do
                 result = subject.parse(version_string, format_type)
                 result.should be_a(expected_format)
               end # it
             end # context
-
           end # each
         end # context
       end # each_pair
@@ -77,15 +72,12 @@ describe Mixlib::Versioning do
           'poop',
           Mixlib::Versioning,
         ].each do |invalid_format_type|
-
           context "invalid format as a: #{invalid_format_type.class}" do
             it 'raises a Mixlib::Versioning::UnknownFormatError' do
               expect { subject.parse(version_string, invalid_format_type) }.to raise_error(Mixlib::Versioning::UnknownFormatError)
             end # it
           end # context
-
         end # each
-
       end # describe
     end # describe
 
@@ -111,14 +103,12 @@ describe Mixlib::Versioning do
         '10.16.2.rc.2-49-g21353f0' => Mixlib::Versioning::Format::GitDescribe,
         '10.16.2-rc.2-49-g21353f0' => Mixlib::Versioning::Format::GitDescribe,
       }.each_pair do |version_string, expected_format|
-
         context version_string do
           let(:version_string) { version_string }
           it "parses version string as: #{expected_format}" do
             subject.parse(version_string).should be_a(expected_format)
           end # it
         end # context
-
       end # each_pair
 
       describe 'version_string cannot be parsed' do
@@ -127,7 +117,6 @@ describe Mixlib::Versioning do
           subject.parse(version_string).should be_nil
         end
       end
-
     end # describe "parsing with automatic format detection"
 
     describe 'parsing an Mixlib::Versioning::Format object' do
@@ -137,12 +126,11 @@ describe Mixlib::Versioning do
         v.should be result
       end
     end
-
   end # describe .parse
 
   describe '.find_target_version' do
     let(:all_versions) do
-      %w[
+      %w(
         11.0.0-beta.1
         11.0.0-rc.1
         11.0.0
@@ -151,7 +139,7 @@ describe Mixlib::Versioning do
         11.0.2-alpha.0
         11.0.2-alpha.0+2013041116332
         11.0.2
-      ]
+      )
     end
     let(:filter_version) { nil }
     let(:use_prerelease_versions) { false }
@@ -197,7 +185,6 @@ describe Mixlib::Versioning do
         prerelease_and_build_versions: '11.0.2-alpha.0+2013041116332',
       },
     }.each_pair do |filter_version, options|
-
       context "filter version of: #{filter_version}" do
         let(:filter_version) { filter_version }
         let(:expected_version) { options[:releases_only] }
@@ -233,7 +220,6 @@ describe Mixlib::Versioning do
             subject_find.should eq Mixlib::Versioning.parse(expected_version)
           end # it
         end # context
-
       end # context
     end # each_pair
 
@@ -258,7 +244,5 @@ describe Mixlib::Versioning do
         subject_find.should eq Mixlib::Versioning.parse('11.0.0')
       end
     end
-
   end # describe
-
 end # describe Mixlib::Versioning

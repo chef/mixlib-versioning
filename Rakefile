@@ -7,14 +7,12 @@ require 'rubocop/rake_task'
 desc 'Run Ruby style checks'
 RuboCop::RakeTask.new(:style)
 
-begin
-  require 'yard'
-  YARD::Rake::YardocTask.new(:doc)
-rescue LoadError; end
+require 'yard'
+YARD::Rake::YardocTask.new(:doc)
 
 namespace :travis do
   desc 'Run tests on Travis'
-  task :ci => [:style, :unit]
+  task ci: [:style, :unit]
 end
 
-task :default => [:style, :unit]
+task default: [:style, :unit]

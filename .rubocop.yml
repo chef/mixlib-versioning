@@ -1,3 +1,5 @@
+AbcSize:
+  Enabled: false
 BracesAroundHashParameters:
   Enabled: false
 ClassLength:
@@ -11,6 +13,8 @@ Encoding:
 LineLength:
   Enabled: false
 MethodLength:
+  Enabled: false
+PerceivedComplexity:
   Enabled: false
 RescueModifier:
   Enabled: false

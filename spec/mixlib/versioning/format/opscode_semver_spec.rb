@@ -19,7 +19,6 @@
 require 'spec_helper'
 
 describe Mixlib::Versioning::Format::OpscodeSemVer do
-
   subject { described_class.new(version_string) }
 
   it_should_behave_like Mixlib::Versioning::Format::SemVer
@@ -48,7 +47,7 @@ describe Mixlib::Versioning::Format::OpscodeSemVer do
 
   it_has_behavior 'sortable' do
     let(:unsorted_version_strings) do
-      %w[
+      %w(
         1.0.0-beta.2
         1.0.0-alpha
         1.0.0-rc.1+20130309074433
@@ -60,10 +59,10 @@ describe Mixlib::Versioning::Format::OpscodeSemVer do
         1.3.7+20131009104433.git.2.94a1dde
         1.3.7+20131009104433
         1.3.7+20131009074433
-      ]
+      )
     end
     let(:sorted_version_strings) do
-      %w[
+      %w(
         1.0.0-alpha
         1.0.0-alpha.1
         1.0.0-beta.2
@@ -75,7 +74,7 @@ describe Mixlib::Versioning::Format::OpscodeSemVer do
         1.3.7+20131009074433
         1.3.7+20131009104433
         1.3.7+20131009104433.git.2.94a1dde
-      ]
+      )
     end
     let(:min) { '1.0.0-alpha' }
     let(:max) { '1.3.7+20131009104433.git.2.94a1dde' }
@@ -83,7 +82,7 @@ describe Mixlib::Versioning::Format::OpscodeSemVer do
 
   it_has_behavior 'filterable' do
     let(:unsorted_version_strings) do
-      %w[
+      %w(
         1.0.0-beta.2
         1.0.0-alpha
         1.0.0-rc.1+20130309074433
@@ -95,39 +94,38 @@ describe Mixlib::Versioning::Format::OpscodeSemVer do
         1.3.7+20131009104433.git.2.94a1dde
         1.3.7+20131009104433
         1.3.7+20131009074433
-      ]
+      )
     end
-    let(:release_versions) { %w{ 1.0.0 } }
+    let(:release_versions) { %w(1.0.0) }
     let(:prerelease_versions) do
-      %w[
+      %w(
         1.0.0-beta.2
         1.0.0-alpha
         1.0.0-beta.11
         1.0.0-rc.1
         1.0.0-alpha.1
-      ]
+      )
     end
     let(:build_versions) do
-      %w[
+      %w(
         1.0.0-rc.1+20130309074433
         1.0.0+20121009074433
         1.3.7+20131009104433.git.2.94a1dde
         1.3.7+20131009104433
         1.3.7+20131009074433
-      ]
+      )
     end
     let(:release_build_versions) do
-      %w[
+      %w(
         1.0.0+20121009074433
         1.3.7+20131009104433.git.2.94a1dde
         1.3.7+20131009104433
         1.3.7+20131009074433
-      ]
+      )
     end
     let(:prerelease_build_versions) do
-      %w]
-        1.0.0-rc.1+20130309074433
-      ]
+      %w(
+        1.0.0-rc.1+20130309074433      )
     end
   end # it_has_behavior
 
@@ -137,5 +135,4 @@ describe Mixlib::Versioning::Format::OpscodeSemVer do
     '1.2.3', '1.2.3+20121009074433',
     '2.0.0-beta.1', '2.0.0+20131009104433.git.2.94a1dde'
   ]
-
 end # describe

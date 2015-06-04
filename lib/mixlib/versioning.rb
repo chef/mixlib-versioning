@@ -47,7 +47,7 @@ module Mixlib
     # @return
     #
     def self.parse(version_string, format_type = nil)
-      if version_string.kind_of?(Mixlib::Versioning::Format)
+      if version_string.is_a?(Mixlib::Versioning::Format)
         return version_string
       elsif format_type
         return Mixlib::Versioning::Format.for(format_type).new(version_string)
@@ -130,12 +130,12 @@ module Mixlib
       # attempt to parse a `Mixlib::Versioning::Format` instance if we were
       # passed a string
       unless filter_version.nil? ||
-             filter_version.kind_of?(Mixlib::Versioning::Format)
+             filter_version.is_a?(Mixlib::Versioning::Format)
         filter_version = Mixlib::Versioning.parse(filter_version)
       end
 
       all_versions.map! do |v|
-        if v.kind_of?(Mixlib::Versioning::Format)
+        if v.is_a?(Mixlib::Versioning::Format)
           v
         else
           Mixlib::Versioning.parse(v)

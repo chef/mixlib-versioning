@@ -59,7 +59,7 @@ module Mixlib
       # @return [Class] the {Mixlib::Versioning::Format} class
       #
       def self.for(format_type)
-        if format_type.kind_of?(Class) &&
+        if format_type.is_a?(Class) &&
            format_type.ancestors.include?(Mixlib::Versioning::Format)
           format_type
         else
@@ -69,7 +69,7 @@ module Mixlib
           when 'git_describe' then Mixlib::Versioning::Format::GitDescribe
           when 'rubygems' then Mixlib::Versioning::Format::Rubygems
           else
-            msg = "'#{format_type.to_s}' is not a supported Mixlib::Versioning format"
+            msg = "'#{format_type}' is not a supported Mixlib::Versioning format"
             fail Mixlib::Versioning::UnknownFormatError, msg
           end
         end
@@ -89,7 +89,7 @@ module Mixlib
       #
       # @param version_string [String] string representation of the version
       # @raise [Mixlib::Versioning::ParseError] raised if parsing fails
-      def parse(version_string)
+      def parse(_version_string)
         fail Error, 'You must override the #parse'
       end
 
@@ -100,22 +100,22 @@ module Mixlib
 
       # @return [Boolean] Whether or not this is a pre-release version
       def prerelease?
-        !!(@prerelease && @build.nil?)
+        !@prerelease.nil? && @build.nil?
       end
 
       # @return [Boolean] Whether or not this is a release build version
       def release_build?
-        !!(@prerelease.nil? && @build)
+        @prerelease.nil? && !@build.nil?
       end
 
       # @return [Boolean] Whether or not this is a pre-release build version
       def prerelease_build?
-        !!(@prerelease && @build)
+        !@prerelease.nil? && !@build.nil?
       end
 
       # @return [Boolean] Whether or not this is a build version
       def build?
-        !!@build
+        !@build.nil?
       end
 
       # Returns `true` if `other` and this {Format} share the same `major`,
@@ -125,8 +125,8 @@ module Mixlib
       # @return [Boolean]
       def in_same_release_line?(other)
         @major == other.major &&
-        @minor == other.minor &&
-        @patch == other.patch
+          @minor == other.minor &&
+          @patch == other.patch
       end
 
       # Returns `true` if `other` an share the same
@@ -136,9 +136,9 @@ module Mixlib
       # @return [Boolean]
       def in_same_prerelease_line?(other)
         @major == other.major &&
-        @minor == other.minor &&
-        @patch == other.patch &&
-        @prerelease == other.prerelease
+          @minor == other.minor &&
+          @patch == other.patch &&
+          @prerelease == other.prerelease
       end
 
       # @return [String] String representation of this {Format} instance
@@ -153,7 +153,7 @@ module Mixlib
         vars = instance_variables.map do |n|
           "#{n}=#{instance_variable_get(n).inspect}"
         end
-        sprintf('#<%s:0x%x %s>', self.class, object_id, vars.join(', '))
+        format('#<%s:0x%x %s>', self.class, object_id, vars.join(', '))
       end
 
       # Returns SemVer compliant string representation of this {Format}

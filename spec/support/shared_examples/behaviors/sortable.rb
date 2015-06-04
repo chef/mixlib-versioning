@@ -17,7 +17,6 @@
 #
 
 shared_examples 'sortable' do
-
   let(:unsorted_versions) do
     unsorted_version_strings.map { |v| described_class.new(v) }
   end
@@ -41,5 +40,4 @@ shared_examples 'sortable' do
   it 'finds the max' do
     unsorted_versions.max.should eq described_class.new(max)
   end
-
 end # shared_examples
