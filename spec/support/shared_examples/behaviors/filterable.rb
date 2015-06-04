@@ -17,7 +17,6 @@
 #
 
 shared_examples 'filterable' do
-
   let(:unsorted_versions) do
     unsorted_version_strings.map { |v| described_class.new(v) }
   end
@@ -52,5 +51,4 @@ shared_examples 'filterable' do
     filtered = unsorted_versions.select(&:prerelease_build?)
     filtered.should eq(prerelease_build_versions.map { |v| described_class.new(v) })
   end # it
-
 end # shared_examples

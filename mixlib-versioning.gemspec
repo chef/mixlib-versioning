@@ -15,15 +15,14 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version = '>= 1.9'
 
-  spec.files         = `git ls-files`.split($/)
+  spec.files         = `git ls-files`.split($INPUT_RECORD_SEPARATOR)
   spec.executables   = spec.files.grep(%r{^bin/}).map { |f| File.basename(f) }
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ['lib']
 
   # Development dependencies
-  spec.add_development_dependency 'rubocop', '~> 0.18'
+  spec.add_development_dependency 'rubocop', '= 0.31.0'
   spec.add_development_dependency 'rspec',   '~> 2.14'
-
   spec.add_development_dependency 'bundler'
   spec.add_development_dependency 'rake'
 end

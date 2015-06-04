@@ -17,16 +17,13 @@
 #
 
 shared_examples 'parses valid version strings' do |valid_examples|
-
   valid_examples.each do |version, options|
-
     context version do
       let(:version_string) { version }
 
       options.each_pair do |name, value|
         its(name) { should eq value }
       end
-
     end # context
   end # valid_examples
 end # shared_examples

@@ -17,19 +17,18 @@
 #
 
 shared_examples 'Basic SemVer' do
-
   it_has_behavior 'parses valid version strings', {
     '1.2.3' => {
-      :major             => 1,
-      :minor             => 2,
-      :patch             => 3,
-      :prerelease        => nil,
-      :build             => nil,
-      :release?          => true,
-      :prerelease?       => false,
-      :build?            => false,
-      :release_build?    => false,
-      :prerelease_build? => false,
+      major: 1,
+      minor: 2,
+      patch: 3,
+      prerelease: nil,
+      build: nil,
+      release?: true,
+      prerelease?: false,
+      build?: false,
+      release_build?: false,
+      prerelease_build?: false,
     },
   }
 
@@ -38,5 +37,4 @@ shared_examples 'Basic SemVer' do
     '1.a.1' => 'non-numeric MINOR',
     '1.1.a' => 'non-numeric PATCH',
   }
-
 end

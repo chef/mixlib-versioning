@@ -17,7 +17,6 @@
 #
 
 shared_examples 'serializable' do |version_strings|
-
   describe '#to_s' do
     version_strings.each do |v|
       it "reconstructs the initial input for #{v}" do
@@ -47,5 +46,4 @@ shared_examples 'serializable' do |version_strings|
       end # it
     end # version_strings
   end # describe
-
 end # shared_examples

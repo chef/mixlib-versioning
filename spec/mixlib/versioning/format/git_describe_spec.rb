@@ -19,84 +19,83 @@
 require 'spec_helper'
 
 describe Mixlib::Versioning::Format::GitDescribe do
-
   subject { described_class.new(version_string) }
 
   it_has_behavior 'parses valid version strings', {
     '0.10.8-231-g59d6185' => {
-      :major => 0,
-      :minor => 10,
-      :patch => 8,
-      :prerelease => nil,
-      :build => '231.g59d6185.0',
-      :release? => false,
-      :prerelease? => false,
-      :build? => true,
-      :release_build? => true,
-      :prerelease_build? => false,
-      :commits_since => 231,
-      :commit_sha => '59d6185',
-      :iteration => 0,
+      major: 0,
+      minor: 10,
+      patch: 8,
+      prerelease: nil,
+      build: '231.g59d6185.0',
+      release?: false,
+      prerelease?: false,
+      build?: true,
+      release_build?: true,
+      prerelease_build?: false,
+      commits_since: 231,
+      commit_sha: '59d6185',
+      iteration: 0,
     },
     '10.16.2-49-g21353f0-1' => {
-      :major => 10,
-      :minor => 16,
-      :patch => 2,
-      :prerelease => nil,
-      :build => '49.g21353f0.1',
-      :release? => false,
-      :prerelease? => false,
-      :build? => true,
-      :release_build? => true,
-      :prerelease_build? => false,
-      :commits_since => 49,
-      :commit_sha => '21353f0',
-      :iteration => 1,
+      major: 10,
+      minor: 16,
+      patch: 2,
+      prerelease: nil,
+      build: '49.g21353f0.1',
+      release?: false,
+      prerelease?: false,
+      build?: true,
+      release_build?: true,
+      prerelease_build?: false,
+      commits_since: 49,
+      commit_sha: '21353f0',
+      iteration: 1,
     },
     '10.16.2.rc.1-49-g21353f0-1' => {
-      :major => 10,
-      :minor => 16,
-      :patch => 2,
-      :prerelease => 'rc.1',
-      :build => '49.g21353f0.1',
-      :release? => false,
-      :prerelease? => false,
-      :build? => true,
-      :release_build? => false,
-      :prerelease_build? => true,
-      :commits_since => 49,
-      :commit_sha => '21353f0',
-      :iteration => 1,
+      major: 10,
+      minor: 16,
+      patch: 2,
+      prerelease: 'rc.1',
+      build: '49.g21353f0.1',
+      release?: false,
+      prerelease?: false,
+      build?: true,
+      release_build?: false,
+      prerelease_build?: true,
+      commits_since: 49,
+      commit_sha: '21353f0',
+      iteration: 1,
     },
     '10.16.2-alpha-49-g21353f0-1' => {
-      :major => 10,
-      :minor => 16,
-      :patch => 2,
-      :prerelease => 'alpha',
-      :build => '49.g21353f0.1',
-      :release? => false,
-      :prerelease? => false,
-      :build? => true,
-      :release_build? => false,
-      :prerelease_build? => true,
-      :commits_since => 49,
-      :commit_sha => '21353f0',
-      :iteration => 1,
+      major: 10,
+      minor: 16,
+      patch: 2,
+      prerelease: 'alpha',
+      build: '49.g21353f0.1',
+      release?: false,
+      prerelease?: false,
+      build?: true,
+      release_build?: false,
+      prerelease_build?: true,
+      commits_since: 49,
+      commit_sha: '21353f0',
+      iteration: 1,
     },
     '10.16.2-alpha-49-g21353f0' => {
-      :major => 10,
-      :minor => 16,
-      :patch => 2,
-      :prerelease => 'alpha',
-      :build => '49.g21353f0.0',
-      :release? => false,
-      :prerelease? => false,
-      :build? => true,
-      :release_build? => false,
-      :prerelease_build? => true,
-      :commits_since => 49,
-      :commit_sha => '21353f0',
-      :iteration => 0,
+      major: 10,
+      minor: 16,
+      patch: 2,
+      prerelease: 'alpha',
+      build: '49.g21353f0.0',
+      release?: false,
+      prerelease?: false,
+      build?: true,
+      release_build?: false,
+      prerelease_build?: true,
+      commits_since: 49,
+      commit_sha: '21353f0',
+      iteration: 0,
     },
   }
 
@@ -113,7 +112,7 @@ describe Mixlib::Versioning::Format::GitDescribe do
     '1.0.0-123-1' => 'missing SHA1',
   }
 
-  version_strings = %w{
+  version_strings = %w(
     9.0.1-1-gdeadbee-1
     9.1.2-2-g1234567-1
     10.0.0-1-gabcdef3-1
@@ -124,14 +123,14 @@ describe Mixlib::Versioning::Format::GitDescribe do
     9.0.1-2-gdeadbe1-2
     9.0.1-2-gdeadbe2-1
     9.1.1-2-g1234567-1
-  }
+  )
 
   it_has_behavior 'serializable', version_strings
 
   it_has_behavior 'sortable' do
     let(:unsorted_version_strings) { version_strings }
     let(:sorted_version_strings) do
-      %w[
+      %w(
         9.0.1-1-gdeadbee-1
         9.0.1-2-gdeadbe1-1
         9.0.1-2-gdeadbe1-2
@@ -142,7 +141,7 @@ describe Mixlib::Versioning::Format::GitDescribe do
         10.5.7-2-g21353f0-1
         10.20.2-2-gbbbbbbb-1
         10.20.2-3-gaaaaaaa-1
-      ]
+      )
     end
     let(:min) { '9.0.1-1-gdeadbee-1' }
     let(:max) { '10.20.2-3-gaaaaaaa-1' }
@@ -152,7 +151,7 @@ describe Mixlib::Versioning::Format::GitDescribe do
   it_has_behavior 'filterable' do
     let(:unsorted_version_strings) { version_strings }
     let(:build_versions) do
-      %w[
+      %w(
         9.0.1-1-gdeadbee-1
         9.1.2-2-g1234567-1
         10.0.0-1-gabcdef3-1
@@ -163,10 +162,10 @@ describe Mixlib::Versioning::Format::GitDescribe do
         9.0.1-2-gdeadbe1-2
         9.0.1-2-gdeadbe2-1
         9.1.1-2-g1234567-1
-      ]
+      )
     end
     let(:release_build_versions) do
-      %w[
+      %w(
         9.0.1-1-gdeadbee-1
         9.1.2-2-g1234567-1
         10.0.0-1-gabcdef3-1
@@ -177,7 +176,7 @@ describe Mixlib::Versioning::Format::GitDescribe do
         9.0.1-2-gdeadbe1-2
         9.0.1-2-gdeadbe2-1
         9.1.1-2-g1234567-1
-      ]
+      )
     end
   end  # it_has_behavior
 
@@ -188,5 +187,4 @@ describe Mixlib::Versioning::Format::GitDescribe do
     '10.0.0-1-gabcdef3-1', '10.5.7-2-g21353f0-1',
     '10.20.2-2-gbbbbbbb-1', '10.20.2-3-gaaaaaaa-1'
   ]
-
 end # describe

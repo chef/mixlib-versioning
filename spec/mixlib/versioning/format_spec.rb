@@ -19,7 +19,6 @@
 require 'spec_helper'
 
 describe Mixlib::Versioning::Format do
-
   describe '#initialize' do
     subject { described_class.new(version_string) }
     let(:version_string) { '11.0.0' }
@@ -30,7 +29,6 @@ describe Mixlib::Versioning::Format do
   end
 
   describe '.for' do
-
     subject { described_class }
 
     [
@@ -38,14 +36,12 @@ describe Mixlib::Versioning::Format do
       'rubygems',
       Mixlib::Versioning::Format::Rubygems,
     ].each do |format_type|
-
       context 'format_type is a: #{format_type.class}' do
         let(:format_type) { format_type }
         it 'returns the correct format class' do
           subject.for(format_type).should eq Mixlib::Versioning::Format::Rubygems
         end # it
       end # context
-
     end # each
 
     describe 'unknown format_type' do
@@ -54,16 +50,12 @@ describe Mixlib::Versioning::Format do
         'poop',
         Mixlib::Versioning,
       ].each do |invalid_format_type|
-
         context 'format_type is a: #{invalid_format_type.class}' do
           it 'raises a Mixlib::Versioning::UnknownFormatError' do
             expect { subject.for(invalid_format_type) }.to raise_error(Mixlib::Versioning::UnknownFormatError)
           end # it
         end # context
-
       end # each
     end # describe
-
   end # describe ".for"
-
 end # describe Mixlib::Versioning::Format
