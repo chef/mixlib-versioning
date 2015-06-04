@@ -126,6 +126,39 @@ describe Mixlib::Versioning do
         v.should be result
       end
     end
+
+    describe 'when formats are given' do
+      context 'when the format is not in the list' do
+        let(:version_string) { '10.16.2-rc.2-49-g21353f0' }
+        it 'returns nil when the array contains a Mixlib::Versioning::Format' do
+          subject.parse(version_string, [Mixlib::Versioning::Format::Rubygems]).should be_nil
+        end
+
+        it 'returns nil when the array contains a string' do
+          subject.parse(version_string, ['rubygems']).should be_nil
+        end
+
+        it 'returns nil when the array contains a symbol' do
+          subject.parse(version_string, [:rubygems]).should be_nil
+        end
+      end
+
+      context 'when the format is in the list' do
+        let(:version_string) { '10.16.2-rc.2-49-g21353f0' }
+        let(:expected_format) { Mixlib::Versioning::Format::GitDescribe }
+        it 'returns nil when the array contains a Mixlib::Versioning::Format' do
+          subject.parse(version_string, [expected_format]).should be_a(expected_format)
+        end
+
+        it 'returns nil when the array contains a string' do
+          subject.parse(version_string, ['git_describe']).should be_a(expected_format)
+        end
+
+        it 'returns nil when the array contains a symbol' do
+          subject.parse(version_string, [:git_describe]).should be_a(expected_format)
+        end
+      end
+    end
   end # describe .parse
 
   describe '.find_target_version' do
