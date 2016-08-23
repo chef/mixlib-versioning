@@ -1,6 +1,6 @@
 #
 # Author:: Seth Chisamore (<schisamo@chef.io>)
-# Copyright:: Copyright (c) 2013 Opscode, Inc.
+# Copyright:: Copyright (c) 2013-2016 Chef Software, Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,8 +16,8 @@
 # limitations under the License.
 #
 
-shared_examples 'serializable' do |version_strings|
-  describe '#to_s' do
+shared_examples "serializable" do |version_strings|
+  describe "#to_s" do
     version_strings.each do |v|
       it "reconstructs the initial input for #{v}" do
         described_class.new(v).to_s.should == v
@@ -25,7 +25,7 @@ shared_examples 'serializable' do |version_strings|
     end # version_strings
   end # describe
 
-  describe '#to_semver_string' do
+  describe "#to_semver_string" do
     version_strings.each do |v|
       it "generates a semver version string for #{v}" do
         subject = described_class.new(v)
@@ -36,7 +36,7 @@ shared_examples 'serializable' do |version_strings|
     end # version_strings
   end # describe
 
-  describe '#to_rubygems_string' do
+  describe "#to_rubygems_string" do
     version_strings.each do |v|
       it "generates a rubygems version string for #{v}" do
         subject = described_class.new(v)

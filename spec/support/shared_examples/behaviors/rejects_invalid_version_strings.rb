@@ -1,6 +1,6 @@
 #
 # Author:: Seth Chisamore (<schisamo@chef.io>)
-# Copyright:: Copyright (c) 2013 Opscode, Inc.
+# Copyright:: Copyright (c) 2013-2016 Chef Software, Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,7 +16,7 @@
 # limitations under the License.
 #
 
-shared_examples 'rejects invalid version strings' do |invalid_examples|
+shared_examples "rejects invalid version strings" do |invalid_examples|
   invalid_examples.each_pair do |version, reason|
     context version do
       let(:version_string) { version }

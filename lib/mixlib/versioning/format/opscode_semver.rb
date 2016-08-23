@@ -1,7 +1,7 @@
 #
 # Author:: Seth Chisamore (<schisamo@chef.io>)
 # Author:: Christopher Maier (<cm@chef.io>)
-# Copyright:: Copyright (c) 2013 Opscode, Inc.
+# Copyright:: Copyright (c) 2013-2016 Chef Software, Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-require 'mixlib/versioning/format/semver'
+require "mixlib/versioning/format/semver"
 
 module Mixlib
   class Versioning
@@ -71,8 +71,8 @@ module Mixlib
         def parse(version_string)
           super(version_string)
 
-          fail Mixlib::Versioning::ParseError, "'#{@prerelease}' is not a valid Opscode pre-release signifier!" unless @prerelease.nil? || @prerelease.match(OPSCODE_PRERELEASE_REGEX)
-          fail Mixlib::Versioning::ParseError, "'#{@build}' is not a valid Opscode build signifier!" unless @build.nil? || @build.match(OPSCODE_BUILD_REGEX)
+          raise Mixlib::Versioning::ParseError, "'#{@prerelease}' is not a valid Opscode pre-release signifier!" unless @prerelease.nil? || @prerelease.match(OPSCODE_PRERELEASE_REGEX)
+          raise Mixlib::Versioning::ParseError, "'#{@build}' is not a valid Opscode build signifier!" unless @build.nil? || @build.match(OPSCODE_BUILD_REGEX)
         end
       end # class OpscodeSemVer
     end # class Format
