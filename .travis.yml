@@ -1,7 +1,6 @@
 rvm:
-  - 1.9.3
-  - 2.0.0
-  - 2.1.0
+  - 2.2.5
+  - 2.3.1
 
 bundler_args: --jobs 7
 
@@ -11,14 +10,3 @@ branches:
 
 script: bundle exec rake travis:ci
 
-notifications:
-  hipchat:
-    on_change: true
-    on_failure: true
-    on_success: false
-    on_pull_requests: false
-    rooms:
-      # Build Statuses
-      - secure: IycrY52k8dhilnU3B2c8mem9LzofQlMISUZSDk2tys0cvW0U3lnCQQiSvT5kTtiKztUABEiT2UqU2QYwUfeW/yYrO3NjB2OBqehRKnEn2oEaapcIugvtsQMySfYqJ7IsKpyh3vTMmgyKPw3OCKh5OJn26lMdHH2R91SXcbUezKI=
-      # Release Engineering
-      - secure: JJlujHzKxsY74bfJHNxH6fQOF5IULeJECXkxx6uU/T+CjxydINwAH5lQ1RUleLZlH0BmQDgxK+O46hiuWdYAyhgCJY9bQOBWG+aQusXIoLvV3qj+rU0dX1wvjEuO/NzkZTPZy7HMGqmCxTdmx/OawoNnpXU8qsI/OJqbISv2bGo=
