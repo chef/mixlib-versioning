@@ -1,6 +1,6 @@
 #
 # Author:: Seth Chisamore (<schisamo@chef.io>)
-# Copyright:: Copyright (c) 2013 Opscode, Inc.
+# Copyright:: Copyright (c) 2013-2016 Chef Software, Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,7 +16,7 @@
 # limitations under the License.
 #
 
-shared_examples 'filterable' do
+shared_examples "filterable" do
   let(:unsorted_versions) do
     unsorted_version_strings.map { |v| described_class.new(v) }
   end
@@ -28,26 +28,26 @@ shared_examples 'filterable' do
   let(:release_build_versions) { [] }
   let(:prerelease_build_versions) { [] }
 
-  it 'filters by release versions only' do
+  it "filters by release versions only" do
     unsorted_versions.select(&:release?).should eq(release_versions.map { |v| described_class.new(v) })
   end # it
 
-  it 'filters by pre-release versions only' do
+  it "filters by pre-release versions only" do
     filtered = unsorted_versions.select(&:prerelease?)
     filtered.should eq(prerelease_versions.map { |v| described_class.new(v) })
   end # it
 
-  it 'filters by build versions only' do
+  it "filters by build versions only" do
     filtered = unsorted_versions.select(&:build?)
     filtered.should eq(build_versions.map { |v| described_class.new(v) })
   end # it
 
-  it 'filters by release build versions only' do
+  it "filters by release build versions only" do
     filtered = unsorted_versions.select(&:release_build?)
     filtered.should eq(release_build_versions.map { |v| described_class.new(v) })
   end # it
 
-  it 'filters by pre-release build versions only' do
+  it "filters by pre-release build versions only" do
     filtered = unsorted_versions.select(&:prerelease_build?)
     filtered.should eq(prerelease_build_versions.map { |v| described_class.new(v) })
   end # it

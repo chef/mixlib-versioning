@@ -1,7 +1,7 @@
 #
 # Author:: Seth Chisamore (<schisamo@chef.io>)
 # Author:: Christopher Maier (<cm@chef.io>)
-# Copyright:: Copyright (c) 2013 Opscode, Inc.
+# Copyright:: Copyright (c) 2013-2016 Chef Software, Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -49,7 +49,7 @@ module Mixlib
           match = version_string.match(RUBYGEMS_REGEX) rescue nil
 
           unless match
-            fail Mixlib::Versioning::ParseError, "'#{version_string}' is not a valid #{self.class} version string!"
+            raise Mixlib::Versioning::ParseError, "'#{version_string}' is not a valid #{self.class} version string!"
           end
 
           @major, @minor, @patch, @prerelease, @iteration = match[1..5]
