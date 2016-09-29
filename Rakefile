@@ -1,17 +1,18 @@
-require 'bundler/gem_tasks'
+require "bundler/gem_tasks"
 
-require 'rspec/core/rake_task'
+require "rspec/core/rake_task"
 RSpec::Core::RakeTask.new(:unit)
 
-require 'rubocop/rake_task'
-desc 'Run Ruby style checks'
+require "chefstyle"
+require "rubocop/rake_task"
+desc "Run Ruby style checks"
 RuboCop::RakeTask.new(:style)
 
-require 'yard'
+require "yard"
 YARD::Rake::YardocTask.new(:doc)
 
 namespace :travis do
-  desc 'Run tests on Travis'
+  desc "Run tests on Travis"
   task ci: [:style, :unit]
 end
 
