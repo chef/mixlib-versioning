@@ -49,7 +49,7 @@ module Mixlib
           match = version_string.match(RUBYGEMS_REGEX) rescue nil
 
           unless match
-            fail Mixlib::Versioning::ParseError, "'#{version_string}' is not a valid #{self.class} version string!"
+            raise Mixlib::Versioning::ParseError, "'#{version_string}' is not a valid #{self.class} version string!"
           end
 
           @major, @minor, @patch, @prerelease, @iteration = match[1..5]

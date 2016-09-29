@@ -16,10 +16,10 @@
 # limitations under the License.
 #
 
-require 'mixlib/versioning/format/git_describe'
-require 'mixlib/versioning/format/opscode_semver'
-require 'mixlib/versioning/format/rubygems'
-require 'mixlib/versioning/format/semver'
+require "mixlib/versioning/format/git_describe"
+require "mixlib/versioning/format/opscode_semver"
+require "mixlib/versioning/format/rubygems"
+require "mixlib/versioning/format/semver"
 
 module Mixlib
   class Versioning
@@ -60,17 +60,17 @@ module Mixlib
       #
       def self.for(format_type)
         if format_type.is_a?(Class) &&
-           format_type.ancestors.include?(Mixlib::Versioning::Format)
+            format_type.ancestors.include?(Mixlib::Versioning::Format)
           format_type
         else
           case format_type.to_s
-          when 'semver' then Mixlib::Versioning::Format::SemVer
-          when 'opscode_semver' then Mixlib::Versioning::Format::OpscodeSemVer
-          when 'git_describe' then Mixlib::Versioning::Format::GitDescribe
-          when 'rubygems' then Mixlib::Versioning::Format::Rubygems
+          when "semver" then Mixlib::Versioning::Format::SemVer
+          when "opscode_semver" then Mixlib::Versioning::Format::OpscodeSemVer
+          when "git_describe" then Mixlib::Versioning::Format::GitDescribe
+          when "rubygems" then Mixlib::Versioning::Format::Rubygems
           else
             msg = "'#{format_type}' is not a supported Mixlib::Versioning format"
-            fail Mixlib::Versioning::UnknownFormatError, msg
+            raise Mixlib::Versioning::UnknownFormatError, msg
           end
         end
       end
@@ -90,7 +90,7 @@ module Mixlib
       # @param version_string [String] string representation of the version
       # @raise [Mixlib::Versioning::ParseError] raised if parsing fails
       def parse(_version_string)
-        fail Error, 'You must override the #parse'
+        raise Error, "You must override the #parse"
       end
 
       # @return [Boolean] Whether or not this is a release version
@@ -153,7 +153,7 @@ module Mixlib
         vars = instance_variables.map do |n|
           "#{n}=#{instance_variable_get(n).inspect}"
         end
-        format('#<%s:0x%x %s>', self.class, object_id, vars.join(', '))
+        format("#<%s:0x%x %s>", self.class, object_id, vars.join(", "))
       end
 
       # Returns SemVer compliant string representation of this {Format}
@@ -167,7 +167,7 @@ module Mixlib
       #   {Format} instance
       # @todo create a proper serialization abstraction
       def to_semver_string
-        s = [@major, @minor, @patch].join('.')
+        s = [@major, @minor, @patch].join(".")
         s += "-#{@prerelease}" if @prerelease
         s += "+#{@build}" if @build
         s
@@ -184,7 +184,7 @@ module Mixlib
       #   {Format} instance
       # @todo create a proper serialization abstraction
       def to_rubygems_string
-        s = [@major, @minor, @patch].join('.')
+        s = [@major, @minor, @patch].join(".")
         s += ".#{@prerelease}" if @prerelease
         s
       end
@@ -269,7 +269,7 @@ module Mixlib
       end
 
       def hash
-        [@major, @minor, @patch, @prerelease, @build].compact.join('.').hash
+        [@major, @minor, @patch, @prerelease, @build].compact.join(".").hash
       end
 
       #########################################################################
@@ -303,8 +303,8 @@ module Mixlib
       # Both `a_item` and `b_item` should be Strings; `nil` is not a
       # valid input.
       def compare_dot_components(a_item, b_item)
-        a_components = a_item.split('.')
-        b_components = b_item.split('.')
+        a_components = a_item.split(".")
+        b_components = b_item.split(".")
 
         max_length = [a_components.length, b_components.length].max
 
