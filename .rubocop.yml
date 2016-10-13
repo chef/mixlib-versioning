@@ -1,3 +1,0 @@
-Lint/DuplicatedKey:
-  Exclude:
-    - 'spec/mixlib/versioning/versioning_spec.rb'
