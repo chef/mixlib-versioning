@@ -21,7 +21,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   # Development dependencies
-  spec.add_development_dependency "chefstyle", "= 0.4.0"
+  spec.add_development_dependency "chefstyle"
   spec.add_development_dependency "rspec", "< 2.99"
   spec.add_development_dependency "bundler"
   spec.add_development_dependency "rake"
