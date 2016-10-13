@@ -16,19 +16,19 @@
 # limitations under the License.
 #
 
-require 'mixlib/versioning'
+require "mixlib/versioning"
 
 # load all shared examples and shared contexts
-Dir[File.expand_path('../support/**/*.rb', __FILE__)].each do |file|
+Dir[File.expand_path("../support/**/*.rb", __FILE__)].each do |file|
   require(file)
 end
 
 RSpec.configure do |config|
   # a little syntactic sugar
-  config.alias_it_should_behave_like_to :it_has_behavior, 'has behavior:'
+  config.alias_it_should_behave_like_to :it_has_behavior, "has behavior:"
 
   # Use color in STDOUT
-  config.color_enabled = true
+  config.color = true
 
   # Use color not only in STDOUT but also in pagers and files
   config.tty = true

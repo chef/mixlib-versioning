@@ -16,9 +16,9 @@
 # limitations under the License.
 #
 
-shared_examples 'Basic SemVer' do
-  it_has_behavior 'parses valid version strings', {
-    '1.2.3' => {
+shared_examples "Basic SemVer" do
+  it_has_behavior "parses valid version strings", {
+    "1.2.3" => {
       major: 1,
       minor: 2,
       patch: 3,
@@ -32,9 +32,9 @@ shared_examples 'Basic SemVer' do
     },
   }
 
-  it_has_behavior 'rejects invalid version strings', {
-    'a.1.1' => 'non-numeric MAJOR',
-    '1.a.1' => 'non-numeric MINOR',
-    '1.1.a' => 'non-numeric PATCH',
+  it_has_behavior "rejects invalid version strings", {
+    "a.1.1" => "non-numeric MAJOR",
+    "1.a.1" => "non-numeric MINOR",
+    "1.1.a" => "non-numeric PATCH",
   }
 end

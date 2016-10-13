@@ -16,8 +16,8 @@
 # limitations under the License.
 #
 
-shared_examples 'comparable' do |version_matrix|
-  describe '#<' do
+shared_examples "comparable" do |version_matrix|
+  describe "#<" do
     version_matrix.each_slice(2) do |a, b|
       it "confirms that #{a} is less-than #{b}" do
         expect(described_class.new(a) < b).to be true
@@ -26,7 +26,7 @@ shared_examples 'comparable' do |version_matrix|
     end
   end
 
-  describe '#<=' do
+  describe "#<=" do
     version_matrix.each_slice(2) do |a, b|
       it "confirms that #{a} less-than or equal to #{b}" do
         expect(described_class.new(a) <= b).to be true
@@ -37,7 +37,7 @@ shared_examples 'comparable' do |version_matrix|
     end
   end
 
-  describe '#==' do
+  describe "#==" do
     version_matrix.each do |v|
       it "confirms that #{v} is equal to #{v}" do
         expect(described_class.new(v) == v).to be true
@@ -47,7 +47,7 @@ shared_examples 'comparable' do |version_matrix|
     end
   end
 
-  describe '#>' do
+  describe "#>" do
     version_matrix.reverse.each_slice(2) do |a, b|
       it "confirms that #{a} is greather-than #{b}" do
         expect(described_class.new(a) > b).to be true
@@ -56,7 +56,7 @@ shared_examples 'comparable' do |version_matrix|
     end
   end
 
-  describe '#>=' do
+  describe "#>=" do
     version_matrix.reverse.each_slice(2) do |a, b|
       it "confirms that #{a} greater-than or equal to #{b}" do
         expect(described_class.new(a) >= b).to be true
@@ -67,10 +67,10 @@ shared_examples 'comparable' do |version_matrix|
     end
   end
 
-  describe '#between?' do
+  describe "#between?" do
     let(:versions) { version_matrix.map { |v| described_class.new(v) }.sort }
 
-    it 'comfirms that a version is between the oldest and latest release' do
+    it "comfirms that a version is between the oldest and latest release" do
       min, max = versions.minmax.map(&:to_s)
       middle = versions[versions.size / 2].to_s
       expect(described_class.new(middle).between?(min, max)).to be true

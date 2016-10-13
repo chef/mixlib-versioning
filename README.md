@@ -1,19 +1,16 @@
 # Mixlib::Versioning
 
-[![Build Status](https://travis-ci.org/chef/mixlib-versioning.png?branch=master)](https://travis-ci.org/chef/mixlib-versioning)
-[![Code Climate](https://codeclimate.com/github/chef/mixlib-versioning.png)](https://codeclimate.com/github/chef/mixlib-versioning)
+[![Build Status](https://travis-ci.org/chef/mixlib-versioning.svg?branch=master)](https://travis-ci.org/chef/mixlib-versioning) [![Code Climate](https://codeclimate.com/github/chef/mixlib-versioning.svg)](https://codeclimate.com/github/chef/mixlib-versioning)
 
 This project is managed by the CHEF Release Engineering team. For more information on the Release Engineering team's contribution, triage, and release process, please consult the [CHEF Release Engineering OSS Management Guide](https://docs.google.com/a/chef.io/document/d/1oJB0vZb_3bl7_ZU2YMDBkMFdL-EWplW1BJv_FXTUOzg/edit).
 
-Versioning is hard! `mixlib-versioning` is a general Ruby library that allows
-you to parse, compare and manipulate version numbers in multiple formats.
-Currently the following version string formats are supported:
+Versioning is hard! `mixlib-versioning` is a general Ruby library that allows you to parse, compare and manipulate version numbers in multiple formats. Currently the following version string formats are supported:
 
-### SemVer 2.0.0
+## SemVer 2.0.0
 
 **Specification:**
 
-http://semver.org/
+<http://semver.org/>
 
 **Supported Formats:**
 
@@ -23,10 +20,9 @@ MAJOR.MINOR.PATCH-PRERELEASE
 MAJOR.MINOR.PATCH-PRERELEASE+BUILD
 ```
 
-Not much to say here except: *YUNO USE SEMVER!* The specification is focused and
-brief, do yourself a favor and go read it.
+Not much to say here except: _YUNO USE SEMVER!_ The specification is focused and brief, do yourself a favor and go read it.
 
-### Opscode SemVer
+## Opscode SemVer
 
 **Supported Formats:**
 
@@ -43,11 +39,9 @@ MAJOR.MINOR.PATCH-beta.INDEX+YYYYMMDDHHMMSS.git.COMMITS_SINCE.SHA1
 MAJOR.MINOR.PATCH-rc.INDEX+YYYYMMDDHHMMSS.git.COMMITS_SINCE.SHA1
 ```
 
-All the fun of regular SemVer with some extra limits around what constitutes a
-valid pre-release or build version string.
+All the fun of regular SemVer with some extra limits around what constitutes a valid pre-release or build version string.
 
-Valid prerelease version strings use the format: `PRERELEASE_STAGE.INDEX`.
-Valid prerelease stages include: `alpha`, `beta` and `rc`.
+Valid prerelease version strings use the format: `PRERELEASE_STAGE.INDEX`. Valid prerelease stages include: `alpha`, `beta` and `rc`.
 
 All of the following are acceptable Opscode SemVer pre-release versions:
 
@@ -60,9 +54,7 @@ All of the following are acceptable Opscode SemVer pre-release versions:
 11.0.8-rc.2
 ```
 
-Build version strings are limited to timestamps (`YYYYMMDDHHMMSS`), git
-describe strings (`git.COMMITS_SINCE.SHA1`) or a combination of the two
-(`YYYYMMDDHHMMSS.git.COMMITS_SINCE.SHA1`).
+Build version strings are limited to timestamps (`YYYYMMDDHHMMSS`), git describe strings (`git.COMMITS_SINCE.SHA1`) or a combination of the two (`YYYYMMDDHHMMSS.git.COMMITS_SINCE.SHA1`).
 
 All of the following are acceptable Opscode build versions:
 
@@ -79,13 +71,13 @@ And as is true with regular SemVer you can mix pre-release and build versions:
 11.0.8-alpha.2+20130308110833.git.2.94a1dde
 ```
 
-### Rubygems
+## Rubygems
 
 **specification:**
 
-http://docs.rubygems.org/read/chapter/7
+<http://docs.rubygems.org/read/chapter/7>
 
-http://guides.rubygems.org/patterns/
+<http://guides.rubygems.org/patterns/>
 
 **Supported Formats:**
 
@@ -94,9 +86,7 @@ MAJOR.MINOR.PATCH
 MAJOR.MINOR.PATCH.PRERELEASE
 ```
 
-Rubygems is *almost* SemVer compliant but it separates the main version from
-the pre-release version using a "dot". It also does not have the notion of a
-build version like SemVer.
+Rubygems is _almost_ SemVer compliant but it separates the main version from the pre-release version using a "dot". It also does not have the notion of a build version like SemVer.
 
 Examples of valid Rubygems version strings:
 
@@ -108,11 +98,11 @@ Examples of valid Rubygems version strings:
 10.1.1.rc.0
 ```
 
-### Git Describe
+## Git Describe
 
 **Specification:**
 
-http://git-scm.com/docs/git-describe
+<http://git-scm.com/docs/git-describe>
 
 **Supported Formats:**
 
@@ -136,15 +126,21 @@ Examples of valid Git Describe version strings:
 
 Add this line to your application's Gemfile:
 
-    gem 'mixlib-versioning'
+```
+gem 'mixlib-versioning'
+```
 
 And then execute:
 
-    $ bundle
+```
+$ bundle
+```
 
 Or install it yourself as:
 
-    $ gem install mixlib-semver
+```
+$ gem install mixlib-semver
+```
 
 ## Usage
 
@@ -336,15 +332,20 @@ All documentation is written using YARD. You can generate a by running:
 rake yard
 ```
 
+## Contributing
+
+For information on contributing to this project see <https://github.com/chef/chef/blob/master/CONTRIBUTING.md>
+
 ## License
 
 |                      |                                          |
 |:---------------------|:-----------------------------------------|
 | **Author:**          | Seth Chisamore (schisamo@chef.io)
 | **Author:**          | Christopher Maier (cm@chef.io)
-| **Copyright:**       | Copyright (c) 2013 Opscode, Inc.
+| **Copyright:**       | Copyright (c) 2013-2016 Chef Software, Inc.
 | **License:**         | Apache License, Version 2.0
 
+```text
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -356,3 +357,4 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+```

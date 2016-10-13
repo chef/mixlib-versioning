@@ -53,7 +53,7 @@ module Mixlib
           match = version_string.match(GIT_DESCRIBE_REGEX) rescue nil
 
           unless match
-            fail Mixlib::Versioning::ParseError, "'#{version_string}' is not a valid #{self.class} version string!"
+            raise Mixlib::Versioning::ParseError, "'#{version_string}' is not a valid #{self.class} version string!"
           end
 
           @major, @minor, @patch, @prerelease, @commits_since, @commit_sha, @iteration = match[1..7]

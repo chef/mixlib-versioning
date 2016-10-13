@@ -16,7 +16,7 @@
 # limitations under the License.
 #
 
-shared_examples 'rejects invalid version strings' do |invalid_examples|
+shared_examples "rejects invalid version strings" do |invalid_examples|
   invalid_examples.each_pair do |version, reason|
     context version do
       let(:version_string) { version }

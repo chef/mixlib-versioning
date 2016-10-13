@@ -17,8 +17,8 @@
 # limitations under the License.
 #
 
-require 'mixlib/versioning/exceptions'
-require 'mixlib/versioning/format'
+require "mixlib/versioning/exceptions"
+require "mixlib/versioning/format"
 
 module Mixlib
   # @author Seth Chisamore (<schisamo@chef.io>)
@@ -135,7 +135,7 @@ module Mixlib
       # attempt to parse a `Mixlib::Versioning::Format` instance if we were
       # passed a string
       unless filter_version.nil? ||
-             filter_version.is_a?(Mixlib::Versioning::Format)
+          filter_version.is_a?(Mixlib::Versioning::Format)
         filter_version = Mixlib::Versioning.parse(filter_version)
       end
 
@@ -181,13 +181,13 @@ module Mixlib
           in_release_line && if use_prerelease_versions && use_build_versions
                                v.prerelease_build?
                              elsif !use_prerelease_versions &&
-                                   use_build_versions
+                                 use_build_versions
                                v.release_build?
                              elsif use_prerelease_versions &&
-                                   !use_build_versions
+                                 !use_build_versions
                                v.prerelease?
                              elsif !use_prerelease_versions &&
-                                   !use_build_versions
+                                 !use_build_versions
                                v.release?
                              end
         end.max # select the most recent version
