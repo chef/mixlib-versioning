@@ -80,38 +80,38 @@ shared_examples Mixlib::Versioning::Format::SemVer do
   describe "build qualification" do
     context "release version" do
       let(:version_string) { "1.0.0" }
-      its(:release?) { should be_true }
-      its(:prerelease?) { should be_false }
-      its(:build?) { should be_false }
-      its(:release_build?) { should be_false }
-      its(:prerelease_build?) { should be_false }
+      its(:release?) { should be_truthy }
+      its(:prerelease?) { should be_falsey }
+      its(:build?) { should be_falsey }
+      its(:release_build?) { should be_falsey }
+      its(:prerelease_build?) { should be_falsey }
     end
 
     context "pre-release version" do
       let(:version_string) { "1.0.0-alpha.1" }
-      its(:release?) { should be_false }
-      its(:prerelease?) { should be_true }
-      its(:build?) { should be_false }
-      its(:release_build?) { should be_false }
-      its(:prerelease_build?) { should be_false }
+      its(:release?) { should be_falsey }
+      its(:prerelease?) { should be_truthy }
+      its(:build?) { should be_falsey }
+      its(:release_build?) { should be_falsey }
+      its(:prerelease_build?) { should be_falsey }
     end
 
     context "pre-release build version" do
       let(:version_string) { "1.0.0-alpha.1+20130308110833" }
-      its(:release?) { should be_false }
-      its(:prerelease?) { should be_false }
-      its(:build?) { should be_true }
-      its(:release_build?) { should be_false }
-      its(:prerelease_build?) { should be_true }
+      its(:release?) { should be_falsey }
+      its(:prerelease?) { should be_falsey }
+      its(:build?) { should be_truthy }
+      its(:release_build?) { should be_falsey }
+      its(:prerelease_build?) { should be_truthy }
     end
 
     context "release build version" do
       let(:version_string) { "1.0.0+20130308110833" }
-      its(:release?) { should be_false }
-      its(:prerelease?) { should be_false }
-      its(:build?) { should be_true }
-      its(:release_build?) { should be_true }
-      its(:prerelease_build?) { should be_false }
+      its(:release?) { should be_falsey }
+      its(:prerelease?) { should be_falsey }
+      its(:build?) { should be_truthy }
+      its(:release_build?) { should be_truthy }
+      its(:prerelease_build?) { should be_falsey }
     end
   end
 end

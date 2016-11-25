@@ -22,7 +22,8 @@ Gem::Specification.new do |spec|
 
   # Development dependencies
   spec.add_development_dependency "chefstyle"
-  spec.add_development_dependency "rspec", "< 2.99"
+  spec.add_development_dependency "rspec", "~> 3.0"
+  spec.add_development_dependency "rspec-its"
   spec.add_development_dependency "bundler"
   spec.add_development_dependency "rake"
 end

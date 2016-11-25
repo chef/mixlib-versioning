@@ -29,26 +29,26 @@ shared_examples "filterable" do
   let(:prerelease_build_versions) { [] }
 
   it "filters by release versions only" do
-    unsorted_versions.select(&:release?).should eq(release_versions.map { |v| described_class.new(v) })
+    expect(unsorted_versions.select(&:release?)).to eq(release_versions.map { |v| described_class.new(v) })
   end # it
 
   it "filters by pre-release versions only" do
     filtered = unsorted_versions.select(&:prerelease?)
-    filtered.should eq(prerelease_versions.map { |v| described_class.new(v) })
+    expect(filtered).to eq(prerelease_versions.map { |v| described_class.new(v) })
   end # it
 
   it "filters by build versions only" do
     filtered = unsorted_versions.select(&:build?)
-    filtered.should eq(build_versions.map { |v| described_class.new(v) })
+    expect(filtered).to eq(build_versions.map { |v| described_class.new(v) })
   end # it
 
   it "filters by release build versions only" do
     filtered = unsorted_versions.select(&:release_build?)
-    filtered.should eq(release_build_versions.map { |v| described_class.new(v) })
+    expect(filtered).to eq(release_build_versions.map { |v| described_class.new(v) })
   end # it
 
   it "filters by pre-release build versions only" do
     filtered = unsorted_versions.select(&:prerelease_build?)
-    filtered.should eq(prerelease_build_versions.map { |v| described_class.new(v) })
+    expect(filtered).to eq(prerelease_build_versions.map { |v| described_class.new(v) })
   end # it
 end # shared_examples

@@ -26,18 +26,18 @@ shared_examples "sortable" do
   end
 
   it "responds to <=>" do
-    described_class.should respond_to(:<=>)
+    expect(described_class).to respond_to(:<=>)
   end
 
   it "sorts all properly" do
-    unsorted_versions.sort.should eq sorted_versions
+    expect(unsorted_versions.sort).to eq sorted_versions
   end
 
   it "finds the min" do
-    unsorted_versions.min.should eq described_class.new(min)
+    expect(unsorted_versions.min).to eq described_class.new(min)
   end
 
   it "finds the max" do
-    unsorted_versions.max.should eq described_class.new(max)
+    expect(unsorted_versions.max).to eq described_class.new(max)
   end
 end # shared_examples

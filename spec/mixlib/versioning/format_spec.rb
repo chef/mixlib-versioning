@@ -39,7 +39,7 @@ describe Mixlib::Versioning::Format do
       context 'format_type is a: #{format_type.class}' do
         let(:format_type) { format_type }
         it "returns the correct format class" do
-          subject.for(format_type).should eq Mixlib::Versioning::Format::Rubygems
+          expect(subject.for(format_type)).to eq Mixlib::Versioning::Format::Rubygems
         end # it
       end # context
     end # each
