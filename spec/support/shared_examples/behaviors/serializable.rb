@@ -20,7 +20,7 @@ shared_examples "serializable" do |version_strings|
   describe "#to_s" do
     version_strings.each do |v|
       it "reconstructs the initial input for #{v}" do
-        described_class.new(v).to_s.should == v
+        expect(described_class.new(v).to_s).to eq(v)
       end # it
     end # version_strings
   end # describe
@@ -31,7 +31,7 @@ shared_examples "serializable" do |version_strings|
         subject = described_class.new(v)
         string = subject.to_semver_string
         semver = Mixlib::Versioning::Format::SemVer.new(string)
-        string.should eq semver.to_s
+        expect(string).to eq semver.to_s
       end # it
     end # version_strings
   end # describe
@@ -42,7 +42,7 @@ shared_examples "serializable" do |version_strings|
         subject = described_class.new(v)
         string = subject.to_rubygems_string
         rubygems = Mixlib::Versioning::Format::Rubygems.new(string)
-        string.should eq rubygems.to_s
+        expect(string).to eq rubygems.to_s
       end # it
     end # version_strings
   end # describe

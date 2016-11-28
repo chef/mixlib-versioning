@@ -17,6 +17,7 @@
 #
 
 require "mixlib/versioning"
+require "rspec/its"
 
 # load all shared examples and shared contexts
 Dir[File.expand_path("../support/**/*.rb", __FILE__)].each do |file|
@@ -36,8 +37,6 @@ RSpec.configure do |config|
   # run the examples in random order
   config.order = :rand
 
-  # specify metadata with symobls only (ie no '=> true' required)
-  config.treat_symbols_as_metadata_keys_with_true_values = true
   config.filter_run focus: true
   config.run_all_when_everything_filtered = true
 end

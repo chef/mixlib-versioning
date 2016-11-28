@@ -59,7 +59,7 @@ describe Mixlib::Versioning do
             context "format type as a: #{format_type.class}" do
               it "parses version string as: #{options[:expected_format]}" do
                 result = subject.parse(version_string, format_type)
-                result.should be_a(expected_format)
+                expect(result).to be_a(expected_format)
               end # it
             end # context
           end # each
@@ -106,7 +106,7 @@ describe Mixlib::Versioning do
         context version_string do
           let(:version_string) { version_string }
           it "parses version string as: #{expected_format}" do
-            subject.parse(version_string).should be_a(expected_format)
+            expect(subject.parse(version_string)).to be_a(expected_format)
           end # it
         end # context
       end # each_pair
@@ -114,7 +114,7 @@ describe Mixlib::Versioning do
       describe "version_string cannot be parsed" do
         let(:version_string) { "A.B.C" }
         it "returns nil" do
-          subject.parse(version_string).should be_nil
+          expect(subject.parse(version_string)).to be_nil
         end
       end
     end # describe "parsing with automatic format detection"
@@ -123,7 +123,7 @@ describe Mixlib::Versioning do
       it "returns the same object" do
         v = Mixlib::Versioning.parse(version_string)
         result = subject.parse(v)
-        v.should be result
+        expect(v).to be result
       end
     end
 
@@ -131,15 +131,15 @@ describe Mixlib::Versioning do
       context "when the format is not in the list" do
         let(:version_string) { "10.16.2-rc.2-49-g21353f0" }
         it "returns nil when the array contains a Mixlib::Versioning::Format" do
-          subject.parse(version_string, [Mixlib::Versioning::Format::Rubygems]).should be_nil
+          expect(subject.parse(version_string, [Mixlib::Versioning::Format::Rubygems])).to be_nil
         end
 
         it "returns nil when the array contains a string" do
-          subject.parse(version_string, ["rubygems"]).should be_nil
+          expect(subject.parse(version_string, ["rubygems"])).to be_nil
         end
 
         it "returns nil when the array contains a symbol" do
-          subject.parse(version_string, [:rubygems]).should be_nil
+          expect(subject.parse(version_string, [:rubygems])).to be_nil
         end
       end
 
@@ -147,15 +147,15 @@ describe Mixlib::Versioning do
         let(:version_string) { "10.16.2-rc.2-49-g21353f0" }
         let(:expected_format) { Mixlib::Versioning::Format::GitDescribe }
         it "returns nil when the array contains a Mixlib::Versioning::Format" do
-          subject.parse(version_string, [expected_format]).should be_a(expected_format)
+          expect(subject.parse(version_string, [expected_format])).to be_a(expected_format)
         end
 
         it "returns nil when the array contains a string" do
-          subject.parse(version_string, ["git_describe"]).should be_a(expected_format)
+          expect(subject.parse(version_string, ["git_describe"])).to be_a(expected_format)
         end
 
         it "returns nil when the array contains a symbol" do
-          subject.parse(version_string, [:git_describe]).should be_a(expected_format)
+          expect(subject.parse(version_string, [:git_describe])).to be_a(expected_format)
         end
       end
     end
@@ -223,7 +223,7 @@ describe Mixlib::Versioning do
         let(:expected_version) { options[:releases_only] }
 
         it "finds the most recent release version" do
-          subject_find.should eq Mixlib::Versioning.parse(expected_version)
+          expect(subject_find).to eq Mixlib::Versioning.parse(expected_version)
         end
 
         context "include pre-release versions" do
@@ -231,7 +231,7 @@ describe Mixlib::Versioning do
           let(:expected_version) { options[:prerelease_versions] }
 
           it "finds the most recent pre-release version" do
-            subject_find.should eq Mixlib::Versioning.parse(expected_version)
+            expect(subject_find).to eq Mixlib::Versioning.parse(expected_version)
           end # it
         end # context
 
@@ -240,7 +240,7 @@ describe Mixlib::Versioning do
           let(:expected_version) { options[:build_versions] }
 
           it "finds the most recent build version" do
-            subject_find.should eq Mixlib::Versioning.parse(expected_version)
+            expect(subject_find).to eq Mixlib::Versioning.parse(expected_version)
           end # it
         end # context
 
@@ -250,7 +250,7 @@ describe Mixlib::Versioning do
           let(:expected_version) { options[:prerelease_and_build_versions] }
 
           it "finds the most recent pre-release build version" do
-            subject_find.should eq Mixlib::Versioning.parse(expected_version)
+            expect(subject_find).to eq Mixlib::Versioning.parse(expected_version)
           end # it
         end # context
       end # context
@@ -266,7 +266,7 @@ describe Mixlib::Versioning do
       end
 
       it "correctly parses the array" do
-        subject_find.should eq Mixlib::Versioning.parse("11.0.0")
+        expect(subject_find).to eq Mixlib::Versioning.parse("11.0.0")
       end
     end # describe
 
@@ -274,7 +274,7 @@ describe Mixlib::Versioning do
       let(:filter_version) { Mixlib::Versioning::Format::SemVer.new("11.0.0") }
 
       it "finds the correct version" do
-        subject_find.should eq Mixlib::Versioning.parse("11.0.0")
+        expect(subject_find).to eq Mixlib::Versioning.parse("11.0.0")
       end
     end
   end # describe
