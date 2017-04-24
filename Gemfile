@@ -6,3 +6,7 @@ group :docs do
   gem "redcarpet",     "~> 2.2"
   gem "github-markup", "~> 0.7"
 end
+
+group(:changelog) do
+  gem "github_changelog_generator", git: "https://github.com/chef/github-changelog-generator"
+end
