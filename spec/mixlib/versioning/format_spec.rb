@@ -26,7 +26,7 @@ describe Mixlib::Versioning::Format do
     let(:version_string) { "11.0.0" }
 
     it "descendants must override #parse" do
-      expect { subject }.to raise_error
+      expect { subject }.to raise_error(StandardError)
     end
   end
 
