@@ -35,7 +35,7 @@ describe Mixlib::Versioning::Format::Rubygems do
       build?: false,
       release_build?: false,
       prerelease_build?: false,
-      iteration: 0,
+      iteration: nil,
     },
     "10.1.1.alpha.1" => {
       major: 10,
@@ -48,7 +48,7 @@ describe Mixlib::Versioning::Format::Rubygems do
       build?: false,
       release_build?: false,
       prerelease_build?: false,
-      iteration: 0,
+      iteration: nil,
     },
     "11.0.8.rc.3" => {
       major: 11,
@@ -61,7 +61,7 @@ describe Mixlib::Versioning::Format::Rubygems do
       build?: false,
       release_build?: false,
       prerelease_build?: false,
-      iteration: 0,
+      iteration: nil,
     },
     "11.0.8-33" => {
       major: 11,

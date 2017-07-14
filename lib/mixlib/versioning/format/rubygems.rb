@@ -53,9 +53,15 @@ module Mixlib
           end
 
           @major, @minor, @patch, @prerelease, @iteration = match[1..5]
-          @major, @minor, @patch, @iteration = [@major, @minor, @patch, @iteration].map(&:to_i)
+          @major, @minor, @patch = [@major, @minor, @patch].map(&:to_i)
 
-          # Do not convert @build to an integer; SemVer sorting logic will handle the conversion
+          # Do not convert @prerelease or @iteration to an integer;
+          # sorting logic will handle the conversion.
+          @iteration = if @iteration.nil? || @iteration.empty?
+                         nil
+                       else
+                         @iteration.to_i
+                       end
           @prerelease = nil if @prerelease.nil? || @prerelease.empty?
         end
       end # class Rubygems
