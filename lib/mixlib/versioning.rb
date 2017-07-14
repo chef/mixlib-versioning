@@ -2,6 +2,7 @@
 # Author:: Seth Chisamore (<schisamo@chef.io>)
 # Author:: Christopher Maier (<cm@chef.io>)
 # Copyright:: Copyright (c) 2013 Opscode, Inc.
+# Copyright:: Copyright (c) 2017 Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -29,6 +30,7 @@ module Mixlib
       Mixlib::Versioning::Format::OpscodeSemVer,
       Mixlib::Versioning::Format::SemVer,
       Mixlib::Versioning::Format::Rubygems,
+      Mixlib::Versioning::Format::PartialSemVer,
     ].freeze
 
     # Create a new {Format} instance given a version string to parse, and an
@@ -55,7 +57,7 @@ module Mixlib
     #
     def self.parse(version_string, format = nil)
       if version_string.is_a?(Mixlib::Versioning::Format)
-        return version_string
+        version_string
       else
         formats = if format
                     [format].flatten.map { |f| Mixlib::Versioning::Format.for(f) }
@@ -71,7 +73,7 @@ module Mixlib
             next
           end
         end
-        return parsed_version
+        parsed_version
       end
     end
 
