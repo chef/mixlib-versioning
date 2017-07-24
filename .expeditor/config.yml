@@ -1,0 +1,14 @@
+slack:
+  notify_channel: eng-services-alerts
+
+github:
+  maintainer_group: chef/engineering-services
+  version_tag_format: v{{version}}
+
+merge_actions:
+  built_in:bump_version:
+    ignore_labels: "Version: Skip Bump"
+  bash:.expeditor/update_version.sh:
+    only_if: built_in:bump_version
+  built_in:update_changelog:
+    ignore_labels: "Changelog: Skip Update"
