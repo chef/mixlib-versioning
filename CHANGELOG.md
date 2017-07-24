@@ -7,13 +7,6 @@
 - Use Expeditor for version bumping and CHANGELOG generation [#23](https://github.com/chef/mixlib-versioning/pull/23) ([schisamo](https://github.com/schisamo))
 <!-- latest_release -->
 
-<!-- release_rollup -->
-### Changes since latest stable release
-
-#### Merged Pull Requests
-- Use Expeditor for version bumping and CHANGELOG generation [#23](https://github.com/chef/mixlib-versioning/pull/23) ([schisamo](https://github.com/schisamo)) <!-- 1.2.1 -->
-<!-- release_rollup -->
-
 ## [1.1.0](https://github.com/chef/mixlib-versioning/tree/v1.1.0) (2015-06-15)
 
 #### New features
