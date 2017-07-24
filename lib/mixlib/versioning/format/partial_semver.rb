@@ -1,7 +1,8 @@
 #
 # Author:: Seth Chisamore (<schisamo@chef.io>)
 # Author:: Christopher Maier (<cm@chef.io>)
-# Copyright:: Copyright (c) 2013 Opscode, Inc.
+# Author:: Ryan Hass (<rhass@chef.io>)
+# Copyright:: Copyright (c) 2017 Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,51 +21,42 @@
 module Mixlib
   class Versioning
     class Format
-      # Handles version strings based on {http://guides.rubygems.org/patterns/}
-      #
-      # SUPPORTED FORMATS
+      # Handles partial version strings.
       # -----------------
       # ```text
-      # MAJOR.MINOR.PATCH.PRERELEASE
-      # MAJOR.MINOR.PATCH.PRERELEASE-ITERATION
+      # MAJOR
+      # MAJOR.MINOR
       # ```
       #
       # EXAMPLES
       # --------
       # ```text
-      # 10.1.1
-      # 10.1.1.alpha.1
-      # 10.1.1.beta.1
-      # 10.1.1.rc.0
-      # 10.16.2
+      # 11
+      # 11.0
       # ```
       #
       # @author Seth Chisamore (<schisamo@chef.io>)
       # @author Christopher Maier (<cm@chef.io>)
-      class Rubygems < Format
-        RUBYGEMS_REGEX = /^(\d+)\.(\d+)\.(\d+)(?:\.([[:alnum:]]+(?:\.[[:alnum:]]+)?))?(?:\-(\d+))?$/
-
+      # @author Ryan Hass (<rhass@chef.io>)
+      class PartialSemVer < Format
+        #  http://rubular.com/r/NmRSN8vCie
+        PARTIAL_REGEX = /^(\d+)\.?(?:(\d*))$/
         # @see Format#parse
         def parse(version_string)
-          match = version_string.match(RUBYGEMS_REGEX) rescue nil
+          match = version_string.match(PARTIAL_REGEX) rescue nil
 
           unless match
             raise Mixlib::Versioning::ParseError, "'#{version_string}' is not a valid #{self.class} version string!"
           end
 
-          @major, @minor, @patch, @prerelease, @iteration = match[1..5]
+          @major, @minor = match[1..2]
           @major, @minor, @patch = [@major, @minor, @patch].map(&:to_i)
 
-          # Do not convert @prerelease or @iteration to an integer;
-          # sorting logic will handle the conversion.
-          @iteration = if @iteration.nil? || @iteration.empty?
-                         nil
-                       else
-                         @iteration.to_i
-                       end
-          @prerelease = nil if @prerelease.nil? || @prerelease.empty?
+          # Partial versions do not contain these values, so we just set them to nil.
+          @prerelease = nil
+          @build      = nil
         end
-      end # class Rubygems
+      end # class Partial
     end # class Format
   end # module Versioning
 end # module Mixlib

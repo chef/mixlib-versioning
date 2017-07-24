@@ -122,6 +122,23 @@ Examples of valid Git Describe version strings:
 11.0.0-alpha.1-1-gcea071e
 ```
 
+
+## SemVer Partial
+
+
+```text
+MAJOR
+MAJOR.MINOR
+```
+
+Examples of valid SemVer Partial version strings:
+
+```text
+1
+0.1
+1.0
+```
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -342,7 +359,7 @@ For information on contributing to this project see <https://github.com/chef/che
 |:---------------------|:-----------------------------------------|
 | **Author:**          | Seth Chisamore (schisamo@chef.io)
 | **Author:**          | Christopher Maier (cm@chef.io)
-| **Copyright:**       | Copyright (c) 2013-2016 Chef Software, Inc.
+| **Copyright:**       | Copyright (c) 2013-2017 Chef Software, Inc.
 | **License:**         | Apache License, Version 2.0
 
 ```text

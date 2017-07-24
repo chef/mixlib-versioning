@@ -1,6 +1,8 @@
 #
 # Author:: Seth Chisamore (<schisamo@chef.io>)
+# Author:: Ryan Hass (<rhass@chef.io>)
 # Copyright:: Copyright (c) 2013 Opscode, Inc.
+# Copyright:: Copyright (c) 2017 Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,7 +26,7 @@ describe Mixlib::Versioning::Format do
     let(:version_string) { "11.0.0" }
 
     it "descendants must override #parse" do
-      expect { subject }.to raise_error
+      expect { subject }.to raise_error(StandardError)
     end
   end
 
@@ -59,3 +61,28 @@ describe Mixlib::Versioning::Format do
     end # describe
   end # describe ".for"
 end # describe Mixlib::Versioning::Format
+
+describe Mixlib::Versioning do
+  versions = [
+    "1", "1.0.0",
+    "1.2", "1.2.0"
+  ]
+
+  describe "#==" do
+    formats = described_class::DEFAULT_FORMATS.select do |klass|
+      unless klass.name == "Mixlib::Versioning::Format::PartialSemVer" || klass.name == "Mixlib::Versioning::Format::GitDescribe"
+        klass
+      end
+    end
+
+    formats.each do |format|
+      context "#{format}" do
+        versions.each_slice(2) do |a, b|
+          it "parsed value #{a} is equal to #{format} parsed value #{b}" do
+            expect(described_class.parse(a) == format.new(b)).to be true
+          end
+        end
+      end # context
+    end # formats.each
+  end # describe "#=="
+end # describe Mixlib::Version

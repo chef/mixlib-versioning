@@ -1,6 +1,7 @@
 #
 # Author:: Seth Chisamore (<schisamo@chef.io>)
 # Copyright:: Copyright (c) 2013 Opscode, Inc.
+# Copyright:: Copyright (c) 2017 Chef Software Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,6 +21,7 @@ require "mixlib/versioning/format/git_describe"
 require "mixlib/versioning/format/opscode_semver"
 require "mixlib/versioning/format/rubygems"
 require "mixlib/versioning/format/semver"
+require "mixlib/versioning/format/partial_semver"
 
 module Mixlib
   class Versioning
@@ -30,15 +32,15 @@ module Mixlib
     # @!attribute [r] minor
     #   @return [Integer] minor identifier
     # @!attribute [r] patch
-    #   @return [Integer] patch identifier
+    #   @return [Integer, nil] patch identifier
     # @!attribute [r] prerelease
-    #   @return [String] pre-release identifier
+    #   @return [String, nil] pre-release identifier
     # @!attribute [r] build
-    #   @return [String] build identifier
+    #   @return [String, nil] build identifier
     # @!attribute [r] iteration
-    #   @return [String] build interation
+    #   @return [String, nil] build interation
     # @!attribute [r] input
-    #   @return [String] original input version string that was parsed
+    #   @return [String, nil] original input version string that was parsed
     class Format
       include Comparable
 
@@ -68,6 +70,7 @@ module Mixlib
           when "opscode_semver" then Mixlib::Versioning::Format::OpscodeSemVer
           when "git_describe" then Mixlib::Versioning::Format::GitDescribe
           when "rubygems" then Mixlib::Versioning::Format::Rubygems
+          when "partial_semver" then Mixlib::Versioning::Format::PartialSemVer
           else
             msg = "'#{format_type}' is not a supported Mixlib::Versioning format"
             raise Mixlib::Versioning::UnknownFormatError, msg
@@ -167,7 +170,7 @@ module Mixlib
       #   {Format} instance
       # @todo create a proper serialization abstraction
       def to_semver_string
-        s = [@major, @minor, @patch].join(".")
+        s = [@major, @minor, @patch].map(&:to_i).join(".")
         s += "-#{@prerelease}" if @prerelease
         s += "+#{@build}" if @build
         s
@@ -184,7 +187,7 @@ module Mixlib
       #   {Format} instance
       # @todo create a proper serialization abstraction
       def to_rubygems_string
-        s = [@major, @minor, @patch].join(".")
+        s = [@major, @minor, @patch].map(&:to_i).join(".")
         s += ".#{@prerelease}" if @prerelease
         s
       end

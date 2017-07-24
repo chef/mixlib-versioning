@@ -21,7 +21,7 @@ shared_examples "comparable" do |version_matrix|
     version_matrix.each_slice(2) do |a, b|
       it "confirms that #{a} is less-than #{b}" do
         expect(described_class.new(a) < b).to be true
-        expect(described_class.new(a) > b).to be false
+        expect(b < described_class.new(a)).to be false
       end
     end
   end
@@ -31,8 +31,8 @@ shared_examples "comparable" do |version_matrix|
       it "confirms that #{a} less-than or equal to #{b}" do
         expect(described_class.new(a) <= b).to be true
         expect(described_class.new(a) <= a).to be true
-        expect(described_class.new(a) > b).to be false
-        expect(described_class.new(a) == b).to be false
+        expect(b <= described_class.new(a)).to be false
+        expect(b < described_class.new(a)).to be false
       end
     end
   end
@@ -51,7 +51,7 @@ shared_examples "comparable" do |version_matrix|
     version_matrix.reverse.each_slice(2) do |a, b|
       it "confirms that #{a} is greather-than #{b}" do
         expect(described_class.new(a) > b).to be true
-        expect(described_class.new(a) < b).to be false
+        expect(b > described_class.new(a)).to be false
       end
     end
   end
@@ -61,8 +61,8 @@ shared_examples "comparable" do |version_matrix|
       it "confirms that #{a} greater-than or equal to #{b}" do
         expect(described_class.new(a) >= b).to be true
         expect(described_class.new(a) >= a).to be true
-        expect(described_class.new(a) < b).to be false
-        expect(described_class.new(a) == b).to be false
+        expect(b >= described_class.new(a)).to be false
+        expect(b > described_class.new(a)).to be false
       end
     end
   end
