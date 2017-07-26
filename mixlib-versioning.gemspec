@@ -13,7 +13,7 @@ Gem::Specification.new do |spec|
   spec.homepage      = "https://github.com/chef/mixlib-versioning"
   spec.license       = "Apache 2.0"
 
-  spec.required_ruby_version = ">= 2.2"
+  spec.required_ruby_version = '>= 1.9'
 
   spec.files         = `git ls-files`.split($INPUT_RECORD_SEPARATOR)
   spec.executables   = spec.files.grep(%r{^bin/}).map { |f| File.basename(f) }
