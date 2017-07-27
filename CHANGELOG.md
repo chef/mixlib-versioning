@@ -1,11 +1,16 @@
 # Mixlib::Versioning Changes
 
 <!-- latest_release -->
+## [v1.2.2](https://github.com/chef/mixlib-versioning/tree/v1.2.2) (2017-07-27)
+
+#### Merged Pull Requests
+- Support older rubies [#27](https://github.com/chef/mixlib-versioning/pull/27) ([schisamo](https://github.com/schisamo))
+<!-- latest_release -->
+
 ## [v1.2.1](https://github.com/chef/mixlib-versioning/tree/v1.2.1) (2017-07-24)
 
 #### Merged Pull Requests
 - Use Expeditor for version bumping and CHANGELOG generation [#23](https://github.com/chef/mixlib-versioning/pull/23) ([schisamo](https://github.com/schisamo))
-<!-- latest_release -->
 
 ## [1.1.0](https://github.com/chef/mixlib-versioning/tree/v1.1.0) (2015-06-15)
 
