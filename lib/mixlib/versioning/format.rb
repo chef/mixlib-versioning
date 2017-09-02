@@ -329,7 +329,7 @@ module Mixlib
           # Now we need to compare appropriately based on type.
           #
           # Numbers have lower precedence than strings; therefore, if
-          # the components are of differnt types (String vs. Integer),
+          # the components are of different types (String vs. Integer),
           # we just return -1 for the numeric one and we're done.
           #
           # If both are the same type (Integer vs. Integer, or String
