@@ -156,7 +156,7 @@ $ bundle
 Or install it yourself as:
 
 ```
-$ gem install mixlib-semver
+$ gem install mixlib-versioning
 ```
 
 ## Usage
