@@ -1,8 +1,7 @@
 slack:
-  notify_channel: jex-notify
+  notify_channel: releng-notify
 
 github:
-  maintainer_group: chef/package-distribution-maintainers
   version_tag_format: v{{version}}
 
 merge_actions:
