@@ -7,9 +7,9 @@ Gem::Specification.new do |spec|
   spec.name          = "mixlib-versioning"
   spec.version       = Mixlib::Versioning::VERSION
   spec.authors       = ["Seth Chisamore", "Christopher Maier"]
-  spec.email         = ["schisamo@chef.io", "cm@chef.io"]
   spec.description   = "General purpose Ruby library that allows you to parse, compare and manipulate version strings in multiple formats."
   spec.summary       = spec.description
+  s.email            = "info@chef.io"
   spec.homepage      = "https://github.com/chef/mixlib-versioning"
   spec.license       = "Apache 2.0"
 
