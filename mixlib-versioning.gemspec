@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.summary       = spec.description
   s.email            = "info@chef.io"
   spec.homepage      = "https://github.com/chef/mixlib-versioning"
-  spec.license       = "Apache 2.0"
+  spec.license       = "Apache-2.0"
 
   spec.files         = `git ls-files`.split($INPUT_RECORD_SEPARATOR)
   spec.executables   = spec.files.grep(%r{^bin/}).map { |f| File.basename(f) }
