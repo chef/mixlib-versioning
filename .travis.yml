@@ -27,4 +27,4 @@ before_install:
   - gem --version
 
 script:
-  - bundle exec rake travis:ci
+  - bundle exec rake

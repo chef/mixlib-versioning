@@ -28,6 +28,9 @@ RSpec.configure do |config|
   # a little syntactic sugar
   config.alias_it_should_behave_like_to :it_has_behavior, "has behavior:"
 
+  # Use documentation format
+  config.formatter = "doc"
+
   # Use color in STDOUT
   config.color = true
 
@@ -39,4 +42,5 @@ RSpec.configure do |config|
 
   config.filter_run focus: true
   config.run_all_when_everything_filtered = true
+  config.warnings = true
 end
