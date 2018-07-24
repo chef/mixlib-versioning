@@ -18,7 +18,7 @@ branches:
   only:
   - master
 
-bundler_args: --without changelog
+bundler_args: --without docs
 
 before_install:
   - gem install bundler
