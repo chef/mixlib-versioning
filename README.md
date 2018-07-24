@@ -353,14 +353,10 @@ rake yard
 
 For information on contributing to this project see <https://github.com/chef/chef/blob/master/CONTRIBUTING.md>
 
-## License
+## License & Copyright
 
-|                      |                                          |
-|:---------------------|:-----------------------------------------|
-| **Author:**          | Seth Chisamore (schisamo@chef.io)
-| **Author:**          | Christopher Maier (cm@chef.io)
-| **Copyright:**       | Copyright (c) 2013-2017 Chef Software, Inc.
-| **License:**         | Apache License, Version 2.0
+- Copyright:: Copyright (c) 2008-2018 Chef Software, Inc.
+- License:: Apache License, Version 2.0
 
 ```text
 Licensed under the Apache License, Version 2.0 (the "License");
