@@ -12,12 +12,7 @@ group :test, :development do
   gem "rspec", "~> 3.0"
   gem "rspec-its"
   gem "rake", "~> 12"
-end
-
-if RUBY_VERSION =~ /^2/
-  group :chefstyle do
-    gem "chefstyle"
-  end
+  gem "chefstyle"
 end
 
 instance_eval(ENV["GEMFILE_MOD"]) if ENV["GEMFILE_MOD"]
