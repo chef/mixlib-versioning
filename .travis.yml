@@ -5,9 +5,11 @@ cache: bundler
 matrix:
   include:
     - rvm: 2.0
-    - rvm: 2.2
-    - rvm: 2.3
-    - rvm: 2.4.1
+    - rvm: 2.1.10
+    - rvm: 2.2.10
+    - rvm: 2.3.7
+    - rvm: 2.4.4
+    - rvm: 2.5.1
     - rvm: ruby-head
   allow_failures:
     - rvm: ruby-head
@@ -16,7 +18,7 @@ branches:
   only:
   - master
 
-bundler_args: --without changelog
+bundler_args: --without docs
 
 before_install:
   - gem install bundler
@@ -25,4 +27,4 @@ before_install:
   - gem --version
 
 script:
-  - bundle exec rake travis:ci
+  - bundle exec rake

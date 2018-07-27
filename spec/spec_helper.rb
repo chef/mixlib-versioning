@@ -1,6 +1,6 @@
 #
 # Author:: Seth Chisamore (<schisamo@chef.io>)
-# Copyright:: Copyright (c) 2013 Opscode, Inc.
+# Copyright:: Copyright (c) 2013-2018 Chef Software, Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -28,6 +28,9 @@ RSpec.configure do |config|
   # a little syntactic sugar
   config.alias_it_should_behave_like_to :it_has_behavior, "has behavior:"
 
+  # Use documentation format
+  config.formatter = "doc"
+
   # Use color in STDOUT
   config.color = true
 
@@ -39,4 +42,5 @@ RSpec.configure do |config|
 
   config.filter_run focus: true
   config.run_all_when_everything_filtered = true
+  config.warnings = true
 end
