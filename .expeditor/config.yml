@@ -36,6 +36,6 @@ merge_actions:
       only_if: built_in:bump_version
 
 promote:
-  action:
+  actions:
     - built_in:rollover_changelog
     - built_in:publish_rubygems
