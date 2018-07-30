@@ -2,10 +2,11 @@ _yardoc
 .bundle
 .config
 .DS_Store
-.idea/
+.idea
 .rake_tasks~
 .rspec
 .ruby-version
+.rvmrc
 .yardoc
 .yardopts
 *.gem
@@ -13,7 +14,7 @@ _yardoc
 *.sw?
 bin/
 coverage
-doc/
+doc
 Gemfile.local
 Gemfile.lock
 InstalledFiles
