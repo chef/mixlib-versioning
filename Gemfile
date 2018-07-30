@@ -9,7 +9,7 @@ group :docs do
 end
 
 group :test do
-  gem "chefstyle", git: "https://github.com/chef/chefstyle.git", branch: "master"
+  gem "chefstyle", "=0.4.0" # pin needed until we drop Ruby 2.0/2.1 support
   gem "rspec", "~> 3.0"
   gem "rspec-its"
   gem "rake"
