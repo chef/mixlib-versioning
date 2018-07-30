@@ -346,12 +346,12 @@ rake spec
 All documentation is written using YARD. You can generate a by running:
 
 ```
-rake yard
+rake docs
 ```
 
 ## Contributing
 
-For information on contributing to this project see <https://github.com/chef/chef/blob/master/CONTRIBUTING.md>
+For information on contributing to this project please see our [Contributing Documentation](https://github.com/chef/chef/blob/master/CONTRIBUTING.md)
 
 ## License & Copyright
 

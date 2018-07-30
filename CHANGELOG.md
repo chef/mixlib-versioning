@@ -7,15 +7,20 @@
 - Testing boilerplate updates [#33](https://github.com/chef/mixlib-versioning/pull/33) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
-## [v1.2.3](https://github.com/chef/mixlib-versioning/tree/v1.2.3) (2017-11-10)
+<!-- release_rollup since=1.2.2 -->
+### Changes since 1.2.2 release
 
 #### Merged Pull Requests
+- Testing boilerplate updates [#33](https://github.com/chef/mixlib-versioning/pull/33) ([tas50](https://github.com/tas50))
 - Fixed typo in readme.md documentation [#30](https://github.com/chef/mixlib-versioning/pull/30) ([patrickkempff](https://github.com/patrickkempff))
+<!-- release_rollup -->
 
+<!-- latest_stable_release -->
 ## [v1.2.2](https://github.com/chef/mixlib-versioning/tree/v1.2.2) (2017-07-27)
 
 #### Merged Pull Requests
 - Support older rubies [#27](https://github.com/chef/mixlib-versioning/pull/27) ([schisamo](https://github.com/schisamo))
+<!-- latest_stable_release -->
 
 ## [v1.2.1](https://github.com/chef/mixlib-versioning/tree/v1.2.1) (2017-07-24)
 
