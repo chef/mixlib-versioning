@@ -1,16 +1,17 @@
 # Mixlib::Versioning Changes
 
-<!-- latest_release 1.2.4 -->
-## [v1.2.4](https://github.com/chef/mixlib-versioning/tree/v1.2.4) (2018-07-27)
+<!-- latest_release 1.2.5 -->
+## [v1.2.5](https://github.com/chef/mixlib-versioning/tree/v1.2.5) (2018-07-30)
 
 #### Merged Pull Requests
-- Testing boilerplate updates [#33](https://github.com/chef/mixlib-versioning/pull/33) ([tas50](https://github.com/tas50))
+- More testing / release updates [#34](https://github.com/chef/mixlib-versioning/pull/34) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=1.2.2 -->
 ### Changes since 1.2.2 release
 
 #### Merged Pull Requests
+- More testing / release updates [#34](https://github.com/chef/mixlib-versioning/pull/34) ([tas50](https://github.com/tas50)) <!-- 1.2.5 -->
 - Testing boilerplate updates [#33](https://github.com/chef/mixlib-versioning/pull/33) ([tas50](https://github.com/tas50))
 - Fixed typo in readme.md documentation [#30](https://github.com/chef/mixlib-versioning/pull/30) ([patrickkempff](https://github.com/patrickkempff))
 <!-- release_rollup -->
