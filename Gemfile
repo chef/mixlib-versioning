@@ -8,11 +8,18 @@ group :docs do
   gem "github-markup"
 end
 
-group :test, :development do
+group :test do
+  gem "chefstyle", git: "https://github.com/chef/chefstyle.git", branch: "master"
   gem "rspec", "~> 3.0"
   gem "rspec-its"
-  gem "rake", "~> 12"
-  gem "chefstyle"
+  gem "rake"
+end
+
+group :development do
+  gem "pry"
+  gem "pry-byebug"
+  gem "pry-stack_explorer"
+  gem "rb-readline"
 end
 
 instance_eval(ENV["GEMFILE_MOD"]) if ENV["GEMFILE_MOD"]
