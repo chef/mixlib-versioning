@@ -1,16 +1,17 @@
 # Mixlib::Versioning Changes
 
-<!-- latest_release 1.2.6 -->
-## [v1.2.6](https://github.com/chef/mixlib-versioning/tree/v1.2.6) (2018-08-02)
+<!-- latest_release 1.2.7 -->
+## [v1.2.7](https://github.com/chef/mixlib-versioning/tree/v1.2.7) (2018-12-18)
 
 #### Merged Pull Requests
-- Update codeowners and add github PR template [#36](https://github.com/chef/mixlib-versioning/pull/36) ([tas50](https://github.com/tas50))
+- Don&#39;t ship the dev and test deps in the gem artifact [#37](https://github.com/chef/mixlib-versioning/pull/37) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=1.2.2 -->
 ### Changes since 1.2.2 release
 
 #### Merged Pull Requests
+- Don&#39;t ship the dev and test deps in the gem artifact [#37](https://github.com/chef/mixlib-versioning/pull/37) ([tas50](https://github.com/tas50)) <!-- 1.2.7 -->
 - Update codeowners and add github PR template [#36](https://github.com/chef/mixlib-versioning/pull/36) ([tas50](https://github.com/tas50)) <!-- 1.2.6 -->
 - More testing / release updates [#34](https://github.com/chef/mixlib-versioning/pull/34) ([tas50](https://github.com/tas50)) <!-- 1.2.5 -->
 - Testing boilerplate updates [#33](https://github.com/chef/mixlib-versioning/pull/33) ([tas50](https://github.com/tas50))
