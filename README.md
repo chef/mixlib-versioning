@@ -1,8 +1,6 @@
 # Mixlib::Versioning
 
-[![Build Status](https://travis-ci.org/chef/mixlib-versioning.svg?branch=master)](https://travis-ci.org/chef/mixlib-versioning) [![Code Climate](https://codeclimate.com/github/chef/mixlib-versioning.svg)](https://codeclimate.com/github/chef/mixlib-versioning)
-
-This project is managed by the CHEF Release Engineering team. For more information on the Release Engineering team's contribution, triage, and release process, please consult the [CHEF Release Engineering OSS Management Guide](https://docs.google.com/a/chef.io/document/d/1oJB0vZb_3bl7_ZU2YMDBkMFdL-EWplW1BJv_FXTUOzg/edit).
+[![Build Status](https://travis-ci.org/chef/mixlib-versioning.svg?branch=master)](https://travis-ci.org/chef/mixlib-versioning) [![Gem Version](https://badge.fury.io/rb/mixlib-versioning.svg)](https://badge.fury.io/rb/mixlib-versioning)
 
 Versioning is hard! `mixlib-versioning` is a general Ruby library that allows you to parse, compare and manipulate version numbers in multiple formats. Currently the following version string formats are supported:
 
