@@ -1,9 +1,17 @@
 # Mixlib::Versioning Changes
 
-<!-- latest_release -->
+<!-- latest_release 1.2.8 -->
+## [v1.2.8](https://github.com/chef/mixlib-versioning/tree/v1.2.8) (2018-12-18)
+
+#### Merged Pull Requests
+- Add a gem version badge to the readme [#38](https://github.com/chef/mixlib-versioning/pull/38) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
-<!-- release_rollup -->
+<!-- release_rollup since=1.2.7 -->
+### Changes not yet released to rubygems.org
+
+#### Merged Pull Requests
+- Add a gem version badge to the readme [#38](https://github.com/chef/mixlib-versioning/pull/38) ([tas50](https://github.com/tas50)) <!-- 1.2.8 -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
