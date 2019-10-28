@@ -15,4 +15,7 @@ Gem::Specification.new do |spec|
 
   spec.files         = %w{LICENSE} + Dir.glob("lib/**/*")
   spec.require_paths = ["lib"]
+
+  # we support EOL ruby because we use this in chef_client_updater cookbook with very old Chef / Ruby releases
+  spec.required_ruby_version = ">= 2.0"
 end
