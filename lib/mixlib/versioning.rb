@@ -17,8 +17,8 @@
 # limitations under the License.
 #
 
-require "mixlib/versioning/exceptions"
-require "mixlib/versioning/format"
+require_relative "versioning/exceptions"
+require_relative "versioning/format"
 
 module Mixlib
   # @author Seth Chisamore (<schisamo@chef.io>)
