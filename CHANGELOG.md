@@ -1,16 +1,17 @@
 # Mixlib::Versioning Changes
 
-<!-- latest_release 1.2.11 -->
-## [v1.2.11](https://github.com/chef/mixlib-versioning/tree/v1.2.11) (2019-12-30)
+<!-- latest_release 1.2.12 -->
+## [v1.2.12](https://github.com/chef/mixlib-versioning/tree/v1.2.12) (2019-12-30)
 
 #### Merged Pull Requests
-- Move PR testing to Buildkite [#44](https://github.com/chef/mixlib-versioning/pull/44) ([tas50](https://github.com/tas50))
+- Substitute require for require_relative [#43](https://github.com/chef/mixlib-versioning/pull/43) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=1.2.7 -->
 ### Changes not yet released to rubygems.org
 
 #### Merged Pull Requests
+- Substitute require for require_relative [#43](https://github.com/chef/mixlib-versioning/pull/43) ([tas50](https://github.com/tas50)) <!-- 1.2.12 -->
 - Move PR testing to Buildkite [#44](https://github.com/chef/mixlib-versioning/pull/44) ([tas50](https://github.com/tas50)) <!-- 1.2.11 -->
 - Support Ruby 2+ in the gemspec [#42](https://github.com/chef/mixlib-versioning/pull/42) ([tas50](https://github.com/tas50)) <!-- 1.2.10 -->
 - Add Ruby 2.6 testing in Travis [#39](https://github.com/chef/mixlib-versioning/pull/39) ([tas50](https://github.com/tas50)) <!-- 1.2.9 -->
