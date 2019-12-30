@@ -1,31 +1,28 @@
 # Mixlib::Versioning Changes
 
-<!-- latest_release 1.2.12 -->
-## [v1.2.12](https://github.com/chef/mixlib-versioning/tree/v1.2.12) (2019-12-30)
-
-#### Merged Pull Requests
-- Substitute require for require_relative [#43](https://github.com/chef/mixlib-versioning/pull/43) ([tas50](https://github.com/tas50))
+<!-- latest_release -->
 <!-- latest_release -->
 
-<!-- release_rollup since=1.2.7 -->
-### Changes not yet released to rubygems.org
-
-#### Merged Pull Requests
-- Substitute require for require_relative [#43](https://github.com/chef/mixlib-versioning/pull/43) ([tas50](https://github.com/tas50)) <!-- 1.2.12 -->
-- Move PR testing to Buildkite [#44](https://github.com/chef/mixlib-versioning/pull/44) ([tas50](https://github.com/tas50)) <!-- 1.2.11 -->
-- Support Ruby 2+ in the gemspec [#42](https://github.com/chef/mixlib-versioning/pull/42) ([tas50](https://github.com/tas50)) <!-- 1.2.10 -->
-- Add Ruby 2.6 testing in Travis [#39](https://github.com/chef/mixlib-versioning/pull/39) ([tas50](https://github.com/tas50)) <!-- 1.2.9 -->
-- Add a gem version badge to the readme [#38](https://github.com/chef/mixlib-versioning/pull/38) ([tas50](https://github.com/tas50)) <!-- 1.2.8 -->
+<!-- release_rollup -->
 <!-- release_rollup -->
 
 <!-- latest_stable_release -->
+## [v1.2.12](https://github.com/chef/mixlib-versioning/tree/v1.2.12) (2019-12-30)
+
+#### Merged Pull Requests
+- Add a gem version badge to the readme [#38](https://github.com/chef/mixlib-versioning/pull/38) ([tas50](https://github.com/tas50))
+- Add Ruby 2.6 testing in Travis [#39](https://github.com/chef/mixlib-versioning/pull/39) ([tas50](https://github.com/tas50))
+- Support Ruby 2+ in the gemspec [#42](https://github.com/chef/mixlib-versioning/pull/42) ([tas50](https://github.com/tas50))
+- Move PR testing to Buildkite [#44](https://github.com/chef/mixlib-versioning/pull/44) ([tas50](https://github.com/tas50))
+- Substitute require for require_relative [#43](https://github.com/chef/mixlib-versioning/pull/43) ([tas50](https://github.com/tas50))
+<!-- latest_stable_release -->
+
 ## [v1.2.7](https://github.com/chef/mixlib-versioning/tree/v1.2.7) (2018-12-18)
 
 #### Merged Pull Requests
 - More testing / release updates [#34](https://github.com/chef/mixlib-versioning/pull/34) ([tas50](https://github.com/tas50))
 - Update codeowners and add github PR template [#36](https://github.com/chef/mixlib-versioning/pull/36) ([tas50](https://github.com/tas50))
 - Don&#39;t ship the dev and test deps in the gem artifact [#37](https://github.com/chef/mixlib-versioning/pull/37) ([tas50](https://github.com/tas50))
-<!-- latest_stable_release -->
 
 ## [v1.2.2](https://github.com/chef/mixlib-versioning/tree/v1.2.2) (2017-07-27)
 
