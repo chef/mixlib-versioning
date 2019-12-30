@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-require "mixlib/versioning/format/semver"
+require_relative "semver"
 
 module Mixlib
   class Versioning

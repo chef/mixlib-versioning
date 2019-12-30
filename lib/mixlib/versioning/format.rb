@@ -16,11 +16,11 @@
 # limitations under the License.
 #
 
-require "mixlib/versioning/format/git_describe"
-require "mixlib/versioning/format/opscode_semver"
-require "mixlib/versioning/format/rubygems"
-require "mixlib/versioning/format/semver"
-require "mixlib/versioning/format/partial_semver"
+require_relative "format/git_describe"
+require_relative "format/opscode_semver"
+require_relative "format/rubygems"
+require_relative "format/semver"
+require_relative "format/partial_semver"
 
 module Mixlib
   class Versioning
