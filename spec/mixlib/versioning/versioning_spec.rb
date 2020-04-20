@@ -95,6 +95,8 @@ describe Mixlib::Versioning do
         "10.18.2.poop-1" => Mixlib::Versioning::Format::Rubygems,
 
         "12.1.1+20130311134422" => Mixlib::Versioning::Format::OpscodeSemVer,
+        "2020.4.100" => Mixlib::Versioning::Format::SemVer, # Workstation date+build format
+        "2020.4.100+20200414223557" => Mixlib::Versioning::Format::OpscodeSemVer, # Workstation date+build+prerelease format
         "12.1.1-rc.3+20130311134422" => Mixlib::Versioning::Format::OpscodeSemVer,
         "12.1.1+20130308110833.git.2.94a1dde" => Mixlib::Versioning::Format::OpscodeSemVer,
 
