@@ -41,10 +41,10 @@ module Mixlib
     #   Mixlib::Versioning.parse('11.0.0', 'semver')
     #   Mixlib::Versioning.parse('11.0.0', Mixlib::Versioning::Format::SemVer)
     #
-    # @param version_string [String] String representatin of the version to
+    # @param version_string [String] String representation of the version to
     #   parse
     # @param format [String, Symbol, Mixlib::Versioning::Format, Array] Optional
-    #   format type to parse the version string as. If this is exluded all
+    #   format type to parse the version string as. If this is excluded all
     #   version types will be attempted from most specific to most specific
     #   with a preference for SemVer formats. If it is an array, only version
     #   types in that list will be considered

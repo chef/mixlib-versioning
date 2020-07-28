@@ -49,7 +49,7 @@ shared_examples "comparable" do |version_matrix|
 
   describe "#>" do
     version_matrix.reverse.each_slice(2) do |a, b|
-      it "confirms that #{a} is greather-than #{b}" do
+      it "confirms that #{a} is greater-than #{b}" do
         expect(described_class.new(a) > b).to be true
         expect(b > described_class.new(a)).to be false
       end
@@ -70,7 +70,7 @@ shared_examples "comparable" do |version_matrix|
   describe "#between?" do
     let(:versions) { version_matrix.map { |v| described_class.new(v) }.sort }
 
-    it "comfirms that a version is between the oldest and latest release" do
+    it "confirms that a version is between the oldest and latest release" do
       min, max = versions.minmax.map(&:to_s)
       middle = versions[versions.size / 2].to_s
       expect(described_class.new(middle).between?(min, max)).to be true

@@ -21,7 +21,7 @@ shared_examples "filterable" do
     unsorted_version_strings.map { |v| described_class.new(v) }
   end
 
-  # this should/will be overriden by calling spec
+  # this should/will be overridden by calling spec
   let(:release_versions) { [] }
   let(:prerelease_versions) { [] }
   let(:build_versions) { [] }
