@@ -37,7 +37,7 @@ module Mixlib
     # @!attribute [r] build
     #   @return [String, nil] build identifier
     # @!attribute [r] iteration
-    #   @return [String, nil] build interation
+    #   @return [String, nil] build iteration
     # @!attribute [r] input
     #   @return [String, nil] original input version string that was parsed
     class Format
@@ -87,7 +87,7 @@ module Mixlib
 
       # Parses the version string splitting it into it's component version
       # identifiers for easy comparison and sorting of versions. This method
-      # **MUST** be overriden by all descendants of this class.
+      # **MUST** be overridden by all descendants of this class.
       #
       # @param version_string [String] string representation of the version
       # @raise [Mixlib::Versioning::ParseError] raised if parsing fails
@@ -204,7 +204,7 @@ module Mixlib
         other = self.class.new(other) if other.is_a?(String)
 
         # First, perform comparisons based on major, minor, and patch
-        # versions.  These are always presnt and always non-nil
+        # versions. These are always present and always non-nil
         maj = @major <=> other.major
         return maj unless maj == 0
 
@@ -293,7 +293,7 @@ module Mixlib
       # according to SemVer 2.0.0-rc.1 semantics.
       #
       # Returns -1, 0, or 1, just like the spaceship operator (`<=>`),
-      # and is used in the implemntation of `<=>` for this class.
+      # and is used in the implementation of `<=>` for this class.
       #
       # Pre-release and build specifiers are dot-separated strings.
       # Numeric components are sorted numerically; otherwise, sorting is
