@@ -1,16 +1,17 @@
 # Mixlib::Versioning Changes
 
-<!-- latest_release 1.2.13 -->
-## [v1.2.13](https://github.com/chef/mixlib-versioning/tree/v1.2.13) (2020-07-31)
+<!-- latest_release 1.2.14 -->
+## [v1.2.14](https://github.com/chef/mixlib-versioning/tree/v1.2.14) (2020-10-09)
 
 #### Merged Pull Requests
-- Fix minor spelling mistakes [#47](https://github.com/chef/mixlib-versioning/pull/47) ([tas50](https://github.com/tas50))
+- Remove legacy encoding comment [#46](https://github.com/chef/mixlib-versioning/pull/46) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=1.2.12 -->
 ### Changes not yet released to rubygems.org
 
 #### Merged Pull Requests
+- Remove legacy encoding comment [#46](https://github.com/chef/mixlib-versioning/pull/46) ([tas50](https://github.com/tas50)) <!-- 1.2.14 -->
 - Fix minor spelling mistakes [#47](https://github.com/chef/mixlib-versioning/pull/47) ([tas50](https://github.com/tas50)) <!-- 1.2.13 -->
 <!-- release_rollup -->
 
