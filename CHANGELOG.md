@@ -1,16 +1,17 @@
 # Mixlib::Versioning Changes
 
-<!-- latest_release 1.2.14 -->
-## [v1.2.14](https://github.com/chef/mixlib-versioning/tree/v1.2.14) (2020-10-09)
+<!-- latest_release 1.2.15 -->
+## [v1.2.15](https://github.com/chef/mixlib-versioning/tree/v1.2.15) (2021-06-25)
 
 #### Merged Pull Requests
-- Remove legacy encoding comment [#46](https://github.com/chef/mixlib-versioning/pull/46) ([tas50](https://github.com/tas50))
+- Upgrade to GitHub-native Dependabot [#48](https://github.com/chef/mixlib-versioning/pull/48) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot]))
 <!-- latest_release -->
 
 <!-- release_rollup since=1.2.12 -->
 ### Changes not yet released to rubygems.org
 
 #### Merged Pull Requests
+- Upgrade to GitHub-native Dependabot [#48](https://github.com/chef/mixlib-versioning/pull/48) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 1.2.15 -->
 - Remove legacy encoding comment [#46](https://github.com/chef/mixlib-versioning/pull/46) ([tas50](https://github.com/tas50)) <!-- 1.2.14 -->
 - Fix minor spelling mistakes [#47](https://github.com/chef/mixlib-versioning/pull/47) ([tas50](https://github.com/tas50)) <!-- 1.2.13 -->
 <!-- release_rollup -->
