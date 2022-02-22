@@ -8,8 +8,6 @@ steps:
 
 - label: run-lint-ruby-2.4
   command:
-    - apt-get update
-    - apt-get install -y libarchive-dev
     - .expeditor/run_linux_tests.sh rake style
   expeditor:
     executor:
@@ -58,7 +56,6 @@ steps:
 
 - label: run-specs-ruby-3.0
   command:
-    - apt-get update
     - .expeditor/run_linux_tests.sh rake
   expeditor:
     executor:
@@ -67,7 +64,6 @@ steps:
 
 - label: run-specs-ruby-3.1
   command:
-    - apt-get update
     - .expeditor/run_linux_tests.sh rake
   expeditor:
     executor:
