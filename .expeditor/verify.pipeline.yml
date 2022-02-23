@@ -16,9 +16,7 @@ steps:
 
 - label: run-specs-ruby-2.4
   command:
-    - apt-get update
-    - apt-get install -y libarchive-dev
-    - .expeditor/run_linux_tests.sh rake
+    - .expeditor/run_linux_tests.sh rake spec
   expeditor:
     executor:
       docker:
@@ -26,9 +24,7 @@ steps:
 
 - label: run-specs-ruby-2.5
   command:
-    - apt-get update
-    - apt-get install -y libarchive-dev
-    - .expeditor/run_linux_tests.sh rake
+    - .expeditor/run_linux_tests.sh rake spec
   expeditor:
     executor:
       docker:
@@ -36,9 +32,7 @@ steps:
 
 - label: run-specs-ruby-2.6
   command:
-    - apt-get update
-    - apt-get install -y libarchive-dev
-    - .expeditor/run_linux_tests.sh rake
+    - .expeditor/run_linux_tests.sh rake spec
   expeditor:
     executor:
       docker:
@@ -46,9 +40,7 @@ steps:
 
 - label: run-specs-ruby-2.7
   command:
-    - apt-get update
-    - apt-get install -y libarchive-dev
-    - .expeditor/run_linux_tests.sh rake
+    - .expeditor/run_linux_tests.sh rake spec
   expeditor:
     executor:
       docker:
@@ -56,7 +48,7 @@ steps:
 
 - label: run-specs-ruby-3.0
   command:
-    - .expeditor/run_linux_tests.sh rake
+    - .expeditor/run_linux_tests.sh rake spec
   expeditor:
     executor:
       docker:
@@ -64,7 +56,7 @@ steps:
 
 - label: run-specs-ruby-3.1
   command:
-    - .expeditor/run_linux_tests.sh rake
+    - .expeditor/run_linux_tests.sh rake spec
   expeditor:
     executor:
       docker:
