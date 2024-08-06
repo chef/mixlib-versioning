@@ -15,7 +15,7 @@ rescue LoadError
 end
 
 begin
-  require "chefstyle"
+  require "cookstyle/chefstyle"
   require "rubocop/rake_task"
   desc "Run Chefstyle tests"
   RuboCop::RakeTask.new(:style) do |task|
