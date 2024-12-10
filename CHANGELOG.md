@@ -1,16 +1,17 @@
 # Mixlib::Versioning Changes
 
-<!-- latest_release 1.2.17 -->
-## [v1.2.17](https://github.com/chef/mixlib-versioning/tree/v1.2.17) (2022-04-07)
+<!-- latest_release 1.2.18 -->
+## [v1.2.18](https://github.com/chef/mixlib-versioning/tree/v1.2.18) (2024-12-10)
 
 #### Merged Pull Requests
-- do not run style during windows tests [#54](https://github.com/chef/mixlib-versioning/pull/54) ([marcparadise](https://github.com/marcparadise))
+- [CI] Drop EOL Rubies [#57](https://github.com/chef/mixlib-versioning/pull/57) ([dafyddcrosby](https://github.com/dafyddcrosby))
 <!-- latest_release -->
 
 <!-- release_rollup since=1.2.12 -->
 ### Changes not yet released to rubygems.org
 
 #### Merged Pull Requests
+- [CI] Drop EOL Rubies [#57](https://github.com/chef/mixlib-versioning/pull/57) ([dafyddcrosby](https://github.com/dafyddcrosby)) <!-- 1.2.18 -->
 - do not run style during windows tests [#54](https://github.com/chef/mixlib-versioning/pull/54) ([marcparadise](https://github.com/marcparadise)) <!-- 1.2.17 -->
 - Test on  Ruby Versions  3.1 /3.0  [#52](https://github.com/chef/mixlib-versioning/pull/52) ([poorndm](https://github.com/poorndm)) <!-- 1.2.16 -->
 - Upgrade to GitHub-native Dependabot [#48](https://github.com/chef/mixlib-versioning/pull/48) ([dependabot-preview[bot]](https://github.com/dependabot-preview[bot])) <!-- 1.2.15 -->

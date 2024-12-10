@@ -18,6 +18,6 @@
 
 module Mixlib
   class Versioning
-    VERSION = "1.2.17"
+    VERSION = "1.2.18"
   end
 end
