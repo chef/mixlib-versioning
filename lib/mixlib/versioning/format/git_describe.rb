@@ -44,7 +44,7 @@ module Mixlib
       # @author Seth Chisamore (<schisamo@chef.io>)
       # @author Christopher Maier (<cm@chef.io>)
       class GitDescribe < Format
-        GIT_DESCRIBE_REGEX = /^(\d+)\.(\d+)\.(\d+)(?:\-|\.)?(.+)?\-(\d+)\-g([a-f0-9]{7,40})(?:\-)?(\d+)?$/
+        GIT_DESCRIBE_REGEX = /^(\d+)\.(\d+)\.(\d+)(?:\-|\.)?(.+)?\-(\d+)\-g([a-f0-9]{7,40})(?:\-)?(\d+)?$/.freeze
 
         attr_reader :commits_since, :commit_sha
 
