@@ -66,11 +66,11 @@ module Mixlib
         # Attempt to parse from the most specific formats first.
         parsed_version = nil
         formats.each do |version|
-          begin
-            break parsed_version = version.new(version_string)
-          rescue Mixlib::Versioning::ParseError
-            next
-          end
+
+          break parsed_version = version.new(version_string)
+        rescue Mixlib::Versioning::ParseError
+          next
+
         end
         parsed_version
       end
