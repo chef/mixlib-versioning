@@ -20,7 +20,7 @@ require "mixlib/versioning"
 require "rspec/its"
 
 # load all shared examples and shared contexts
-Dir[File.expand_path("../support/**/*.rb", __FILE__)].each do |file|
+Dir[File.expand_path("support/**/*.rb", __dir__)].each do |file|
   require(file)
 end
 
