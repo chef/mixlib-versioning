@@ -40,7 +40,7 @@ module Mixlib
       # @author Ryan Hass (<rhass@chef.io>)
       class PartialSemVer < Format
         #  http://rubular.com/r/NmRSN8vCie
-        PARTIAL_REGEX = /^(\d+)\.?(?:(\d*))$/
+        PARTIAL_REGEX = /^(\d+)\.?(?:(\d*))$/.freeze
         # @see Format#parse
         def parse(version_string)
           match = version_string.match(PARTIAL_REGEX) rescue nil

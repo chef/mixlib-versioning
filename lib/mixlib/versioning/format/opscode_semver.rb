@@ -55,7 +55,7 @@ module Mixlib
       # @author Christopher Maier (<cm@chef.io>)
       class OpscodeSemVer < SemVer
         # The pattern is: `YYYYMMDDHHMMSS.git.COMMITS_SINCE.SHA1`
-        OPSCODE_BUILD_REGEX = /^\d{14}(\.git\.\d+\.[a-f0-9]{7})?$/
+        OPSCODE_BUILD_REGEX = /^\d{14}(\.git\.\d+\.[a-f0-9]{7})?$/.freeze
 
         # Allows the following:
         #
@@ -65,7 +65,7 @@ module Mixlib
         # rc, rc.0, rc.1, rc.2, etc.
         # ```
         #
-        OPSCODE_PRERELEASE_REGEX = /^(alpha|beta|rc)(\.\d+)?$/
+        OPSCODE_PRERELEASE_REGEX = /^(alpha|beta|rc)(\.\d+)?$/.freeze
 
         # @see SemVer#parse
         def parse(version_string)
