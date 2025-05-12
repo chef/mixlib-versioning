@@ -1,16 +1,17 @@
 # Mixlib::Versioning Changes
 
-<!-- latest_release 1.2.19 -->
-## [v1.2.19](https://github.com/chef/mixlib-versioning/tree/v1.2.19) (2024-12-17)
+<!-- latest_release 1.2.20 -->
+## [v1.2.20](https://github.com/chef/mixlib-versioning/tree/v1.2.20) (2025-05-12)
 
 #### Merged Pull Requests
-- Migrate from Chefstyle to Cookstyle [#56](https://github.com/chef/mixlib-versioning/pull/56) ([dafyddcrosby](https://github.com/dafyddcrosby))
+- add myself to codeowners [#58](https://github.com/chef/mixlib-versioning/pull/58) ([jaymzh](https://github.com/jaymzh))
 <!-- latest_release -->
 
 <!-- release_rollup since=1.2.12 -->
 ### Changes not yet released to rubygems.org
 
 #### Merged Pull Requests
+- add myself to codeowners [#58](https://github.com/chef/mixlib-versioning/pull/58) ([jaymzh](https://github.com/jaymzh)) <!-- 1.2.20 -->
 - Migrate from Chefstyle to Cookstyle [#56](https://github.com/chef/mixlib-versioning/pull/56) ([dafyddcrosby](https://github.com/dafyddcrosby)) <!-- 1.2.19 -->
 - [CI] Drop EOL Rubies [#57](https://github.com/chef/mixlib-versioning/pull/57) ([dafyddcrosby](https://github.com/dafyddcrosby)) <!-- 1.2.18 -->
 - do not run style during windows tests [#54](https://github.com/chef/mixlib-versioning/pull/54) ([marcparadise](https://github.com/marcparadise)) <!-- 1.2.17 -->
