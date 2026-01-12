@@ -2,7 +2,7 @@
 # Author:: Seth Chisamore (<schisamo@chef.io>)
 # Author:: Christopher Maier (<cm@chef.io>)
 # Author:: Ryan Hass (<rhass@chef.io>)
-# Copyright:: Copyright (c) 2017-2018 Chef Software Inc.
+# Copyright:: Copyright (c) 2013-2025 Progress Software Corporation and/or its subsidiaries or affiliates. All Rights Reserved.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
