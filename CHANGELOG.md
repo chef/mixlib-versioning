@@ -1,16 +1,17 @@
 # Mixlib::Versioning Changes
 
-<!-- latest_release 1.2.23 -->
-## [v1.2.23](https://github.com/chef/mixlib-versioning/tree/v1.2.23) (2025-10-23)
+<!-- latest_release 1.2.24 -->
+## [v1.2.24](https://github.com/chef/mixlib-versioning/tree/v1.2.24) (2026-06-02)
 
 #### Merged Pull Requests
-- CHEF-25795 - standardize - remove_sla_from_readme [#60](https://github.com/chef/mixlib-versioning/pull/60) ([cgunasree08](https://github.com/cgunasree08))
+- Remove docsteam req for markdown [#65](https://github.com/chef/mixlib-versioning/pull/65) ([jaymzh](https://github.com/jaymzh))
 <!-- latest_release -->
 
 <!-- release_rollup since=1.2.12 -->
 ### Changes not yet released to rubygems.org
 
 #### Merged Pull Requests
+- Remove docsteam req for markdown [#65](https://github.com/chef/mixlib-versioning/pull/65) ([jaymzh](https://github.com/jaymzh)) <!-- 1.2.24 -->
 - CHEF-25795 - standardize - remove_sla_from_readme [#60](https://github.com/chef/mixlib-versioning/pull/60) ([cgunasree08](https://github.com/cgunasree08)) <!-- 1.2.23 -->
 - CHEF-26032 - Replace CODE_OF_CONDUCT.md file [#61](https://github.com/chef/mixlib-versioning/pull/61) ([nandanhegde73](https://github.com/nandanhegde73)) <!-- 1.2.22 -->
 - Drop 3.0 and add 3.4 [#62](https://github.com/chef/mixlib-versioning/pull/62) ([jaymzh](https://github.com/jaymzh)) <!-- 1.2.21 -->
