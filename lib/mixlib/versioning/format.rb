@@ -270,8 +270,16 @@ module Mixlib
           @build == other.build
       end
 
+      # A hash consistent with {#eql?}, which compares exactly these five
+      # identifiers.
+      #
+      # Array#hash combines the elements directly, so there is no need to
+      # build an intermediate joined String -- and unlike the joined String
+      # it cannot conflate identifiers that land in different positions.
+      #
+      # @return [Integer]
       def hash
-        [@major, @minor, @patch, @prerelease, @build].compact.join(".").hash
+        [@major, @minor, @patch, @prerelease, @build].hash
       end
 
       #########################################################################
