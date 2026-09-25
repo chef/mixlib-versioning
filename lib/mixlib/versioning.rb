@@ -58,10 +58,15 @@ module Mixlib
       if version_string.is_a?(Mixlib::Versioning::Format)
         version_string
       else
-        formats = if format
-                    [format].flatten.map { |f| Mixlib::Versioning::Format.for(f) }
-                  else
+        formats = if format.nil?
                     DEFAULT_FORMATS
+                  elsif format.is_a?(Array)
+                    format.flatten.map { |f| Mixlib::Versioning::Format.for(f) }
+                  else
+                    # The overwhelmingly common case: a single format. Wrapping
+                    # it in an Array only to flatten that Array back down costs
+                    # two Arrays and a block per call.
+                    [Mixlib::Versioning::Format.for(format)]
                   end
         # Attempt to parse from the most specific formats first.
         parsed_version = nil
