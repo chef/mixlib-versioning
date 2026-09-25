@@ -1,5 +1,6 @@
 # Mixlib::Versioning
-[![Build status](https://badge.buildkite.com/7aa0e56c4ab881afc6025119868c6828dc2f11a907465b9c51.svg?branch=master)](https://buildkite.com/chef-oss/chef-mixlib-versioning-master-verify)
+
+[![Build status](https://badge.buildkite.com/7aa0e56c4ab881afc6025119868c6828dc2f11a907465b9c51.svg?branch=main)](https://buildkite.com/chef-oss/chef-mixlib-versioning-main-verify)
 [![Gem Version](https://badge.fury.io/rb/mixlib-versioning.svg)](https://badge.fury.io/rb/mixlib-versioning)
 
 Versioning is hard! `mixlib-versioning` is a general Ruby library that allows you to parse, compare and manipulate version numbers in multiple formats. Currently the following version string formats are supported:
@@ -8,7 +9,7 @@ Versioning is hard! `mixlib-versioning` is a general Ruby library that allows yo
 
 **Specification:**
 
-<http://semver.org/>
+<https://semver.org/>
 
 **Supported Formats:**
 
@@ -18,7 +19,7 @@ MAJOR.MINOR.PATCH-PRERELEASE
 MAJOR.MINOR.PATCH-PRERELEASE+BUILD
 ```
 
-Not much to say here except: _YUNO USE SEMVER!_ The specification is focused and brief, do yourself a favor and go read it.
+Not much to say here except: _YUNO USE SEMVER!_ The specification is focused and brief; do yourself a favor and go read it.
 
 ## Opscode SemVer
 
@@ -52,13 +53,12 @@ All of the following are acceptable Opscode SemVer pre-release versions:
 11.0.8-rc.2
 ```
 
-Build version strings are limited to timestamps (`YYYYMMDDHHMMSS`), git describe strings (`git.COMMITS_SINCE.SHA1`) or a combination of the two (`YYYYMMDDHHMMSS.git.COMMITS_SINCE.SHA1`).
+Build version strings must start with a timestamp (`YYYYMMDDHHMMSS`), which can optionally be followed by git describe information (`YYYYMMDDHHMMSS.git.COMMITS_SINCE.SHA1`).
 
 All of the following are acceptable Opscode build versions:
 
 ```text
 11.0.8+20130308110833
-11.0.8+git.2.g94a1dde
 11.0.8+20130308110833.git.2.94a1dde
 ```
 
@@ -71,11 +71,9 @@ And as is true with regular SemVer you can mix pre-release and build versions:
 
 ## Rubygems
 
-**specification:**
+**Specification:**
 
-<http://docs.rubygems.org/read/chapter/7>
-
-<http://guides.rubygems.org/patterns/>
+<https://guides.rubygems.org/patterns/>
 
 **Supported Formats:**
 
@@ -90,7 +88,6 @@ Examples of valid Rubygems version strings:
 
 ```text
 10.1.1
-10.1.1
 10.1.1.alpha.1
 10.1.1.beta.1
 10.1.1.rc.0
@@ -100,7 +97,7 @@ Examples of valid Rubygems version strings:
 
 **Specification:**
 
-<http://git-scm.com/docs/git-describe>
+<https://git-scm.com/docs/git-describe>
 
 **Supported Formats:**
 
@@ -120,9 +117,9 @@ Examples of valid Git Describe version strings:
 11.0.0-alpha.1-1-gcea071e
 ```
 
-
 ## SemVer Partial
 
+**Supported Formats:**
 
 ```text
 MAJOR
@@ -141,27 +138,27 @@ Examples of valid SemVer Partial version strings:
 
 Add this line to your application's Gemfile:
 
-```
+```ruby
 gem 'mixlib-versioning'
 ```
 
 And then execute:
 
-```
-$ bundle
+```shell
+bundle install
 ```
 
 Or install it yourself as:
 
-```
-$ gem install mixlib-versioning
+```shell
+gem install mixlib-versioning
 ```
 
 ## Usage
 
 ### Basic Version String Parsing
 
-```irb
+```ruby
 >> require 'mixlib/versioning'
 true
 >> v1 = Mixlib::Versioning.parse("11.0.3")
@@ -222,7 +219,7 @@ true
 
 ### Version Comparison and Sorting
 
-```irb
+```ruby
 >> require 'mixlib/versioning'
 true
 >> v1 = Mixlib::Versioning.parse("11.0.0-beta.1")
@@ -285,8 +282,7 @@ true
   11.0.8-rc.1+20130305195925.git.2.94a1dde
   11.0.8-rc.1+20130306083036.git.2.94a1dde
   11.0.8-rc.1+20130319083111.git.6.dc8613e
-};''
-""
+}
 >> Mixlib::Versioning.find_target_version(all_versions, "11.0.6", false, false)
 #<Mixlib::Versioning::Format::OpscodeSemVer:0x3ffdc91364a4 @major=11, @minor=0, @patch=6, @prerelease=nil, @build=nil, @input="11.0.6">
 >> target = Mixlib::Versioning.find_target_version(all_versions, "11.0.6", false, false)
@@ -297,7 +293,7 @@ true
 
 Select latest release version:
 
-```irb
+```ruby
 >> target = Mixlib::Versioning.find_target_version(all_versions, nil, false, false)
 #<Mixlib::Versioning::Format::OpscodeSemVer:0x3ffdc91364a4 @major=11, @minor=0, @patch=6, @prerelease=nil, @build=nil, @input="11.0.6">
 >> target.to_s
@@ -306,7 +302,7 @@ Select latest release version:
 
 Select latest pre-release version:
 
-```irb
+```ruby
 >> target = Mixlib::Versioning.find_target_version(all_versions, nil, true, false)
 #<Mixlib::Versioning::Format::OpscodeSemVer:0x3ffdc9139078 @major=11, @minor=0, @patch=8, @prerelease="rc.1", @build=nil, @input="11.0.8-rc.1">
 >> target.to_s
@@ -315,7 +311,7 @@ Select latest pre-release version:
 
 Select the latest release build version:
 
-```irb
+```ruby
 >> target = Mixlib::Versioning.find_target_version(all_versions, nil, false, true)
 #<Mixlib::Versioning::Format::OpscodeSemVer:0x3ffdc91f0bb0 @major=11, @minor=0, @patch=6, @prerelease=nil, @build="20130221075213", @input="11.0.6+20130221075213">
 >> target.to_s
@@ -324,7 +320,7 @@ Select the latest release build version:
 
 Select the latest pre-release build version:
 
-```irb
+```ruby
 >> target = Mixlib::Versioning.find_target_version(all_versions, nil, true, true)
 #<Mixlib::Versioning::Format::OpscodeSemVer:0x3ffdc91f154c @major=11, @minor=0, @patch=8, @prerelease="rc.1", @build="20130319083111.git.6.dc8613e", @input="11.0.8-rc.1+20130319083111.git.6.dc8613e">
 >> target.to_s
@@ -333,34 +329,34 @@ Select the latest pre-release build version:
 
 ## How to Run the Tests
 
-To run the unit tests, run
+To run the unit tests, run:
 
-```
-rake spec
+```shell
+bundle exec rake spec
 ```
 
 ## Documentation
 
-All documentation is written using YARD. You can generate a by running:
+All documentation is written using YARD. You can generate it by running:
 
-```
-rake docs
+```shell
+bundle exec rake docs
 ```
 
 ## Contributing
 
-For information on contributing to this project please see our [Contributing Documentation](https://github.com/chef/chef/blob/master/CONTRIBUTING.md)
+For information on contributing to this project please see our [Contributing Documentation](https://github.com/chef/chef/blob/main/CONTRIBUTING.md).
 
-## License 
+## License
 
-- License:: Apache License, Version 2.0
+Apache License, Version 2.0
 
 ```text
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
-    http://www.apache.org/licenses/LICENSE-2.0
+    https://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
@@ -369,7 +365,6 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ```
 
-
-# Copyright
+## Copyright
 
 See [COPYRIGHT.md](./COPYRIGHT.md).
