@@ -1,16 +1,17 @@
 # Mixlib::Versioning Changes
 
-<!-- latest_release 1.2.25 -->
-## [v1.2.25](https://github.com/chef/mixlib-versioning/tree/v1.2.25) (2026-06-02)
+<!-- latest_release 1.2.26 -->
+## [v1.2.26](https://github.com/chef/mixlib-versioning/tree/v1.2.26) (2026-10-13)
 
 #### Merged Pull Requests
-- CHEF-27676 Update and standardize copyright notices to Progress Software Corporation - copyright_update [#64](https://github.com/chef/mixlib-versioning/pull/64) ([clintoncwolfe](https://github.com/clintoncwolfe))
+- Make version serialization ~3x faster [#69](https://github.com/chef/mixlib-versioning/pull/69) ([tas50](https://github.com/tas50))
 <!-- latest_release -->
 
 <!-- release_rollup since=1.2.12 -->
 ### Changes not yet released to rubygems.org
 
 #### Merged Pull Requests
+- Make version serialization ~3x faster [#69](https://github.com/chef/mixlib-versioning/pull/69) ([tas50](https://github.com/tas50)) <!-- 1.2.26 -->
 - CHEF-27676 Update and standardize copyright notices to Progress Software Corporation - copyright_update [#64](https://github.com/chef/mixlib-versioning/pull/64) ([clintoncwolfe](https://github.com/clintoncwolfe)) <!-- 1.2.25 -->
 - Remove docsteam req for markdown [#65](https://github.com/chef/mixlib-versioning/pull/65) ([jaymzh](https://github.com/jaymzh)) <!-- 1.2.24 -->
 - CHEF-25795 - standardize - remove_sla_from_readme [#60](https://github.com/chef/mixlib-versioning/pull/60) ([cgunasree08](https://github.com/cgunasree08)) <!-- 1.2.23 -->
