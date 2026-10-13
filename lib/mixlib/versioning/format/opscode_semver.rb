@@ -71,8 +71,8 @@ module Mixlib
         def parse(version_string)
           super(version_string)
 
-          raise Mixlib::Versioning::ParseError, "'#{@prerelease}' is not a valid Opscode pre-release signifier!" unless @prerelease.nil? || @prerelease.match(OPSCODE_PRERELEASE_REGEX)
-          raise Mixlib::Versioning::ParseError, "'#{@build}' is not a valid Opscode build signifier!" unless @build.nil? || @build.match(OPSCODE_BUILD_REGEX)
+          raise Mixlib::Versioning::ParseError, "'#{@prerelease}' is not a valid Opscode pre-release signifier!" unless @prerelease.nil? || @prerelease.match?(OPSCODE_PRERELEASE_REGEX)
+          raise Mixlib::Versioning::ParseError, "'#{@build}' is not a valid Opscode build signifier!" unless @build.nil? || @build.match?(OPSCODE_BUILD_REGEX)
         end
       end # class OpscodeSemVer
     end # class Format

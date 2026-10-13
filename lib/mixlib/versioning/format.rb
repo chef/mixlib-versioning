@@ -60,8 +60,7 @@ module Mixlib
       # @return [Class] the {Mixlib::Versioning::Format} class
       #
       def self.for(format_type)
-        if format_type.is_a?(Class) &&
-            format_type.ancestors.include?(Mixlib::Versioning::Format)
+        if format_type.is_a?(Class) && format_type <= Mixlib::Versioning::Format
           format_type
         else
           case format_type.to_s
