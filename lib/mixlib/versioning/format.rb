@@ -77,6 +77,37 @@ module Mixlib
         end
       end
 
+      # The pattern {.parseable?} screens candidate strings with, or nil if
+      # this format screens by some other means (or not at all).
+      #
+      # @return [Regexp, nil]
+      def self.version_regex
+        nil
+      end
+
+      # A cheap screen for whether this format could parse `version_string`.
+      #
+      # {Versioning.parse} tries each candidate format in turn. Without a
+      # screen, every format that does not apply costs a raised and
+      # immediately discarded ParseError, which is several times more
+      # expensive than the Regexp that decides the outcome.
+      #
+      # Returning true only means "worth attempting": {Versioning.parse} still
+      # calls .new and still rescues ParseError, so a screen is free to be a
+      # loose necessary condition, and a format that does not define one --
+      # including any third-party subclass -- behaves exactly as before.
+      #
+      # @param version_string [String]
+      # @return [Boolean]
+      def self.parseable?(version_string)
+        regex = version_regex
+        # Only Strings can be screened this way. #parse also accepts anything
+        # else that responds to #match, so those fall through untouched.
+        return true if regex.nil? || !version_string.is_a?(String)
+
+        regex.match?(version_string)
+      end
+
       attr_reader :major, :minor, :patch, :prerelease, :build, :iteration, :input
 
       # @param version_string [String] string representation of the version

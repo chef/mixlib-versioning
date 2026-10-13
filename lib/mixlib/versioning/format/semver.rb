@@ -44,6 +44,11 @@ module Mixlib
       class SemVer < Format
         SEMVER_REGEX = /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][a-zA-Z0-9-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][a-zA-Z0-9-]*))*))?(?:\+([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?$/
 
+        # @see Format.version_regex
+        def self.version_regex
+          SEMVER_REGEX
+        end
+
         # @see Format#parse
         def parse(version_string)
           match = begin

@@ -44,6 +44,11 @@ module Mixlib
       class Rubygems < Format
         RUBYGEMS_REGEX = /^(\d+)\.(\d+)\.(\d+)(?:\.([[:alnum:]]+(?:\.[[:alnum:]]+)?))?(?:\-(\d+))?$/
 
+        # @see Format.version_regex
+        def self.version_regex
+          RUBYGEMS_REGEX
+        end
+
         # @see Format#parse
         def parse(version_string)
           match = begin

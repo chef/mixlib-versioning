@@ -63,9 +63,17 @@ module Mixlib
                   else
                     DEFAULT_FORMATS
                   end
-        # Attempt to parse from the most specific formats first.
+        # Attempt to parse from the most specific formats first. When there
+        # is more than one candidate, screen the string against each format
+        # first: a format that obviously does not apply then costs a cheap
+        # predicate instead of a raised and discarded ParseError. With a
+        # single candidate there is nothing to skip to, so screening could
+        # only duplicate the work #parse is about to do anyway.
+        screen = formats.length > 1
         parsed_version = nil
         formats.each do |version|
+          next if screen && !version.parseable?(version_string)
+
           break parsed_version = version.new(version_string)
         rescue Mixlib::Versioning::ParseError
           next

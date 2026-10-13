@@ -46,7 +46,24 @@ module Mixlib
       class GitDescribe < Format
         GIT_DESCRIBE_REGEX = /^(\d+)\.(\d+)\.(\d+)(?:\-|\.)?(.+)?\-(\d+)\-g([a-f0-9]{7,40})(?:\-)?(\d+)?$/
 
+        # The literal that GIT_DESCRIBE_REGEX requires ahead of the commit
+        # SHA. Frozen so that screening does not allocate.
+        SHA_PREFIX = "-g".freeze
+
         attr_reader :commits_since, :commit_sha
+
+        # Every git describe version embeds a literal "-g" ahead of the
+        # commit SHA, so a string without one can never match
+        # GIT_DESCRIBE_REGEX. Testing for it is far cheaper than running the
+        # pattern, and a screen only has to avoid false negatives -- a string
+        # that gets through is still validated by #parse.
+        #
+        # @see Format.parseable?
+        def self.parseable?(version_string)
+          return true unless version_string.is_a?(String)
+
+          version_string.include?(SHA_PREFIX)
+        end
 
         # @see Format#parse
         def parse(version_string)

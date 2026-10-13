@@ -41,6 +41,12 @@ module Mixlib
       class PartialSemVer < Format
         #  http://rubular.com/r/NmRSN8vCie
         PARTIAL_REGEX = /^(\d+)\.?(?:(\d*))$/
+
+        # @see Format.version_regex
+        def self.version_regex
+          PARTIAL_REGEX
+        end
+
         # @see Format#parse
         def parse(version_string)
           match = begin
