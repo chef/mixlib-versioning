@@ -225,7 +225,7 @@ module Mixlib
         elsif @prerelease.nil? && other.prerelease
           return 1
         elsif @prerelease && other.prerelease
-          pre = compare_dot_components(@prerelease, other.prerelease)
+          pre = compare_components(prerelease_components, other.prerelease_components)
           return pre unless pre == 0
         end
 
@@ -238,7 +238,7 @@ module Mixlib
         elsif @build && other.build.nil?
           return 1
         elsif @build && other.build
-          build_ver = compare_dot_components(@build, other.build)
+          build_ver = compare_components(build_components, other.build_components)
           return build_ver unless build_ver == 0
         end
 
@@ -274,6 +274,23 @@ module Mixlib
         [@major, @minor, @patch, @prerelease, @build].compact.join(".").hash
       end
 
+      # The pre-release specifier split on `.` with numeric components already
+      # converted to Integers. Computed once and memoized: sorting a list of
+      # versions compares the same specifier O(log n) times, and there is no
+      # reason to re-split and re-convert it on every comparison.
+      #
+      # @return [Array<Integer, String>, nil]
+      def prerelease_components
+        @prerelease_components ||= dot_components(@prerelease)
+      end
+
+      # The build specifier, split and converted like {#prerelease_components}.
+      #
+      # @return [Array<Integer, String>, nil]
+      def build_components
+        @build_components ||= dot_components(@build)
+      end
+
       #########################################################################
 
       private
@@ -281,12 +298,28 @@ module Mixlib
       # If a String `n` can be parsed as an Integer do so; otherwise, do
       # nothing.
       #
+      # `Integer(n, exception: false)` accepts exactly the same input as a bare
+      # `Integer(n)` but returns nil instead of raising, so we do not pay to
+      # build and unwind an exception for every non-numeric component
+      # (`alpha`, `rc`, `g21353f0`, ...).
+      #
       # @param n [String, nil]
       # @return [Integer] the parsed {Integer}
       def maybe_int(n)
-        Integer(n)
-      rescue
-        n
+        Integer(n, exception: false) || n
+      end
+
+      # Splits a dot-separated specifier into components, converting numeric
+      # ones to Integers.
+      #
+      # @param str [String, nil]
+      # @return [Array<Integer, String>, nil]
+      def dot_components(str)
+        return nil if str.nil?
+
+        components = str.split(".")
+        components.map! { |c| maybe_int(c) }
+        components
       end
 
       # Compares prerelease and build version component strings
@@ -305,15 +338,17 @@ module Mixlib
       # Both `a_item` and `b_item` should be Strings; `nil` is not a
       # valid input.
       def compare_dot_components(a_item, b_item)
-        a_components = a_item.split(".")
-        b_components = b_item.split(".")
+        compare_components(dot_components(a_item), dot_components(b_item))
+      end
 
+      # Compares two component arrays produced by {#dot_components} using the
+      # SemVer rules described on {#compare_dot_components}.
+      def compare_components(a_components, b_components)
         max_length = [a_components.length, b_components.length].max
 
-        (0..(max_length - 1)).each do |i|
-          # Convert the ith component into a number if possible
-          a = maybe_int(a_components[i])
-          b = maybe_int(b_components[i])
+        max_length.times do |i|
+          a = a_components[i]
+          b = b_components[i]
 
           # Since the components may be of differing lengths, the
           # shorter one will yield +nil+ at some point as we iterate.
