@@ -169,9 +169,9 @@ module Mixlib
       #   {Format} instance
       # @todo create a proper serialization abstraction
       def to_semver_string
-        s = [@major, @minor, @patch].map(&:to_i).join(".")
-        s += "-#{@prerelease}" if @prerelease
-        s += "+#{@build}" if @build
+        s = "#{@major.to_i}.#{@minor.to_i}.#{@patch.to_i}"
+        s << "-" << @prerelease.to_s if @prerelease
+        s << "+" << @build.to_s if @build
         s
       end
 
@@ -186,8 +186,8 @@ module Mixlib
       #   {Format} instance
       # @todo create a proper serialization abstraction
       def to_rubygems_string
-        s = [@major, @minor, @patch].map(&:to_i).join(".")
-        s += ".#{@prerelease}" if @prerelease
+        s = "#{@major.to_i}.#{@minor.to_i}.#{@patch.to_i}"
+        s << "." << @prerelease.to_s if @prerelease
         s
       end
 
