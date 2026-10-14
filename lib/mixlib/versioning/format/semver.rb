@@ -56,8 +56,11 @@ module Mixlib
             raise Mixlib::Versioning::ParseError, "'#{version_string}' is not a valid #{self.class} version string!"
           end
 
-          @major, @minor, @patch, @prerelease, @build = match[1..5]
-          @major, @minor, @patch = [@major, @minor, @patch].map(&:to_i)
+          @major = match[1].to_i
+          @minor = match[2].to_i
+          @patch = match[3].to_i
+          @prerelease = match[4]
+          @build = match[5]
 
           @prerelease = nil if @prerelease.nil? || @prerelease.empty?
           @build = nil if @build.nil? || @build.empty?

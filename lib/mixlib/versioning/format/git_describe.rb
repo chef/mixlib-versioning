@@ -60,8 +60,13 @@ module Mixlib
             raise Mixlib::Versioning::ParseError, "'#{version_string}' is not a valid #{self.class} version string!"
           end
 
-          @major, @minor, @patch, @prerelease, @commits_since, @commit_sha, @iteration = match[1..7]
-          @major, @minor, @patch, @commits_since, @iteration = [@major, @minor, @patch, @commits_since, @iteration].map(&:to_i)
+          @major = match[1].to_i
+          @minor = match[2].to_i
+          @patch = match[3].to_i
+          @prerelease = match[4]
+          @commits_since = match[5].to_i
+          @commit_sha = match[6]
+          @iteration = match[7].to_i
 
           # Our comparison logic is built around SemVer semantics, so
           # we'll store our internal information in that format
